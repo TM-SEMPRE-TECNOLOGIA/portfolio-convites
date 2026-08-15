@@ -1,4 +1,9 @@
-# Arquivos que NÃO vão para o deploy
+# Páginas internas (só do Thiago) — NÃO sobem pro site público
+briefing.html
+manual_operacional_e_briefings.html
+exemplos_entregaveis/
+
+# Arquivos de trabalho — não vão pro deploy
 _inspiracao_webgency/
 scripts/
 README.md
