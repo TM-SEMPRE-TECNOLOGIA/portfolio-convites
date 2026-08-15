@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Lucas & Mariana | Convite de Casamento (Plano Gold)</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --bg-dark: #101217;
+      --bg-card: #171a23;
+      --accent-gold: #e5b869;
+      --accent-gold-light: rgba(229, 184, 105, 0.15);
+      --text-main: #f5f6f8;
+      --text-muted: #9da1b4;
+      --border-gold: rgba(229, 184, 105, 0.3);
+      --font-serif: 'Cormorant Garamond', Georgia, serif;
+      --font-sans: 'Inter', sans-serif;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      font-family: var(--font-sans);
+      display: flex;
+      justify-content: center;
+      min-height: 100vh;
+    }
+
+    .mobile-container {
+      width: 100%;
+      max-width: 440px;
+      background-color: #0b0c10;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      box-shadow: 0 0 50px rgba(0,0,0,0.8);
+      padding-bottom: 30px;
+    }
+
+    .plan-watermark {
+      position: fixed;
+      top: 12px;
+      right: 12px;
+      background: rgba(229, 184, 105, 0.2);
+      border: 1px solid var(--accent-gold);
+      color: var(--accent-gold);
+      padding: 4px 10px;
+      border-radius: 50px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      z-index: 100;
+      backdrop-filter: blur(8px);
+    }
+
+    /* Floating Music Player */
+    .floating-audio-btn {
+      position: fixed;
+      bottom: 24px;
+      right: 20px;
+      background: rgba(23, 26, 35, 0.92);
+      border: 1px solid var(--accent-gold);
+      color: var(--accent-gold);
+      padding: 10px 16px;
+      border-radius: 50px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+      z-index: 99;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+      backdrop-filter: blur(8px);
+    }
+
+    .music-waves {
+      display: inline-flex;
+      align-items: flex-end;
+      gap: 2px;
+      height: 14px;
+    }
+
+    .music-waves span {
+      width: 3px;
+      height: 100%;
+      background-color: var(--accent-gold);
+      border-radius: 2px;
+      animation: wave 1.2s infinite ease-in-out alternate;
+    }
+
+    .music-waves span:nth-child(2) { animation-delay: 0.2s; height: 60%; }
+    .music-waves span:nth-child(3) { animation-delay: 0.4s; height: 80%; }
+
+    @keyframes wave {
+      0% { height: 20%; }
+      100% { height: 100%; }
+    }
+
+    /* Video Hero Section (Diferencial Gold) */
+    .hero-video-container {
+      position: relative;
+      height: 560px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 30px 20px;
+      text-align: center;
+    }
+
+    .hero-video-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 0;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(180deg, rgba(11,12,16,0.3) 0%, rgba(11,12,16,0.92) 90%);
+      z-index: 1;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .couple-names {
+      font-family: var(--font-serif);
+      font-size: 3rem;
+      font-weight: 600;
+      color: var(--accent-gold);
+      line-height: 1.1;
+      margin-bottom: 6px;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.8);
+    }
+
+    .wedding-tagline {
+      font-size: 0.9rem;
+      color: #f0f2fc;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .wedding-date-badge {
+      display: inline-block;
+      margin: 0 auto;
+      padding: 6px 20px;
+      background: rgba(0,0,0,0.7);
+      border: 1px solid var(--border-gold);
+      border-radius: 50px;
+      font-size: 0.92rem;
+      color: var(--accent-gold);
+    }
+
+    .content-block {
+      padding: 32px 20px;
+      text-align: center;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .section-title {
+      font-family: var(--font-serif);
+      font-size: 1.8rem;
+      color: var(--accent-gold);
+      margin-bottom: 10px;
+    }
+
+    /* Storytelling (Diferencial Gold) */
+    .story-card {
+      background: var(--bg-card);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 12px;
+      padding: 24px 20px;
+      text-align: left;
+      margin-top: 14px;
+      position: relative;
+    }
+
+    .story-card::before {
+      content: "“";
+      font-family: var(--font-serif);
+      font-size: 4rem;
+      color: var(--accent-gold);
+      opacity: 0.25;
+      position: absolute;
+      top: -10px;
+      left: 14px;
+    }
+
+    .story-text {
+      font-size: 0.92rem;
+      color: #d2d5e2;
+      line-height: 1.7;
+    }
+
+    /* Countdown */
+    .countdown-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .count-box {
+      background: var(--bg-card);
+      border: 1px solid var(--border-gold);
+      border-radius: 8px;
+      padding: 10px 4px;
+    }
+
+    .count-num {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--accent-gold);
+      display: block;
+    }
+
+    .count-label {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+    }
+
+    /* Cronograma */
+    .timeline {
+      margin-top: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      text-align: left;
+    }
+
+    .timeline-item {
+      display: flex;
+      gap: 14px;
+      background: var(--bg-card);
+      border: 1px solid rgba(255,255,255,0.05);
+      border-radius: 10px;
+      padding: 14px;
+    }
+
+    .timeline-time {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--accent-gold);
+      min-width: 60px;
+    }
+
+    .timeline-desc h4 {
+      font-size: 0.95rem;
+      color: #fff;
+    }
+
+    .timeline-desc p {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    /* Galeria */
+    .photo-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .photo-grid img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 8px;
+      border: 1px solid var(--border-gold);
+    }
+
+    /* Guia de Dicas & Hospedagem (Diferencial Gold) */
+    .guide-card {
+      background: var(--bg-card);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 10px;
+      padding: 16px;
+      margin-top: 12px;
+      text-align: left;
+    }
+
+    .guide-card h4 {
+      color: var(--accent-gold);
+      font-size: 0.95rem;
+      margin-bottom: 4px;
+    }
+
+    .guide-card p {
+      font-size: 0.85rem;
+      color: #cfd2df;
+    }
+
+    /* PIX */
+    .pix-card {
+      background: linear-gradient(180deg, rgba(229, 184, 105, 0.08) 0%, var(--bg-card) 100%);
+      border: 1px solid var(--accent-gold);
+      border-radius: 12px;
+      padding: 22px 18px;
+      margin-top: 14px;
+    }
+
+    .pix-key-text {
+      background: #0d0f15;
+      padding: 10px;
+      border-radius: 6px;
+      font-family: monospace;
+      font-size: 0.88rem;
+      color: var(--accent-gold);
+      margin: 10px 0 14px;
+      word-break: break-all;
+    }
+
+    .btn-action {
+      display: block;
+      width: 100%;
+      background: var(--accent-gold);
+      color: #0b0c10;
+      text-decoration: none;
+      padding: 14px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      cursor: pointer;
+      border: none;
+      transition: all 0.3s;
+    }
+
+    .btn-action:hover {
+      background: #f3c77d;
+      transform: translateY(-2px);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 1px solid var(--border-gold);
+      color: var(--accent-gold);
+    }
+
+    .footer {
+      padding: 30px 20px;
+      text-align: center;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="plan-watermark">PLANO GOLD • R$ 199</div>
+
+  <!-- Player de Música Flutuante -->
+  <button id="musicToggle" class="floating-audio-btn" onclick="toggleAudio()">
+    <div class="music-waves">
+      <span></span><span></span><span></span>
+    </div>
+    <span id="musicLabel">Tocando Nossa Música</span>
+  </button>
+
+  <div class="mobile-container">
+    
+    <!-- Hero Banner com VÍDEO VERTICAL (Diferencial Gold) -->
+    <header class="hero-video-container">
+      <video class="hero-video-bg" autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=800&q=80">
+        <source src="../../assets/videos/template_01.webm" type="video/webm">
+      </video>
+      <div class="hero-overlay"></div>
+      
+      <div class="hero-content">
+        <div class="wedding-tagline">Convidam para o seu casamento</div>
+        <h1 class="couple-names">Lucas & Mariana</h1>
+        <div class="wedding-date-badge">21 de Novembro de 2026 • 16:30h</div>
+      </div>
+    </header>
+
+    <!-- História do Casal (Storytelling Gold) -->
+    <section class="content-block">
+      <h2 class="section-title">Nossa História</h2>
+      <div class="story-card">
+        <p class="story-text">
+          Nos conhecemos em 2020 durante uma viagem inesperada entre amigos. Desde o primeiro olhar, sabíamos que algo eterno começava ali. Quatro anos de cumplicidade, risos e crescimento nos trouxeram até aqui, prontos para dizer o "sim" mais importante das nossas vidas diante de vocês.
+        </p>
+      </div>
+    </section>
+
+    <!-- Contagem Regressiva -->
+    <section class="content-block">
+      <h2 class="section-title">Contagem Regressiva</h2>
+      <div class="countdown-grid">
+        <div class="count-box"><span class="count-num" id="dias">98</span><span class="count-label">Dias</span></div>
+        <div class="count-box"><span class="count-num" id="horas">14</span><span class="count-label">Horas</span></div>
+        <div class="count-box"><span class="count-num" id="minutos">25</span><span class="count-label">Min</span></div>
+        <div class="count-box"><span class="count-num" id="segundos">40</span><span class="count-label">Seg</span></div>
+      </div>
+    </section>
+
+    <!-- Galeria de Fotos -->
+    <section class="content-block">
+      <h2 class="section-title">Nosso Ensaio</h2>
+      <div class="photo-grid">
+        <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=400&q=80" alt="Foto 1">
+        <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=400&q=80" alt="Foto 2">
+        <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=400&q=80" alt="Foto 3">
+        <img src="https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?auto=format&fit=crop&w=400&q=80" alt="Foto 4">
+      </div>
+    </section>
+
+    <!-- Cronograma -->
+    <section class="content-block">
+      <h2 class="section-title">Cronograma</h2>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-time">16:30</div>
+          <div class="timeline-desc">
+            <h4>Chegada dos Convidados</h4>
+            <p>Welcome drinks & recepção</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-time">17:00</div>
+          <div class="timeline-desc">
+            <h4>Início da Cerimônia</h4>
+            <p>Celebração e troca de votos</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-time">18:30</div>
+          <div class="timeline-desc">
+            <h4>Brinde & Jantar</h4>
+            <p>Banquete com gastronomia especial</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-time">20:30</div>
+          <div class="timeline-desc">
+            <h4>Abertura da Pista de Dança</h4>
+            <p>Festa inesquecível</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Guia de Hospedagem & Salões (Diferencial Gold) -->
+    <section class="content-block">
+      <h2 class="section-title">Dicas para Convidados</h2>
+      <p style="font-size: 0.85rem; color: var(--text-muted);">Indicações com descontos especiais para o nosso evento</p>
+      
+      <div class="guide-card">
+        <h4>🏨 Hotel Clarion Goiânia (Parceiro)</h4>
+        <p>A 5 min do local. Utilize o cupom <strong>CASAMENTOLUCAS</strong> para 15% OFF na reserva.</p>
+      </div>
+
+      <div class="guide-card">
+        <h4>💄 Salão Lumina Hair & Makeup</h4>
+        <p>Agendamento exclusivo para convidadas e madrinhas pelo WhatsApp: (62) 99888-7777.</p>
+      </div>
+    </section>
+
+    <!-- Localização & GPS -->
+    <section class="content-block">
+      <h2 class="section-title">Localização</h2>
+      <div style="background: var(--bg-card); border-radius: 12px; padding: 20px; text-align: left;">
+        <h3 style="font-size: 1.1rem; color: var(--accent-gold); margin-bottom: 4px;">Espaço Villa Rica</h3>
+        <p style="font-size: 0.88rem; color: #d0d2dd;">Av. T-10, nº 1200 - Setor Bueno, Goiânia - GO</p>
+        <a href="https://maps.google.com/?q=Espaco+Villa+Rica+Goiania" target="_blank" class="btn-action btn-outline" style="margin-top: 14px; text-align: center;">
+          📍 Abrir Rota no Google Maps
+        </a>
+      </div>
+    </section>
+
+    <!-- Presentes & PIX -->
+    <section class="content-block">
+      <h2 class="section-title">Lista de Presentes</h2>
+      <div class="pix-card">
+        <h3 style="font-size: 1rem; color: var(--accent-gold);">Presenteie via PIX</h3>
+        <div class="pix-key-text">noivos.lucasemariana@gmail.com</div>
+        <button class="btn-action" onclick="copyPix()">📋 Copiar Chave PIX</button>
+      </div>
+    </section>
+
+    <!-- RSVP -->
+    <section class="content-block">
+      <h2 class="section-title">Confirmação de Presença</h2>
+      <p style="font-size: 0.9rem; color: #d0d2dd; margin-bottom: 14px;">
+        Favor confirmar até o dia <strong>01/11/2026</strong>.
+      </p>
+      <a href="https://wa.me/5562996046458?text=Ol%C3%A1!%20Gostaria%20de%20confirmar%20minha%20presen%C3%A7a%20no%20casamento%20de%20Lucas%20e%20Mariana." target="_blank" class="btn-action">
+        ✨ Confirmar no WhatsApp
+      </a>
+    </section>
+
+    <footer class="footer">
+      <p>Lucas & Mariana © 2026</p>
+      <p style="font-size: 0.75rem; margin-top: 4px; color: var(--accent-gold);">Atelier dos Noivos • Convites Digitais</p>
+    </footer>
+
+  </div>
+
+  <script>
+    // Countdown
+    const targetDate = new Date("2026-11-21T16:30:00").getTime();
+    setInterval(() => {
+      const now = new Date().getTime();
+      const diff = targetDate - now;
+      if (diff > 0) {
+        document.getElementById("dias").innerText = Math.floor(diff / (1000 * 60 * 60 * 24));
+        document.getElementById("horas").innerText = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        document.getElementById("minutos").innerText = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        document.getElementById("segundos").innerText = Math.floor((diff % (1000 * 60)) / 1000);
+      }
+    }, 1000);
+
+    function copyPix() {
+      navigator.clipboard.writeText("noivos.lucasemariana@gmail.com");
+      alert("✓ Chave PIX copiada com sucesso!");
+    }
+
+    let isPlaying = true;
+    function toggleAudio() {
+      const label = document.getElementById("musicLabel");
+      const waves = document.querySelector(".music-waves");
+      if (isPlaying) {
+        label.innerText = "Música Pausada";
+        waves.style.opacity = "0.3";
+        isPlaying = false;
+      } else {
+        label.innerText = "Tocando Nossa Música";
+        waves.style.opacity = "1";
+        isPlaying = true;
+      }
+    }
+  </script>
+</body>
+</html>

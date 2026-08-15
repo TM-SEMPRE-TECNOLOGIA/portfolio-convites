@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Lucas & Mariana | Convite de Casamento (Plano Light)</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --bg-dark: #12141a;
+      --bg-card: #1a1d26;
+      --accent-gold: #e5b869;
+      --accent-gold-light: rgba(229, 184, 105, 0.15);
+      --text-main: #f5f6f8;
+      --text-muted: #9da1b4;
+      --border-gold: rgba(229, 184, 105, 0.3);
+      --font-serif: 'Cormorant Garamond', Georgia, serif;
+      --font-sans: 'Inter', sans-serif;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      font-family: var(--font-sans);
+      display: flex;
+      justify-content: center;
+      min-height: 100vh;
+    }
+
+    .mobile-container {
+      width: 100%;
+      max-width: 440px;
+      background-color: #0b0c10;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      box-shadow: 0 0 50px rgba(0,0,0,0.8);
+    }
+
+    .plan-watermark {
+      position: fixed;
+      top: 12px;
+      right: 12px;
+      background: rgba(229, 184, 105, 0.2);
+      border: 1px solid var(--accent-gold);
+      color: var(--accent-gold);
+      padding: 4px 10px;
+      border-radius: 50px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      z-index: 100;
+      backdrop-filter: blur(8px);
+    }
+
+    /* Hero Section */
+    .hero {
+      position: relative;
+      height: 520px;
+      background-image: linear-gradient(180deg, rgba(11,12,16,0.2) 0%, rgba(11,12,16,0.9) 100%), 
+                        url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=800&q=80');
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 30px 20px;
+      text-align: center;
+    }
+
+    .couple-names {
+      font-family: var(--font-serif);
+      font-size: 2.8rem;
+      font-weight: 600;
+      color: var(--accent-gold);
+      line-height: 1.1;
+      margin-bottom: 6px;
+    }
+
+    .wedding-tagline {
+      font-size: 0.95rem;
+      color: #e0e2ec;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .wedding-date-badge {
+      display: inline-block;
+      margin: 0 auto;
+      padding: 6px 18px;
+      background: rgba(0,0,0,0.6);
+      border: 1px solid var(--border-gold);
+      border-radius: 50px;
+      font-size: 0.9rem;
+      color: var(--accent-gold);
+    }
+
+    /* Content Sections */
+    .content-block {
+      padding: 32px 20px;
+      text-align: center;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .section-title {
+      font-family: var(--font-serif);
+      font-size: 1.8rem;
+      color: var(--accent-gold);
+      margin-bottom: 10px;
+    }
+
+    .couple-verse {
+      font-family: var(--font-serif);
+      font-style: italic;
+      color: #d2d5e2;
+      font-size: 1.15rem;
+      line-height: 1.6;
+    }
+
+    /* Countdown */
+    .countdown-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .count-box {
+      background: var(--bg-card);
+      border: 1px solid var(--border-gold);
+      border-radius: 8px;
+      padding: 10px 4px;
+    }
+
+    .count-num {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--accent-gold);
+      display: block;
+    }
+
+    .count-label {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+    }
+
+    /* Location */
+    .location-card {
+      background: var(--bg-card);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 12px;
+      padding: 20px;
+      margin-top: 14px;
+    }
+
+    .btn-action {
+      display: block;
+      width: 100%;
+      background: var(--accent-gold);
+      color: #0b0c10;
+      text-decoration: none;
+      padding: 14px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      margin-top: 14px;
+      transition: all 0.3s;
+    }
+
+    .btn-action:hover {
+      background: #f3c77d;
+      transform: translateY(-2px);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 1px solid var(--border-gold);
+      color: var(--accent-gold);
+    }
+
+    /* Footer */
+    .footer {
+      padding: 30px 20px 40px;
+      text-align: center;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="plan-watermark">PLANO LIGHT • R$ 99</div>
+
+  <div class="mobile-container">
+    
+    <!-- Hero Banner com 1 Foto -->
+    <header class="hero">
+      <div class="wedding-tagline">Convidam para o seu casamento</div>
+      <h1 class="couple-names">Lucas & Mariana</h1>
+      <div class="wedding-date-badge">21 de Novembro de 2026 • 16:30h</div>
+    </header>
+
+    <!-- Versículo / Mensagem -->
+    <section class="content-block">
+      <p class="couple-verse">"O amor não se alegra com a injustiça, mas se alegra com a verdade. Tudo sofre, tudo crê, tudo espera, tudo suporta."</p>
+      <span style="font-size: 0.85rem; color: var(--accent-gold); margin-top: 6px; display: inline-block;">1 Coríntios 13:6-7</span>
+    </section>
+
+    <!-- Contagem Regressiva -->
+    <section class="content-block">
+      <h2 class="section-title">Contagem Regressiva</h2>
+      <p style="font-size: 0.85rem; color: var(--text-muted);">Contando cada segundo para celebrar com vocês</p>
+      
+      <div class="countdown-grid">
+        <div class="count-box"><span class="count-num" id="dias">98</span><span class="count-label">Dias</span></div>
+        <div class="count-box"><span class="count-num" id="horas">14</span><span class="count-label">Horas</span></div>
+        <div class="count-box"><span class="count-num" id="minutos">25</span><span class="count-label">Min</span></div>
+        <div class="count-box"><span class="count-num" id="segundos">40</span><span class="count-label">Seg</span></div>
+      </div>
+    </section>
+
+    <!-- Localização & GPS -->
+    <section class="content-block">
+      <h2 class="section-title">Cerimônia & Recepção</h2>
+      <div class="location-card">
+        <h3 style="font-size: 1.1rem; color: var(--accent-gold); margin-bottom: 6px;">Espaço Villa Rica</h3>
+        <p style="font-size: 0.9rem; color: #d0d2dd; line-height: 1.4;">Av. T-10, nº 1200 - Setor Bueno, Goiânia - GO</p>
+        <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 8px;">Início pontual às 16:30h</p>
+        
+        <a href="https://maps.google.com/?q=Espaco+Villa+Rica+Goiania" target="_blank" class="btn-action btn-outline">
+          📍 Abrir no Google Maps / GPS
+        </a>
+      </div>
+    </section>
+
+    <!-- Confirmação de Presença (RSVP) -->
+    <section class="content-block">
+      <h2 class="section-title">Confirmação de Presença</h2>
+      <p style="font-size: 0.9rem; color: #d0d2dd; margin-bottom: 14px;">
+        Por favor, confirme sua presença até o dia <strong>01/11/2026</strong> para organizarmos tudo com carinho.
+      </p>
+
+      <a href="https://wa.me/5562996046458?text=Ol%C3%A1!%20Gostaria%20de%20confirmar%20minha%20presen%C3%A7a%20no%20casamento%20de%20Lucas%20e%20Mariana." target="_blank" class="btn-action">
+        ✨ Confirmar Presença no WhatsApp
+      </a>
+    </section>
+
+    <footer class="footer">
+      <p>Lucas & Mariana © 2026</p>
+      <p style="font-size: 0.75rem; margin-top: 4px; color: var(--accent-gold);">Atelier dos Noivos • Convites Digitais</p>
+    </footer>
+
+  </div>
+
+  <script>
+    // Contagem Regressiva Simples
+    const targetDate = new Date("2026-11-21T16:30:00").getTime();
+    setInterval(() => {
+      const now = new Date().getTime();
+      const diff = targetDate - now;
+      if (diff > 0) {
+        document.getElementById("dias").innerText = Math.floor(diff / (1000 * 60 * 60 * 24));
+        document.getElementById("horas").innerText = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        document.getElementById("minutos").innerText = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        document.getElementById("segundos").innerText = Math.floor((diff % (1000 * 60)) / 1000);
+      }
+    }, 1000);
+  </script>
+</body>
+</html>

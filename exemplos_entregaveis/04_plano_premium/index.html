@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Lucas & Mariana | Convite de Casamento Exclusivo (Plano Premium)</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --bg-dark: #0a0b0e;
+      --bg-surface: #13151d;
+      --bg-elevated: #1b1e2a;
+      --accent-gold: #e5b869;
+      --accent-gold-hover: #f3c77d;
+      --accent-gold-light: rgba(229, 184, 105, 0.15);
+      --text-main: #f8f9fc;
+      --text-secondary: #adb1c4;
+      --text-muted: #717588;
+      --border-gold: rgba(229, 184, 105, 0.35);
+      --font-serif: 'Cormorant Garamond', Georgia, serif;
+      --font-sans: 'Inter', sans-serif;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      font-family: var(--font-sans);
+      display: flex;
+      justify-content: center;
+      min-height: 100vh;
+      background-image: radial-gradient(circle at 50% 0%, rgba(229,184,105,0.08) 0%, transparent 60%);
+    }
+
+    .mobile-container {
+      width: 100%;
+      max-width: 440px;
+      background-color: #0b0c10;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      box-shadow: 0 0 60px rgba(0,0,0,0.9);
+      padding-bottom: 40px;
+    }
+
+    .plan-watermark {
+      position: fixed;
+      top: 12px;
+      right: 12px;
+      background: linear-gradient(135deg, rgba(229, 184, 105, 0.3), rgba(229, 184, 105, 0.1));
+      border: 1px solid var(--accent-gold);
+      color: var(--accent-gold);
+      padding: 5px 12px;
+      border-radius: 50px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      z-index: 100;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 4px 15px rgba(229, 184, 105, 0.2);
+    }
+
+    /* Floating Interactive Music Player */
+    .floating-audio-btn {
+      position: fixed;
+      bottom: 24px;
+      right: 16px;
+      background: rgba(19, 21, 29, 0.95);
+      border: 1px solid var(--accent-gold);
+      color: var(--accent-gold);
+      padding: 10px 18px;
+      border-radius: 50px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+      z-index: 99;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.6);
+      backdrop-filter: blur(10px);
+      animation: float 3s ease-in-out infinite alternate;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(-4px); }
+    }
+
+    .music-waves {
+      display: inline-flex;
+      align-items: flex-end;
+      gap: 2px;
+      height: 14px;
+    }
+
+    .music-waves span {
+      width: 3px;
+      height: 100%;
+      background-color: var(--accent-gold);
+      border-radius: 2px;
+      animation: wave 1.2s infinite ease-in-out alternate;
+    }
+
+    .music-waves span:nth-child(2) { animation-delay: 0.2s; height: 60%; }
+    .music-waves span:nth-child(3) { animation-delay: 0.4s; height: 80%; }
+
+    @keyframes wave {
+      0% { height: 20%; }
+      100% { height: 100%; }
+    }
+
+    /* Video Hero Section */
+    .hero-video-container {
+      position: relative;
+      height: 580px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 30px 20px;
+      text-align: center;
+    }
+
+    .hero-video-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 0;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(180deg, rgba(11,12,16,0.2) 0%, rgba(11,12,16,0.92) 88%, #0b0c10 100%);
+      z-index: 1;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .couple-names {
+      font-family: var(--font-serif);
+      font-size: 3.2rem;
+      font-weight: 600;
+      color: var(--accent-gold);
+      line-height: 1.1;
+      margin-bottom: 6px;
+      text-shadow: 0 3px 15px rgba(0,0,0,0.8);
+    }
+
+    .wedding-tagline {
+      font-size: 0.85rem;
+      color: #f0f2fc;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .wedding-date-badge {
+      display: inline-block;
+      margin: 0 auto;
+      padding: 8px 24px;
+      background: rgba(19, 21, 29, 0.85);
+      border: 1px solid var(--border-gold);
+      border-radius: 50px;
+      font-size: 0.95rem;
+      color: var(--accent-gold);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+    }
+
+    .content-block {
+      padding: 36px 20px;
+      text-align: center;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .section-title {
+      font-family: var(--font-serif);
+      font-size: 2rem;
+      color: var(--accent-gold);
+      margin-bottom: 8px;
+    }
+
+    /* Linha do Tempo (Storyline Premium) */
+    .storyline-container {
+      margin-top: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      position: relative;
+      text-align: left;
+    }
+
+    .storyline-container::before {
+      content: "";
+      position: absolute;
+      left: 20px;
+      top: 10px;
+      bottom: 10px;
+      width: 2px;
+      background: linear-gradient(180deg, var(--accent-gold) 0%, transparent 100%);
+    }
+
+    .storyline-step {
+      display: flex;
+      gap: 16px;
+      position: relative;
+      padding-left: 10px;
+    }
+
+    .storyline-bullet {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: var(--bg-dark);
+      border: 2px solid var(--accent-gold);
+      flex-shrink: 0;
+      z-index: 2;
+      margin-top: 2px;
+    }
+
+    .storyline-body {
+      background: var(--bg-surface);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 10px;
+      padding: 14px 16px;
+      flex-grow: 1;
+    }
+
+    .storyline-year {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--accent-gold);
+      text-transform: uppercase;
+    }
+
+    .storyline-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #fff;
+      margin: 2px 0 4px;
+    }
+
+    .storyline-desc {
+      font-size: 0.84rem;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+
+    /* Countdown */
+    .countdown-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .count-box {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-gold);
+      border-radius: 8px;
+      padding: 12px 4px;
+    }
+
+    .count-num {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--accent-gold);
+      display: block;
+    }
+
+    .count-label {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+    }
+
+    /* Multi-Local (Cerimônia + Festa) */
+    .venue-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-gold);
+      border-radius: 12px;
+      padding: 20px;
+      margin-top: 16px;
+      text-align: left;
+    }
+
+    .venue-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+
+    .venue-tag {
+      background: var(--accent-gold-light);
+      color: var(--accent-gold);
+      border: 1px solid var(--border-gold);
+      font-size: 0.75rem;
+      padding: 3px 8px;
+      border-radius: 4px;
+      font-weight: 600;
+    }
+
+    .dual-gps-btn {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .btn-gps {
+      padding: 10px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      text-decoration: none;
+      text-align: center;
+      border-radius: 6px;
+      background: var(--bg-elevated);
+      border: 1px solid rgba(255,255,255,0.1);
+      color: #fff;
+      transition: all 0.3s;
+    }
+
+    .btn-gps:hover {
+      border-color: var(--accent-gold);
+      color: var(--accent-gold);
+    }
+
+    /* Galeria Interativa */
+    .photo-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .photo-grid img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 8px;
+      border: 1px solid var(--border-gold);
+    }
+
+    /* Formulário RSVP Inteligente (Diferencial Premium) */
+    .rsvp-form-box {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-gold);
+      border-radius: 14px;
+      padding: 22px 18px;
+      margin-top: 18px;
+      text-align: left;
+    }
+
+    .form-input {
+      width: 100%;
+      background: #0d0f15;
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 8px;
+      padding: 12px 14px;
+      color: #fff;
+      font-size: 0.9rem;
+      margin-bottom: 12px;
+      outline: none;
+    }
+
+    .form-input:focus {
+      border-color: var(--accent-gold);
+    }
+
+    /* PIX & QR Code Deluxe */
+    .pix-deluxe-card {
+      background: linear-gradient(180deg, rgba(229, 184, 105, 0.1) 0%, var(--bg-surface) 100%);
+      border: 1px solid var(--accent-gold);
+      border-radius: 14px;
+      padding: 24px 18px;
+      margin-top: 16px;
+    }
+
+    .qr-mockup {
+      width: 140px;
+      height: 140px;
+      margin: 14px auto;
+      background: #fff;
+      padding: 8px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .qr-mockup img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .btn-action {
+      display: block;
+      width: 100%;
+      background: var(--accent-gold);
+      color: #0b0c10;
+      text-decoration: none;
+      padding: 14px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      cursor: pointer;
+      border: none;
+      transition: all 0.3s;
+      text-align: center;
+    }
+
+    .btn-action:hover {
+      background: #f3c77d;
+      transform: translateY(-2px);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 1px solid var(--border-gold);
+      color: var(--accent-gold);
+    }
+
+    .footer {
+      padding: 30px 20px;
+      text-align: center;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="plan-watermark">PLANO PREMIUM • R$ 250 (EXPERIÊNCIA TOTAL)</div>
+
+  <!-- Player Interativo Flutuante -->
+  <button id="musicToggle" class="floating-audio-btn" onclick="toggleAudio()">
+    <div class="music-waves">
+      <span></span><span></span><span></span>
+    </div>
+    <span id="musicLabel">Can't Help Falling in Love 🎵</span>
+  </button>
+
+  <div class="mobile-container">
+    
+    <!-- Hero Banner com Vídeo Vertical de Alta Resolução -->
+    <header class="hero-video-container">
+      <video class="hero-video-bg" autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=800&q=80">
+        <source src="../../assets/videos/template_01.webm" type="video/webm">
+      </video>
+      <div class="hero-overlay"></div>
+      
+      <div class="hero-content">
+        <div class="wedding-tagline">Celebração de Casamento</div>
+        <h1 class="couple-names">Lucas & Mariana</h1>
+        <div class="wedding-date-badge">21 de Novembro de 2026 • 16:30h</div>
+      </div>
+    </header>
+
+    <!-- Versículo -->
+    <section class="content-block">
+      <p style="font-family: var(--font-serif); font-style: italic; font-size: 1.2rem; color: #e2e4ef; line-height: 1.6;">
+        "Acima de tudo, porém, revistam-se do amor, que é o elo perfeito."
+      </p>
+      <span style="font-size: 0.85rem; color: var(--accent-gold); margin-top: 6px; display: inline-block;">Colossenses 3:14</span>
+    </section>
+
+    <!-- Linha do Tempo do Casal (Diferencial Premium) -->
+    <section class="content-block">
+      <h2 class="section-title">Nossa Trajetória</h2>
+      <p style="font-size: 0.85rem; color: var(--text-secondary);">Os capítulos que nos guiaram até o altar</p>
+
+      <div class="storyline-container">
+        <div class="storyline-step">
+          <div class="storyline-bullet"></div>
+          <div class="storyline-body">
+            <span class="storyline-year">Março • 2020</span>
+            <h4 class="storyline-title">O Primeiro Olhar</h4>
+            <p class="storyline-desc">Nos conhecemos em uma viagem de amigos em Pirenópolis. Uma conversa despretensiosa que durou horas.</p>
+          </div>
+        </div>
+
+        <div class="storyline-step">
+          <div class="storyline-bullet"></div>
+          <div class="storyline-body">
+            <span class="storyline-year">Dezembro • 2023</span>
+            <h4 class="storyline-title">O Pedido Inesquecível</h4>
+            <p class="storyline-desc">Ao pôr do sol em Gramado, com lágrimas e sorrisos, dissemos o primeiro de muitos 'sins'.</p>
+          </div>
+        </div>
+
+        <div class="storyline-step">
+          <div class="storyline-bullet"></div>
+          <div class="storyline-body">
+            <span class="storyline-year">21 de Novembro • 2026</span>
+            <h4 class="storyline-title">O Grande Dia</h4>
+            <p class="storyline-desc">O momento de selar nossa união para sempre diante de Deus e de todos vocês!</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contagem Regressiva -->
+    <section class="content-block">
+      <h2 class="section-title">Contagem Regressiva</h2>
+      <div class="countdown-grid">
+        <div class="count-box"><span class="count-num" id="dias">98</span><span class="count-label">Dias</span></div>
+        <div class="count-box"><span class="count-num" id="horas">14</span><span class="count-label">Horas</span></div>
+        <div class="count-box"><span class="count-num" id="minutos">25</span><span class="count-label">Min</span></div>
+        <div class="count-box"><span class="count-num" id="segundos">40</span><span class="count-label">Seg</span></div>
+      </div>
+    </section>
+
+    <!-- Múltiplos Locais com Waze e Maps (Diferencial Premium) -->
+    <section class="content-block">
+      <h2 class="section-title">Locais da Celebração</h2>
+      
+      <!-- Cerimônia -->
+      <div class="venue-card">
+        <div class="venue-header">
+          <h3 style="font-size: 1.15rem; color: var(--accent-gold);">Catedral Metropolitana</h3>
+          <span class="venue-tag">16:30h</span>
+        </div>
+        <p style="font-size: 0.88rem; color: #d0d2dd;">Praça Dom Emanuel, s/n - Setor Central, Goiânia - GO</p>
+        <div class="dual-gps-btn">
+          <a href="https://maps.google.com/?q=Catedral+Metropolitana+Goiania" target="_blank" class="btn-gps">📍 Google Maps</a>
+          <a href="https://waze.com/ul?q=Catedral+Metropolitana+Goiania" target="_blank" class="btn-gps">🚗 Waze Rota</a>
+        </div>
+      </div>
+
+      <!-- Recepção -->
+      <div class="venue-card">
+        <div class="venue-header">
+          <h3 style="font-size: 1.15rem; color: var(--accent-gold);">Espaço Villa Rica</h3>
+          <span class="venue-tag">18:30h</span>
+        </div>
+        <p style="font-size: 0.88rem; color: #d0d2dd;">Av. T-10, nº 1200 - Setor Bueno, Goiânia - GO</p>
+        <div class="dual-gps-btn">
+          <a href="https://maps.google.com/?q=Espaco+Villa+Rica+Goiania" target="_blank" class="btn-gps">📍 Google Maps</a>
+          <a href="https://waze.com/ul?q=Espaco+Villa+Rica+Goiania" target="_blank" class="btn-gps">🚗 Waze Rota</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Galeria de Fotos em Alta Resolução -->
+    <section class="content-block">
+      <h2 class="section-title">Ensaio Pré-Wedding</h2>
+      <div class="photo-grid">
+        <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=400&q=80" alt="Foto 1">
+        <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=400&q=80" alt="Foto 2">
+        <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=400&q=80" alt="Foto 3">
+        <img src="https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?auto=format&fit=crop&w=400&q=80" alt="Foto 4">
+      </div>
+    </section>
+
+    <!-- Formulário RSVP Inteligente (Diferencial Premium) -->
+    <section class="content-block">
+      <h2 class="section-title">Confirmação de Presença</h2>
+      <p style="font-size: 0.88rem; color: #d0d2dd; margin-bottom: 16px;">
+        Por gentileza, confirme sua presença até <strong>01/11/2026</strong>:
+      </p>
+
+      <div class="rsvp-form-box">
+        <label style="font-size: 0.85rem; color: var(--accent-gold); display: block; margin-bottom: 4px;">Seu Nome Completo:</label>
+        <input type="text" id="rsvpNome" class="form-input" placeholder="Ex: Roberto Carlos">
+
+        <label style="font-size: 0.85rem; color: var(--accent-gold); display: block; margin-bottom: 4px;">Quantidade de Adultos:</label>
+        <select id="rsvpQtd" class="form-input">
+          <option value="1 Pessoa">Apenas Eu (1 Pessoa)</option>
+          <option value="2 Pessoas (Casal)">2 Pessoas (Casal)</option>
+          <option value="3 Pessoas (Família)">3 Pessoas (Família)</option>
+          <option value="4+ Pessoas">4 ou mais Pessoas</option>
+        </select>
+
+        <label style="font-size: 0.85rem; color: var(--accent-gold); display: block; margin-bottom: 4px;">Mensagem aos Noivos (Opcional):</label>
+        <input type="text" id="rsvpMsg" class="form-input" placeholder="Deixe um recado carinhoso...">
+
+        <button class="btn-action" onclick="submitSmartRSVP()">
+          ✨ Confirmar Presença no WhatsApp
+        </button>
+      </div>
+    </section>
+
+    <!-- Presentes & PIX com QR Code (Diferencial Premium) -->
+    <section class="content-block">
+      <h2 class="section-title">Presentes & PIX</h2>
+      <p style="font-size: 0.88rem; color: #d0d2dd;">Para facilitar, disponibilizamos a opção de presente direto via PIX:</p>
+      
+      <div class="pix-deluxe-card">
+        <div class="qr-mockup">
+          <img src="https://api.qrserver.com/v1/create-qr-code/?size=140x140&data=noivos.lucasemariana@gmail.com" alt="QR Code PIX">
+        </div>
+        <p style="font-size: 0.85rem; color: #e0e2ec; margin-bottom: 6px;">Escaneie o QR Code ou copie a chave:</p>
+        <div style="background: #090a0d; padding: 10px; border-radius: 6px; font-family: monospace; color: var(--accent-gold); font-size: 0.88rem; margin-bottom: 12px;">
+          noivos.lucasemariana@gmail.com
+        </div>
+        <button class="btn-action" onclick="copyPix()">📋 Copiar Chave PIX</button>
+      </div>
+    </section>
+
+    <!-- Cartão PDF de Brinde (Bônus Premium) -->
+    <section class="content-block">
+      <h2 class="section-title">Guardar como Lembrança</h2>
+      <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 14px;">Você também pode baixar o cartão virtual interativo em PDF para guardar</p>
+      <button class="btn-action btn-outline" onclick="alert('📥 Download do Cartão Interativo PDF iniciado!')">
+        📄 Baixar Cartão Digital PDF
+      </button>
+    </section>
+
+    <footer class="footer">
+      <p>Lucas & Mariana © 2026</p>
+      <p style="font-size: 0.75rem; margin-top: 4px; color: var(--accent-gold);">Atelier dos Noivos • Convites Digitais de Luxo</p>
+    </footer>
+
+  </div>
+
+  <script>
+    // Countdown
+    const targetDate = new Date("2026-11-21T16:30:00").getTime();
+    setInterval(() => {
+      const now = new Date().getTime();
+      const diff = targetDate - now;
+      if (diff > 0) {
+        document.getElementById("dias").innerText = Math.floor(diff / (1000 * 60 * 60 * 24));
+        document.getElementById("horas").innerText = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        document.getElementById("minutos").innerText = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        document.getElementById("segundos").innerText = Math.floor((diff % (1000 * 60)) / 1000);
+      }
+    }, 1000);
+
+    function copyPix() {
+      navigator.clipboard.writeText("noivos.lucasemariana@gmail.com");
+      alert("✓ Chave PIX copiada com sucesso!");
+    }
+
+    let isPlaying = true;
+    function toggleAudio() {
+      const label = document.getElementById("musicLabel");
+      const waves = document.querySelector(".music-waves");
+      if (isPlaying) {
+        label.innerText = "Música Pausada";
+        waves.style.opacity = "0.3";
+        isPlaying = false;
+      } else {
+        label.innerText = "Can't Help Falling in Love 🎵";
+        waves.style.opacity = "1";
+        isPlaying = true;
+      }
+    }
+
+    function submitSmartRSVP() {
+      const nome = document.getElementById("rsvpNome").value.trim();
+      const qtd = document.getElementById("rsvpQtd").value;
+      const msg = document.getElementById("rsvpMsg").value.trim();
+
+      if (!nome) {
+        alert("Por favor, preencha o seu nome para confirmar a presença.");
+        return;
+      }
+
+      let text = `✨ *CONFIRMAÇÃO DE PRESENÇA (RSVP)* ✨%0A%0A`;
+      text += `*Convidado(a):* ${encodeURIComponent(nome)}%0A`;
+      text += `*Quantidade:* ${encodeURIComponent(qtd)}%0A`;
+      if (msg) text += `*Recado aos noivos:* "${encodeURIComponent(msg)}"%0A`;
+      text += `%0AConfirmo com alegria que estarei presente no casamento de Lucas e Mariana!`;
+
+      window.open(`https://wa.me/5562996046458?text=${text}`, "_blank");
+    }
+  </script>
+</body>
+</html>
