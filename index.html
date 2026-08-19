@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
+
+  <!-- DNS Preconnect & Prefetch for Performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="dns-prefetch" href="https://static.tildacdn.net">
+  <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+  <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Convites de Casamento Digitais & Interativos | Portfólio Exclusivo</title>
@@ -17,6 +25,9 @@
   <!-- GSAP & ScrollTrigger -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  
+  <!-- Supabase Live DB Config -->
+  <script src="supabase-config.js"></script>
 </head>
 <body>
 
@@ -32,6 +43,7 @@
       
       <ul class="nav-links">
         <li><a href="#modelos" class="nav-link">Modelos</a></li>
+        <li><a href="#planos" class="nav-link">Planos & Preços</a></li>
         <li><a href="#beneficios" class="nav-link">Benefícios</a></li>
         <li><a href="#como-funciona" class="nav-link">Como Funciona</a></li>
         <li><a href="#contato" class="btn btn-sm btn-primary">Fazer Meu Pedido</a></li>
@@ -258,6 +270,128 @@
       </div>
     </div>
   </section>
+
+  <!-- Pricing Section (Planos & Valores) -->
+  <section class="pricing-section" id="planos">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Investimento & Pacotes</span>
+        <h2 class="section-title">Escolha o plano ideal para o seu convite</h2>
+        <p class="section-subtitle">Valores acessíveis para qualquer estilo de celebração, com entrega rápida e personalização completa.</p>
+      </div>
+
+      <div class="pricing-grid">
+        
+        <!-- Plano Light -->
+        <div class="pricing-card">
+          <div class="pricing-header">
+            <h3 class="serif-text">Plano Light</h3>
+            <p>Entrada econômica com tudo o que é essencial</p>
+          </div>
+          <div class="pricing-price" id="card-price-light">R$ 99 <span>/pagamento único</span></div>
+          <ul class="pricing-features">
+            <li>Design editorial responsivo</li>
+            <li>1 Foto de Capa do casal</li>
+            <li>Contagem regressiva dinâmica</li>
+            <li>Endereço com botão Waze & Maps</li>
+            <li>Confirmação RSVP direta no WhatsApp</li>
+          </ul>
+          <a id="card-btn-light" href="https://wa.me/5562996046458?text=Ol%C3%A1!%20Gostaria%20de%20fazer%20o%20meu%20convite%20no%20*Plano%20Light*." target="_blank" class="btn btn-outline" style="width: 100%; text-align: center;">Escolher Plano Light</a>
+        </div>
+
+        <!-- Plano Silver -->
+        <div class="pricing-card">
+          <div class="pricing-header">
+            <h3 class="serif-text">Plano Silver</h3>
+            <p>Trilha sonora emocionante e galeria de fotos</p>
+          </div>
+          <div class="pricing-price" id="card-price-silver">R$ 149 <span>/pagamento único</span></div>
+          <ul class="pricing-features">
+            <li>Tudo o que está no Plano Light</li>
+            <li><strong>Player de Música Ambiente (.mp3)</strong></li>
+            <li>Galeria de fotos do casal</li>
+            <li>Cronograma visual da cerimônia e festa</li>
+            <li>Dress Code e paleta de convidados</li>
+            <li>Botão PIX com cópia em 1 clique</li>
+          </ul>
+          <a id="card-btn-silver" href="https://wa.me/5562996046458?text=Ol%C3%A1!%20Gostaria%20de%20fazer%20o%20meu%20convite%20no%20*Plano%20Silver*." target="_blank" class="btn btn-outline" style="width: 100%; text-align: center;">Escolher Plano Silver</a>
+        </div>
+
+        <!-- Plano Gold -->
+        <div class="pricing-card">
+          <div class="pricing-header">
+            <h3 class="serif-text">Plano Gold</h3>
+            <p>Impacto visual com vídeo de abertura no topo</p>
+          </div>
+          <div class="pricing-price" id="card-price-gold">R$ 199 <span>/pagamento único</span></div>
+          <ul class="pricing-features">
+            <li>Tudo o que está no Plano Silver</li>
+            <li><strong>Vídeo do Casal no Banner Principal</strong></li>
+            <li>Seção "Nossa História" (Storytelling)</li>
+            <li>Guia de Hotéis e Salões de Beleza parceiros</li>
+            <li>Micro-animações avançadas de scroll</li>
+          </ul>
+          <a id="card-btn-gold" href="https://wa.me/5562996046458?text=Ol%C3%A1!%20Gostaria%20de%20fazer%20o%20meu%20convite%20no%20*Plano%20Gold*." target="_blank" class="btn btn-outline" style="width: 100%; text-align: center;">Escolher Plano Gold</a>
+        </div>
+
+        <!-- Plano Premium -->
+        <div class="pricing-card featured">
+          <div class="pricing-badge">Mais Completo ✨</div>
+          <div class="pricing-header">
+            <h3 class="serif-text" style="color: var(--accent-gold);">Plano Premium</h3>
+            <p>A experiência cinematográfica definitiva</p>
+          </div>
+          <div class="pricing-price" id="card-price-premium">R$ 250 <span>/pagamento único</span></div>
+          <ul class="pricing-features">
+            <li><strong>Vídeo Vertical HD + Trilha Sonora Contínua</strong></li>
+            <li>Linha do tempo interativa do casal</li>
+            <li>Múltiplos locais (Cerimônia + Recepção) com GPS</li>
+            <li>RSVP Inteligente com seleção de acompanhantes</li>
+            <li>Presentes via PIX com QR Code dinâmico</li>
+            <li><strong>Cartão Digital PDF interativo de brinde</strong></li>
+          </ul>
+          <a id="card-btn-premium" href="https://wa.me/5562996046458?text=Ol%C3%A1!%20Gostaria%20de%20fazer%20o%20meu%20convite%20no%20*Plano%20Premium*." target="_blank" class="btn btn-primary" style="width: 100%; text-align: center;">Escolher Plano Premium</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <script>
+    async function sincronizarPrecosVitrine() {
+      if (!window.ConvitesDB) return;
+      try {
+        const planos = await ConvitesDB.carregarPlanos();
+        if (planos.light) {
+          const el = document.getElementById('card-price-light');
+          if (el) el.innerHTML = `R$ ${planos.light.preco} <span>/pagamento único</span>`;
+          const btn = document.getElementById('card-btn-light');
+          if (btn) btn.href = `https://wa.me/5562996046458?text=Ol%C3%A1!%20Gostaria%20de%20fazer%20o%20meu%20convite%20no%20*Plano%20Light%20(R$%20${planos.light.preco})*.`;
+        }
+        if (planos.silver) {
+          const el = document.getElementById('card-price-silver');
+          if (el) el.innerHTML = `R$ ${planos.silver.preco} <span>/pagamento único</span>`;
+          const btn = document.getElementById('card-btn-silver');
+          if (btn) btn.href = `https://wa.me/5562996046458?text=Ol%C3%A1!%20Gostaria%20de%20fazer%20o%20meu%20convite%20no%20*Plano%20Silver%20(R$%20${planos.silver.preco})*.`;
+        }
+        if (planos.gold) {
+          const el = document.getElementById('card-price-gold');
+          if (el) el.innerHTML = `R$ ${planos.gold.preco} <span>/pagamento único</span>`;
+          const btn = document.getElementById('card-btn-gold');
+          if (btn) btn.href = `https://wa.me/5562996046458?text=Ol%C3%A1!%20Gostaria%20de%20fazer%20o%20meu%20convite%20no%20*Plano%20Gold%20(R$%20${planos.gold.preco})*.`;
+        }
+        if (planos.premium) {
+          const el = document.getElementById('card-price-premium');
+          if (el) el.innerHTML = `R$ ${planos.premium.preco} <span>/pagamento único</span>`;
+          const btn = document.getElementById('card-btn-premium');
+          if (btn) btn.href = `https://wa.me/5562996046458?text=Ol%C3%A1!%20Gostaria%20de%20fazer%20o%20meu%20convite%20no%20*Plano%20Premium%20(R$%20${planos.premium.preco})*.`;
+        }
+      } catch (e) {
+        console.warn("Erro ao sincronizar preços dinâmicos na vitrine:", e);
+      }
+    }
+    window.addEventListener('DOMContentLoaded', sincronizarPrecosVitrine);
+  </script>
 
   <!-- Benefits Section -->
   <section class="benefits" id="beneficios">

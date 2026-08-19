@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<script src="auth.js"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Manual Operacional, Precificação & Briefings | Convites Digitais</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="styles.css">
+  
+  <style>
+    /* Estilos específicos para o painel de briefing e precificação */
+    .dashboard-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 16px;
+      border-radius: 50px;
+      background: rgba(229, 184, 105, 0.12);
+      border: 1px solid rgba(229, 184, 105, 0.3);
+      color: var(--accent-gold);
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 1rem;
+    }
+
+    .page-nav {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin: 2.5rem 0 3.5rem;
+    }
+
+    .nav-tab-btn {
+      padding: 12px 24px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-color);
+      background: var(--bg-surface);
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: var(--transition-smooth);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .nav-tab-btn:hover, .nav-tab-btn.active {
+      background: var(--accent-gold);
+      color: #0b0c10;
+      font-weight: 600;
+      border-color: var(--accent-gold);
+      box-shadow: 0 4px 20px rgba(229, 184, 105, 0.25);
+    }
+
+    .tab-content {
+      display: none;
+      animation: fadeIn 0.4s ease;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Tabela de Preços Luxury */
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+      margin-top: 2rem;
+    }
+
+    .price-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 32px 24px;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      transition: var(--transition-smooth);
+    }
+
+    .price-card:hover {
+      border-color: var(--border-gold);
+      transform: translateY(-4px);
+      box-shadow: 0 16px 32px rgba(0, 0, 0, 0.4);
+    }
+
+    .price-card.featured {
+      background: linear-gradient(180deg, rgba(229, 184, 105, 0.08) 0%, var(--bg-surface) 100%);
+      border-color: var(--accent-gold);
+      box-shadow: 0 10px 30px rgba(229, 184, 105, 0.15);
+    }
+
+    .price-card-tag {
+      position: absolute;
+      top: -12px;
+      right: 20px;
+      background: var(--accent-gold);
+      color: #0b0c10;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 4px 12px;
+      border-radius: 50px;
+    }
+
+    .price-header h3 {
+      font-size: 1.6rem;
+      margin-bottom: 8px;
+    }
+
+    .price-amount {
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: var(--accent-gold);
+      margin: 16px 0;
+      display: flex;
+      align-items: baseline;
+      gap: 4px;
+    }
+
+    .price-amount span {
+      font-size: 1rem;
+      font-weight: 400;
+      color: var(--text-muted);
+    }
+
+    .price-features {
+      list-style: none;
+      margin: 20px 0 28px;
+      flex-grow: 1;
+    }
+
+    .price-features li {
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+      color: var(--text-secondary);
+      font-size: 0.92rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .price-features li::before {
+      content: "✓";
+      color: var(--accent-gold);
+      font-weight: bold;
+    }
+
+    /* Caixa de Código/Texto de Briefing */
+    .briefing-box {
+      background: var(--bg-surface-elevated);
+      border: 1px solid var(--border-gold);
+      border-radius: var(--radius-md);
+      padding: 24px;
+      position: relative;
+      margin: 20px 0 40px;
+    }
+
+    .briefing-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .copy-btn {
+      background: var(--accent-gold);
+      color: #0b0c10;
+      border: none;
+      padding: 10px 20px;
+      border-radius: var(--radius-sm);
+      font-size: 0.88rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: var(--transition-smooth);
+    }
+
+    .copy-btn:hover {
+      background: var(--accent-gold-hover);
+      transform: translateY(-2px);
+    }
+
+    .briefing-text {
+      background: #090a0d;
+      border-radius: var(--radius-sm);
+      padding: 20px;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 0.9rem;
+      line-height: 1.7;
+      color: #e0e2ec;
+      white-space: pre-wrap;
+      overflow-x: auto;
+      border: 1px solid var(--border-color);
+    }
+
+    /* Template Cards for Briefing */
+    .template-brief-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+      gap: 24px;
+      margin-top: 2rem;
+    }
+
+    .template-brief-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 28px;
+      transition: var(--transition-smooth);
+    }
+
+    .template-brief-card:hover {
+      border-color: var(--border-gold);
+      background: var(--bg-surface-elevated);
+    }
+
+    .template-brief-card h3 {
+      font-size: 1.4rem;
+      color: var(--text-primary);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+
+    .template-brief-card .tag-model {
+      font-size: 0.75rem;
+      color: var(--accent-gold);
+      background: var(--accent-gold-light);
+      padding: 4px 10px;
+      border-radius: 50px;
+      border: 1px solid rgba(229, 184, 105, 0.2);
+    }
+
+    .custom-badge {
+      background: rgba(229, 184, 105, 0.1);
+      color: var(--accent-gold);
+      border: 1px solid var(--border-gold);
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      margin-right: 6px;
+    }
+
+    /* Toast notification */
+    .toast {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: var(--accent-gold);
+      color: #0b0c10;
+      padding: 14px 24px;
+      border-radius: var(--radius-sm);
+      font-weight: 600;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      display: none;
+      z-index: 1000;
+      animation: slideUp 0.3s ease;
+    }
+
+    @keyframes slideUp {
+      from { transform: translateY(20px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="ambient-glow"></div>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="container">
+      <nav class="nav">
+        <a href="index.html" class="logo">
+          <span class="logo-icon">✦</span>
+          <span class="logo-text serif-text">Atelier Digital • Painel Interno</span>
+        </a>
+        <div class="nav-links">
+          <a href="index.html" class="nav-link">← Voltar à Vitrine</a>
+          <a href="https://wa.me/62996046458" target="_blank" class="btn btn-sm btn-outline">WhatsApp Suporte</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section style="padding: 140px 0 40px; text-align: center;">
+    <div class="container">
+      <div class="dashboard-badge">Documento Operacional & Estratégico</div>
+      <h1 class="serif-text" style="font-size: 3rem; margin-bottom: 1rem;">Manual de Precificação & Briefings</h1>
+      <p style="color: var(--text-secondary); max-width: 720px; margin: 0 auto; font-size: 1.1rem;">
+        Guia para precificação dos 8 templates, roteiro de coleta de dados (briefings) com os noivos e fluxo operacional de customização.
+      </p>
+
+      <!-- Navigation Tabs -->
+      <div class="page-nav">
+        <button class="nav-tab-btn active" onclick="switchTab('pricing')">💰 Tabela de Preços & Pacotes</button>
+        <button class="nav-tab-btn" onclick="switchTab('briefing-geral')">📋 Briefing Universal (WhatsApp)</button>
+        <button class="nav-tab-btn" onclick="switchTab('briefing-templates')">🎨 Briefings por Template (1 ao 8)</button>
+        <button class="nav-tab-btn" onclick="switchTab('workflow')">🚀 Fluxo de Execução & Hospedagem</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Content Container -->
+  <main class="container" style="padding-bottom: 100px;">
+
+    <!-- TAB 1: PRECIFICAÇÃO E PACOTES -->
+    <div id="pricing" class="tab-content active">
+      <div style="text-align: center; margin-bottom: 2rem;">
+        <h2 class="serif-text" style="font-size: 2.2rem; color: var(--accent-gold);">Estratégia de Pacotes & Precificação</h2>
+        <p style="color: var(--text-secondary);">Valores ancorados no valor percebido com teto máximo de R$ 250,00.</p>
+      </div>
+
+      <div class="pricing-grid">
+        <!-- Básico -->
+        <div class="price-card">
+          <div class="price-header">
+            <h3>Modelo Light</h3>
+            <p style="color: var(--text-muted); font-size: 0.9rem;">Entrada econômica para casamentos simples</p>
+          </div>
+          <div class="price-amount">R$ 99 <span>/único</span></div>
+          <ul class="price-features">
+            <li>Design responsivo smartphone</li>
+            <li>1 Foto de Capa dos noivos</li>
+            <li>Data, Hora e Endereço com GPS</li>
+            <li>Link de RSVP direto no WhatsApp</li>
+            <li>Contagem regressiva automática</li>
+          </ul>
+          <span style="color: var(--text-muted); font-size: 0.8rem; text-align: center;">Tempo médio de edição: 15 min</span>
+        </div>
+
+        <!-- Silver -->
+        <div class="price-card">
+          <div class="price-header">
+            <h3>Modelo Silver</h3>
+            <p style="color: var(--text-muted); font-size: 0.9rem;">Música de fundo e galeria completa</p>
+          </div>
+          <div class="price-amount">R$ 149 <span>/único</span></div>
+          <ul class="price-features">
+            <li>Tudo do modelo Light</li>
+            <li><strong>Player de Música Flutuante (.mp3)</strong></li>
+            <li>Galeria de fotos (até 8 fotos)</li>
+            <li>Cronograma visual da cerimônia/festa</li>
+            <li>Chave PIX com botão de copiar</li>
+            <li>Dress code e paleta de convidados</li>
+          </ul>
+          <span style="color: var(--text-muted); font-size: 0.8rem; text-align: center;">Tempo médio de edição: 25 min</span>
+        </div>
+
+        <!-- Gold -->
+        <div class="price-card">
+          <div class="price-header">
+            <h3>Modelo Gold</h3>
+            <p style="color: var(--text-muted); font-size: 0.9rem;">Impacto visual com vídeo de abertura</p>
+          </div>
+          <div class="price-amount">R$ 199 <span>/único</span></div>
+          <ul class="price-features">
+            <li>Tudo do modelo Silver</li>
+            <li><strong>Vídeo do Casal no Banner/Capa (Loop)</strong></li>
+            <li>História dos Noivos (Storytelling)</li>
+            <li>Guia de hotéis e salões de beleza parceiros</li>
+            <li>Design com micro-animações avançadas</li>
+          </ul>
+          <span style="color: var(--text-muted); font-size: 0.8rem; text-align: center;">Tempo médio de edição: 35 min</span>
+        </div>
+
+        <!-- Premium -->
+        <div class="price-card featured">
+          <div class="price-card-tag">Mais Completo (Teto R$ 250)</div>
+          <div class="price-header">
+            <h3 style="color: var(--accent-gold);">Modelo Premium</h3>
+            <p style="color: var(--text-muted); font-size: 0.9rem;">Vídeo vertical + Trilha Sonora + Experiência Total</p>
+          </div>
+          <div class="price-amount">R$ 250 <span>/único</span></div>
+          <ul class="price-features">
+            <li><strong>Vídeo de Abertura em Alta Resolução</strong></li>
+            <li><strong>Trilha Sonora personalizada com Player Interativo</strong></li>
+            <li>História do casal com linha do tempo</li>
+            <li>Confirmação de Presença (RSVP) Inteligente</li>
+            <li>Múltiplos locais (Cerimônia + Recepção)</li>
+            <li>Cartão Digital PDF interativo de brinde</li>
+            <li>Suporte prioritário e alterações ilimitadas</li>
+          </ul>
+          <span style="color: var(--accent-gold); font-size: 0.85rem; text-align: center; font-weight: 600;">Máximo valor percebido • Lucro líquido ~100%</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 2: BRIEFING UNIVERSAL (WHATSAPP) -->
+    <div id="briefing-geral" class="tab-content">
+      <div style="text-align: center; margin-bottom: 2rem;">
+        <h2 class="serif-text" style="font-size: 2.2rem; color: var(--accent-gold);">Briefing Universal para WhatsApp</h2>
+        <p style="color: var(--text-secondary);">Copie com 1 clique e envie para o cliente assim que fechar a venda.</p>
+      </div>
+
+      <div class="briefing-box">
+        <div class="briefing-header">
+          <div>
+            <strong style="color: var(--accent-gold); font-size: 1.1rem;">Mensagem Pronta para o Cliente</strong>
+            <span style="color: var(--text-muted); font-size: 0.85rem; margin-left: 10px;">(Formato WhatsApp com negritos e emojis)</span>
+          </div>
+          <button class="copy-btn" onclick="copyToClipboard('universal-briefing-text')">
+            📋 Copiar Texto Completo
+          </button>
+        </div>
+        <pre class="briefing-text" id="universal-briefing-text">💍 *COLETA DE DADOS PARA O SEU CONVITE DIGITAL INTERATIVO* 💍
+
+Olá! Para personalizarmos o seu convite com todo o carinho e perfeição, por favor preencha os dados abaixo:
+
+━━━━━━━━━━━━━━━━━━━━
+👰🏻🤵🏻 *1. DADOS DOS NOIVOS*
+• Nome dos Noivos (como querem que apareça no convite):
+• Nome dos Pais (opcional):
+• Frase ou versículo do casal:
+
+🗓️ *2. DATA, HORÁRIO E LOCAL*
+• Data do Casamento:
+• Horário da Cerimônia:
+• Nome do Local da Cerimônia:
+• Endereço Completo:
+• Link do Google Maps ou Waze:
+• A festa será no mesmo local? (Se for diferente, informe endereço):
+
+👗 *3. DRESS CODE & CRONOGRAMA*
+• Traje sugerido (ex: Esporte Fino, Passeio Completo, etc.):
+• Restrições ou paleta de cores (ex: "Reservado para a noiva tons de branco"):
+• Horários dos momentos (ex: 16:30 Cerimônia, 18:00 Recepção):
+
+📲 *4. CONFIRMAÇÃO DE PRESENÇA (RSVP)*
+• Data limite para confirmação:
+• Número de WhatsApp para receber as confirmações:
+
+🎁 *5. LISTA DE PRESENTES & PIX*
+• Chave PIX e Nome do Titular:
+• Link da Lista de Casamento (iCasei, Casar.com, etc.):
+
+📸 *6. FOTOS & MÍDIAS*
+• Envie de 4 a 10 fotos em alta qualidade (1 para a capa + fotos para a galeria).
+• Se o seu pacote tiver música: envie o nome da música/cantor ou o arquivo MP3.
+• Se o seu pacote tiver vídeo: envie o vídeo vertical do casal (15 a 30 segundos).
+
+━━━━━━━━━━━━━━━━━━━━
+⏱️ *Prazo de entrega:* 24h a 48h úteis após o envio das fotos e informações!</pre>
+      </div>
+    </div>
+
+    <!-- TAB 3: BRIEFINGS POR TEMPLATE -->
+    <div id="briefing-templates" class="tab-content">
+      <div style="text-align: center; margin-bottom: 2rem;">
+        <h2 class="serif-text" style="font-size: 2.2rem; color: var(--accent-gold);">Briefings Específicos dos 8 Modelos</h2>
+        <p style="color: var(--text-secondary);">O que solicitar a mais para cada estilo de convite do portfólio.</p>
+      </div>
+
+      <div class="template-brief-grid">
+        <!-- 01. Royal Gold -->
+        <div class="template-brief-card">
+          <h3>
+            <span>01. Royal Gold</span>
+            <span class="tag-model">Clássico / Ouro</span>
+          </h3>
+          <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1rem;">
+            Ideal para casamentos tradicionais e requintados em salões ou catedrais.
+          </p>
+          <div style="background: rgba(0,0,0,0.3); padding: 12px; border-radius: 6px; font-size: 0.85rem; color: #d0d2dd;">
+            <p><strong>Campos Específicos:</strong></p>
+            <p>• Monograma/Brasão do casal (PNG transparente se tiver)</p>
+            <p>• Nome dos pais com "convidam para o enlace de seus filhos"</p>
+            <p>• Cronograma formal (Entrada, Votos, Brinde, Jantar)</p>
+          </div>
+        </div>
+
+        <!-- 02. Minimalist -->
+        <div class="template-brief-card">
+          <h3>
+            <span>02. Minimalist</span>
+            <span class="tag-model">Clean Editorial</span>
+          </h3>
+          <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1rem;">
+            Foco em tipografia pura, estética moderna e fotografia artística.
+          </p>
+          <div style="background: rgba(0,0,0,0.3); padding: 12px; border-radius: 6px; font-size: 0.85rem; color: #d0d2dd;">
+            <p><strong>Campos Específicos:</strong></p>
+            <p>• Fotos em tons neutros ou ensaio preto & branco</p>
+            <p>• Frases curtas e minimalistas</p>
+            <p>• Botão RSVP em destaque minimalista</p>
+          </div>
+        </div>
+
+        <!-- 03. Vibrant Vows -->
+        <div class="template-brief-card">
+          <h3>
+            <span>03. Vibrant Vows</span>
+            <span class="tag-model">Fashion / Estilo Revista</span>
+          </h3>
+          <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1rem;">
+            Para casais jovens com estilo descolado, cores vivas e muita personalidade.
+          </p>
+          <div style="background: rgba(0,0,0,0.3); padding: 12px; border-radius: 6px; font-size: 0.85rem; color: #d0d2dd;">
+            <p><strong>Campos Específicos:</strong></p>
+            <p>• Fotos espontâneas e coloridas</p>
+            <p>• Títulos divertidos nas seções (ex: "A nossa festa", "Vem comemorar!")</p>
+            <p>• Seção de hashtag oficial do casamento (#LucasEMariana2026)</p>
+          </div>
+        </div>
+
+        <!-- 04. Eternal Romance -->
+        <div class="template-brief-card">
+          <h3>
+            <span>04. Eternal Romance</span>
+            <span class="tag-model">Romântico / Floral</span>
+          </h3>
+          <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1rem;">
+            Atmosfera suave, detalhes florais delicados e fundo sonoro encantador.
+          </p>
+          <div style="background: rgba(0,0,0,0.3); padding: 12px; border-radius: 6px; font-size: 0.85rem; color: #d0d2dd;">
+            <p><strong>Campos Específicos:</strong></p>
+            <p>• Trilha sonora romântica (arquivo .mp3 ou música do Spotify)</p>
+            <p>• História do casal (1 ou 2 parágrafos comoventes)</p>
+            <p>• Mensagem de boas-vindas aos convidados</p>
+          </div>
+        </div>
+
+        <!-- 05. The Sacred Garden -->
+        <div class="template-brief-card">
+          <h3>
+            <span>05. The Sacred Garden</span>
+            <span class="tag-model">Campo / Praia / Botânico</span>
+          </h3>
+          <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1rem;">
+            Perfeito para casamentos ao ar livre, fazendas, praias e jardins.
+          </p>
+          <div style="background: rgba(0,0,0,0.3); padding: 12px; border-radius: 6px; font-size: 0.85rem; color: #d0d2dd;">
+            <p><strong>Campos Específicos:</strong></p>
+            <p>• Aviso sobre calçado/gramado (ex: salto bloco recomendado)</p>
+            <p>• Como chegar (indicações de estrada de terra, balsa ou estacionamento)</p>
+            <p>• Previsão de clima / trajes para dia e noite</p>
+          </div>
+        </div>
+
+        <!-- 06. Dolce Vita -->
+        <div class="template-brief-card">
+          <h3>
+            <span>06. Dolce Vita</span>
+            <span class="tag-model">Italiano / Ensolarado</span>
+          </h3>
+          <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1rem;">
+            Inspiração mediterrânea, celebrações alegres ao pôr do sol e brunch.
+          </p>
+          <div style="background: rgba(0,0,0,0.3); padding: 12px; border-radius: 6px; font-size: 0.85rem; color: #d0d2dd;">
+            <p><strong>Campos Específicos:</strong></p>
+            <p>• Fotos com luz solar de fim de tarde</p>
+            <p>• Destaque para gastronomia, drinks e vinhos</p>
+            <p>• Menu degustação ou estilo de serviço da festa</p>
+          </div>
+        </div>
+
+        <!-- 07. Blossom & Oud -->
+        <div class="template-brief-card">
+          <h3>
+            <span>07. Blossom & Oud</span>
+            <span class="tag-model">Dark Luxury / Noite</span>
+          </h3>
+          <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1rem;">
+            Opulência noturna, paleta escura com dourado e iluminação cinematográfica.
+          </p>
+          <div style="background: rgba(0,0,0,0.3); padding: 12px; border-radius: 6px; font-size: 0.85rem; color: #d0d2dd;">
+            <p><strong>Campos Específicos:</strong></p>
+            <p>• Fotos de ensaio pré-wedding com iluminação dramática</p>
+            <p>• Cronograma de pista de dança e atrações (DJ, Banda)</p>
+            <p>• Instruções de valet parking / segurança</p>
+          </div>
+        </div>
+
+        <!-- 08. Destination Love -->
+        <div class="template-brief-card">
+          <h3>
+            <span>08. Destination Love</span>
+            <span class="tag-model">Destination Wedding</span>
+          </h3>
+          <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1rem;">
+            Para casamentos em outra cidade, praia ou serra com roteiro completo de viagem.
+          </p>
+          <div style="background: rgba(0,0,0,0.3); padding: 12px; border-radius: 6px; font-size: 0.85rem; color: #d0d2dd;">
+            <p><strong>Campos Específicos:</strong></p>
+            <p>• Lista de Hotéis/Pousadas indicados com cupom dos noivos</p>
+            <p>• Dicas de aeroporto, voos e opções de transfer</p>
+            <p>• Programação de 3 dias (Welcome Drink, Cerimônia, Almoço de Despedida)</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 4: FLUXO OPERACIONAL E HOSPEDAGEM -->
+    <div id="workflow" class="tab-content">
+      <div style="text-align: center; margin-bottom: 2rem;">
+        <h2 class="serif-text" style="font-size: 2.2rem; color: var(--accent-gold);">Fluxo de Produção & Entrega</h2>
+        <p style="color: var(--text-secondary);">Como produzir e publicar o convite em menos de 30 minutos sem custo de servidor.</p>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 20px; max-width: 850px; margin: 0 auto;">
+        
+        <div style="background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 24px;">
+          <h3 style="color: var(--accent-gold); margin-bottom: 8px;">Passo 1: Duplicar a Pasta do Template</h3>
+          <p style="color: var(--text-secondary); font-size: 0.95rem;">
+            Copie a pasta do template escolhido (ex: <code>04-thanu-jathu</code>) para uma nova pasta com o nome dos noivos (ex: <code>clientes/lucas-e-mariana/</code>). Nunca edite o template matriz original.
+          </p>
+        </div>
+
+        <div style="background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 24px;">
+          <h3 style="color: var(--accent-gold); margin-bottom: 8px;">Passo 2: Substituir Textos e Mídias</h3>
+          <p style="color: var(--text-secondary); font-size: 0.95rem;">
+            • Troque os nomes, datas e horários no arquivo HTML.<br>
+            • Substitua as fotos da pasta de imagens pelas fotos dos noivos.<br>
+            • Se o pacote tiver música, coloque o arquivo <code>musica.mp3</code> na pasta e ative o player.<br>
+            • Se tiver vídeo, coloque o <code>video.mp4</code> na pasta.
+          </p>
+        </div>
+
+        <div style="background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 24px;">
+          <h3 style="color: var(--accent-gold); margin-bottom: 8px;">Passo 3: Atualizar Links (WhatsApp, Maps, PIX)</h3>
+          <p style="color: var(--text-secondary); font-size: 0.95rem;">
+            • <strong>Link de RSVP:</strong> <code>https://wa.me/5562996046458?text=Olá! Quero confirmar minha presença no casamento de Lucas e Mariana...</code><br>
+            • <strong>Link do Mapa:</strong> Link direto do local no Google Maps.<br>
+            • <strong>PIX:</strong> Chave e titular no botão copiar.
+          </p>
+        </div>
+
+        <div style="background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 24px;">
+          <h3 style="color: var(--accent-gold); margin-bottom: 8px;">Passo 4: Hospedagem Gratuita em 1 Minuto (Vercel ou Netlify)</h3>
+          <p style="color: var(--text-secondary); font-size: 0.95rem;">
+            • Arraste a pasta finalizada para o <strong>Vercel</strong> ou <strong>Netlify Drop</strong>.<br>
+            • O link do cliente é gerado instantaneamente (ex: <code>lucas-e-mariana.vercel.app</code> ou com seu domínio personalizado <code>convites.seudominio.com/lucas-e-mariana</code>).<br>
+            • Custo: <strong>R$ 0,00</strong> de servidor e carregamento ultrarrápido em CDN mundial.
+          </p>
+        </div>
+
+        <div style="background: var(--bg-surface); border: 1px solid var(--border-gold); border-radius: var(--radius-md); padding: 24px; text-align: center;">
+          <h3 style="color: var(--accent-gold); margin-bottom: 8px;">Passo 5: Entrega Encantadora para o Casal</h3>
+          <p style="color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 16px;">
+            Envie a mensagem de entrega no WhatsApp com o link ativo e o texto de orientação para os noivos reencaminharem aos convidados!
+          </p>
+          <a href="https://wa.me/62996046458" target="_blank" class="btn btn-primary">Atendimento Thiago: 62 9 9604-6458</a>
+        </div>
+
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Toast Notification -->
+  <div id="toast" class="toast">✓ Copiado para a área de transferência!</div>
+
+  <script>
+    // Tab switching logic
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab-content').forEach(tab => {
+        tab.classList.remove('active');
+      });
+      document.querySelectorAll('.nav-tab-btn').forEach(btn => {
+        btn.classList.remove('active');
+      });
+      
+      const targetTab = document.getElementById(tabId);
+      if (targetTab) {
+        targetTab.classList.add('active');
+      }
+      
+      const activeBtn = event ? event.currentTarget : null;
+      if (activeBtn) {
+        activeBtn.classList.add('active');
+      }
+    }
+
+    // Copy to clipboard with toast
+    function copyToClipboard(elementId) {
+      const text = document.getElementById(elementId).innerText;
+      navigator.clipboard.writeText(text).then(() => {
+        const toast = document.getElementById('toast');
+        toast.style.display = 'block';
+        setTimeout(() => {
+          toast.style.display = 'none';
+        }, 3000);
+      }).catch(err => {
+        alert('Erro ao copiar texto.');
+      });
+    }
+  </script>
+</body>
+</html>
