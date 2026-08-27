@@ -1,15 +1,14 @@
 // ==========================================================================
-// CATÁLOGO DE TEMPLATES E PLANOS — ATELIER DOS NOIVOS
+// TEMPLATES & PLANS DATA - ATELIER DOS NOIVOS
 // ==========================================================================
 
 export const TEMPLATES_DATA = [
   {
     id: "royal-gold",
     name: "Royal Gold",
-    tagline: "Clássico Nobre • Marfim & Dourado Imperial",
+    tagline: "Classico nobre, marfim e dourado",
     category: "classico",
-    description: "Tipografia nobre serifada, contagem regressiva sofisticada e acabamento com paleta de ouro e marfim.",
-    badge: "Dourado Imperial",
+    description: "Tipografia serifada, contagem regressiva sofisticada e acabamento com paleta de ouro e marfim.",
     featured: true,
     video: "assets/videos/template_01.webm",
     demoUrl: "templates/royal-gold/index.html",
@@ -18,10 +17,9 @@ export const TEMPLATES_DATA = [
   {
     id: "minimalist",
     name: "Minimalist",
-    tagline: "Design Editorial • Atemporal & Clean",
+    tagline: "Design editorial, atemporal e limpo",
     category: "minimalista",
-    description: "Design limpo e moderno com ênfase na fotografia do casal, tipografia leve e navegação ultrarrápida.",
-    badge: "Favorito dos Noivos 🤍",
+    description: "Design moderno com foco na fotografia do casal, tipografia leve e navegacao rapida.",
     featured: true,
     video: "assets/videos/template_02.webm",
     demoUrl: "templates/minimalist/index.html",
@@ -30,11 +28,10 @@ export const TEMPLATES_DATA = [
   {
     id: "vibrant-vows",
     name: "Vibrant Vows",
-    tagline: "Editorial Moderno • Alta Costura",
+    tagline: "Editorial moderno, alta costura",
     category: "moderno",
-    description: "Estilo revista contemporânea, dinâmico, layouts arrojados e transições que valorizam a história do casal.",
-    badge: "Moderno & Vibrante",
-    featured: true,
+    description: "Estilo revista contemporanea com layouts arrojados e transicoes que valorizam a historia do casal.",
+    featured: false,
     video: "assets/videos/template_03.webm",
     demoUrl: "templates/vibrant-vows/index.html",
     palette: ["#E07A5F", "#F4F1DE", "#3D405B"]
@@ -42,11 +39,10 @@ export const TEMPLATES_DATA = [
   {
     id: "eternal-romance",
     name: "Eternal Romance",
-    tagline: "Romântico Floral • Trilha Sonora & RSVP",
+    tagline: "Romantico floral com trilha sonora",
     category: "romantico",
-    description: "Atmosfera romântica com detalhes florais suaves, música de fundo flutuante e confirmação de presença completa.",
-    badge: "Romântico Floral",
-    featured: true,
+    description: "Atmosfera romantica com detalhes florais suaves, musica de fundo e confirmacao de presenca.",
+    featured: false,
     video: "assets/videos/template_04.webm",
     demoUrl: "templates/eternal-romance/index.html",
     palette: ["#DDA15E", "#FEFAE0", "#606C38"]
@@ -54,10 +50,9 @@ export const TEMPLATES_DATA = [
   {
     id: "sacred-garden",
     name: "The Sacred Garden",
-    tagline: "Casamento ao Ar Livre • Campo & Praia",
+    tagline: "Casamento ao ar livre, campo e praia",
     category: "ao-ar-livre",
-    description: "Elementos botânicos orgânicos, paleta terrosa e estrutura perfeita para cerimônias em sítios, praia e campo.",
-    badge: "Campo & Praia",
+    description: "Elementos botanicos organicos, paleta terrosa e estrutura para cerimonias em sitios e praia.",
     featured: false,
     video: "assets/videos/template_05.webm",
     demoUrl: "templates/sacred-garden/index.html",
@@ -66,10 +61,9 @@ export const TEMPLATES_DATA = [
   {
     id: "dolce-vita",
     name: "Dolce Vita",
-    tagline: "Inspiração Mediterrânea • Elegância Italiana",
+    tagline: "Inspiracao mediterranea, elegancia italiana",
     category: "destination",
-    description: "Estética solar da Costa Amalfitana com elementos rústicos finos e guia de hospedagem para convidados.",
-    badge: "Mediterrâneo",
+    description: "Estetica solar da Costa Amalfitana com elementos rusticos finos e guia de hospedagem.",
     featured: false,
     video: "assets/videos/template_06.webm",
     demoUrl: "templates/dolce-vita/index.html",
@@ -77,11 +71,10 @@ export const TEMPLATES_DATA = [
   },
   {
     id: "blossom-oud",
-    name: "Blossom & Oud",
-    tagline: "Dark Luxury • Atmosfera Noturna e Ouro",
+    name: "Blossom and Oud",
+    tagline: "Luxo noturno, atmosfera e ouro",
     category: "luxo",
-    description: "Estética noturna imponente, dourado marcante sobre tons escuros e rica experiência audiovisual.",
-    badge: "Dark Luxury",
+    description: "Estetica noturna com dourado marcante sobre tons escuros e experiencia audiovisual.",
     featured: false,
     video: "assets/videos/template_07.webm",
     demoUrl: "templates/blossom-oud/index.html",
@@ -90,10 +83,9 @@ export const TEMPLATES_DATA = [
   {
     id: "destination-love",
     name: "Destination Love",
-    tagline: "Destination Wedding • Guia de Viagem & Mapas",
+    tagline: "Destination wedding, guia de viagem",
     category: "destination",
-    description: "Guia completo com roteiro de dias, hotéis conveniados, dress code para múltiplos eventos e rotas Maps/Waze.",
-    badge: "Destination Wedding",
+    description: "Guia completo com roteiro de dias, hoteis, dress code e rotas para Maps e Waze.",
     featured: false,
     video: "assets/videos/template_08.webm",
     demoUrl: "templates/destination-love/index.html",
@@ -104,69 +96,73 @@ export const TEMPLATES_DATA = [
 export const PLANOS_DATA = [
   {
     id: "light",
-    name: "Plano Light",
+    name: "Light",
     price: 99,
     formattedPrice: "R$ 99",
-    tagline: "Essencial & Elegante",
-    description: "Ideal para casais que buscam um convite digital ágil, direto e com confirmação em tempo real.",
+    tagline: "Essencial",
+    description: "Convite digital com confirmacao de presenca e localizacao integrada.",
     popular: false,
+    visible: false,
     features: [
-      "Foto principal do casal em alta definição",
-      "Contagem regressiva interativa para o grande dia",
-      "Localização com botão direto para Waze & Google Maps",
-      "Confirmação de presença (RSVP) direta",
-      "Hospedagem rápida e link seguro (HTTPS)"
+      "Foto principal do casal",
+      "Contagem regressiva interativa",
+      "Localizacao com Waze e Google Maps",
+      "Confirmacao de presenca (RSVP)",
+      "Link seguro HTTPS"
     ]
   },
   {
     id: "silver",
-    name: "Plano Silver",
+    name: "Silver",
     price: 149,
     formattedPrice: "R$ 149",
-    tagline: "Mais Vendido • Completo",
-    description: "A experiência favorita com música ambiente, galeria de fotos e presente via PIX.",
+    tagline: "Recomendado",
+    description: "Musica ambiente, galeria de fotos e presente via PIX integrados.",
     popular: true,
+    visible: true,
     features: [
-      "Tudo incluído no Plano Light",
-      "Player com a música especial do casal (.mp3)",
-      "Galeria de fotos interativa com momentos do casal",
-      "Cronograma visual da cerimônia e recepção",
-      "Guia de trajes recomendados (Dress Code)",
-      "Botão de Presente via Chave PIX (Copia e Cola)"
+      "Tudo do plano Light",
+      "Player com a musica do casal",
+      "Galeria de fotos interativa",
+      "Cronograma visual da cerimonia",
+      "Guia de trajes (Dress Code)",
+      "Presente via PIX (Copia e Cola)"
     ]
   },
   {
     id: "gold",
-    name: "Plano Gold",
+    name: "Gold",
     price: 199,
     formattedPrice: "R$ 199",
-    tagline: "Storytelling & Vídeo",
-    description: "Para noivos que desejam contar sua história de amor em vídeo e encantar cada convidado.",
+    tagline: "Completo",
+    description: "Video do casal, secao de historia e mural de recados dos convidados.",
     popular: false,
+    visible: true,
     features: [
-      "Tudo incluído no Plano Silver",
-      "Vídeo vertical dos noivos em loop no topo (Hero)",
-      "Sessão especial 'Nossa História' com fotos e texto",
-      "Dicas úteis de salões de beleza e hospedagem",
-      "Mural de mensagens e recados dos convidados"
+      "Tudo do plano Silver",
+      "Video vertical dos noivos no topo",
+      "Secao Nossa Historia com fotos",
+      "Dicas de saloes e hospedagem",
+      "Mural de mensagens dos convidados"
     ]
   },
   {
     id: "premium",
-    name: "Plano Premium",
+    name: "Premium",
     price: 250,
     formattedPrice: "R$ 250",
-    tagline: "Experiência de Luxo Absoluta",
-    description: "O teto de sofisticação com múltiplos locais, QR Code animado e cartão digital brinde.",
+    tagline: "Sofisticado",
+    description: "Multiplos locais, timeline animada, RSVP inteligente e cartao digital brinde.",
     popular: false,
+    visible: false,
     features: [
-      "Tudo incluído no Plano Gold",
-      "Vídeo vertical em Ultra HD + Trilha sonora masterizada",
-      "Linha do tempo animada com marcos do relacionamento",
-      "Múltiplos locais (Cerimônia religiosa + Festa com rotas)",
-      "RSVP Inteligente com seleção de acompanhantes e restrições",
-      "QR Code PIX interativo para lista de presentes",
-      "Brinde: Cartão Digital Interativo em PDF de alta qualidade"
+      "Tudo do plano Gold",
+      "Video Ultra HD com trilha masterizada",
+      "Timeline animada do relacionamento",
+      "Multiplos locais com rotas separadas",
+      "RSVP com acompanhantes e restricoes",
+      "QR Code PIX para lista de presentes",
+      "Cartao digital em PDF de alta qualidade"
     ]
   }
 ];

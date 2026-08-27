@@ -3,260 +3,255 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Atelier dos Noivos — Convites de Casamento Digitais & Interativos</title>
-  <meta name="description" content="Coleção exclusiva de convites de casamento digitais de alto padrão. RSVP integrado, contagem regressiva, mapas, músicas e entrega ágil para encantar seus convidados.">
+  <title>Atelier dos Noivos - Convites de Casamento Digitais</title>
+  <meta name="description" content="Convites de casamento digitais e interativos com RSVP em tempo real, galeria de fotos, musica e localizacao integrada. 8 estilos autorais.">
   
-  <!-- Preconnect Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  
-  <!-- CSS -->
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-  <!-- Header / Navbar -->
-  <header class="header">
+  <!-- Header / Nav -->
+  <header class="header" role="banner">
     <div class="container nav">
-      <a href="#" class="logo">
-        <span class="logo-icon">✦</span>
+      <a href="#" class="logo" aria-label="Atelier dos Noivos - Inicio">
         <span class="logo-text">Atelier dos Noivos</span>
       </a>
       
-      <ul class="nav-links">
-        <li><a href="#modelos" class="nav-link">Modelos Autorais</a></li>
-        <li><a href="#planos" class="nav-link">Planos & Preços</a></li>
-        <li><a href="#como-funciona" class="nav-link">Como Funciona</a></li>
-        <li><a href="#planos" class="btn btn-sm btn-primary">Montar Meu Convite</a></li>
-      </ul>
+      <button class="nav-toggle" aria-label="Abrir menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <nav class="nav-menu" role="navigation" aria-label="Menu principal">
+        <ul class="nav-links">
+          <li><a href="#modelos" class="nav-link">Modelos</a></li>
+          <li><a href="#precos" class="nav-link">Precos</a></li>
+          <li><a href="#processo" class="nav-link">Como Funciona</a></li>
+          <li><a href="#precos" class="btn btn-sm btn-primary">Comecar</a></li>
+        </ul>
+      </nav>
+
+      <!-- Mobile menu -->
+      <div class="nav-mobile" aria-hidden="true">
+        <ul>
+          <li><a href="#modelos">Modelos</a></li>
+          <li><a href="#precos">Precos</a></li>
+          <li><a href="#processo">Como Funciona</a></li>
+          <li><a href="#precos" class="btn btn-primary btn-block">Comecar</a></li>
+        </ul>
+      </div>
     </div>
   </header>
 
-  <!-- Hero Section -->
-  <section class="hero">
-    <div class="container hero-grid">
-      <!-- Coluna Esquerda: Texto & CTA -->
-      <div class="hero-content">
-        <div class="hero-badge">
-          <span>✨ Coleção Exclusiva 2026</span>
-        </div>
-        
-        <h1 class="hero-title">
-          O primeiro detalhe <span>inesquecível</span> do seu grande dia.
-        </h1>
-        
-        <p class="hero-description">
-          Convites de casamento digitais e interativos com design editorial de luxo, confirmação de presença (RSVP) em tempo real, músicas e localização integrada.
-        </p>
-        
-        <div class="hero-actions">
-          <a href="#modelos" class="btn btn-lg btn-primary">Explorar Coleção</a>
-          <a href="#planos" class="btn btn-lg btn-outline">Ver Planos & Valores</a>
-        </div>
+  <!-- Hero - Full-bleed photo -->
+  <section class="hero" role="region" aria-label="Apresentacao">
+    <div class="hero-bg">
+      <img src="assets/images/hero-wedding.jpg" alt="" role="presentation" fetchpriority="high">
+    </div>
+    <div class="hero-scrim"></div>
+    <div class="container hero-content">
+      <p class="hero-tagline">Convites digitais de casamento</p>
+      <h1 class="hero-title">O primeiro detalhe do seu grande dia</h1>
+      <p class="hero-subtitle">RSVP integrado, musica, galeria de fotos e localizacao. Oito estilos autorais prontos em 48 horas.</p>
+      <a href="#modelos" class="btn btn-lg btn-hero">Ver modelos</a>
+    </div>
+  </section>
 
-        <div class="hero-proof">
-          <div class="proof-item">
-            <span class="proof-icon">✦</span>
-            <span class="proof-text">8 Estilos Autorais</span>
-          </div>
-          <div class="proof-item">
-            <span class="proof-icon">✦</span>
-            <span class="proof-text">RSVP em Tempo Real</span>
-          </div>
-          <div class="proof-item">
-            <span class="proof-icon">✦</span>
-            <span class="proof-text">Entrega em até 48h</span>
-          </div>
-        </div>
+  <!-- Social proof strip -->
+  <div class="proof-strip" role="complementary">
+    <div class="container proof-strip-inner">
+      <span class="proof-item">8 estilos autorais</span>
+      <span class="proof-divider" aria-hidden="true"></span>
+      <span class="proof-item">RSVP em tempo real</span>
+      <span class="proof-divider" aria-hidden="true"></span>
+      <span class="proof-item">Entrega em 48h</span>
+    </div>
+  </div>
+
+  <!-- Templates catalog -->
+  <section class="section" id="modelos" aria-label="Modelos de convites">
+    <div class="container">
+      <h2 class="section-title">Encontre o estilo do seu casamento</h2>
+      <p class="section-subtitle">Cada modelo foi desenhado para transmitir a personalidade dos noivos aos convidados.</p>
+
+      <!-- Category filters -->
+      <div class="catalog-filters" role="group" aria-label="Filtrar por categoria">
+        <button class="filter-btn active" data-filter="all" aria-pressed="true">Todos</button>
+        <button class="filter-btn" data-filter="classico" aria-pressed="false">Classico</button>
+        <button class="filter-btn" data-filter="minimalista" aria-pressed="false">Minimalista</button>
+        <button class="filter-btn" data-filter="romantico" aria-pressed="false">Romantico</button>
+        <button class="filter-btn" data-filter="destination" aria-pressed="false">Destination</button>
       </div>
 
-      <!-- Coluna Direita: Mockup Hero -->
-      <div class="hero-mockup-wrapper">
-        <div class="mockup-frame">
-          <div class="mockup-inner">
-            <video class="mockup-video" src="assets/videos/template_01.webm" autoplay muted loop playsinline></video>
-            <div class="mockup-badge-floating">
-              <span>✦ Royal Gold • Toque para ver</span>
-            </div>
-          </div>
+      <!-- Templates grid - rendered by app.js -->
+      <div class="templates-grid" id="templatesGrid"></div>
+    </div>
+  </section>
+
+  <!-- Featured template highlight -->
+  <section class="section section--alt" id="destaque" aria-label="Modelo recomendado">
+    <div class="container featured-split">
+      <div class="featured-media">
+        <video src="assets/videos/template_02.webm" autoplay muted loop playsinline aria-label="Preview do modelo Minimalist"></video>
+      </div>
+      <div class="featured-info">
+        <span class="featured-label">Mais escolhido</span>
+        <h3 class="featured-title">Minimalist</h3>
+        <p class="featured-desc">Design limpo e moderno com foco na fotografia do casal, tipografia leve e navegacao rapida. O favorito dos noivos que buscam elegancia sem excesso.</p>
+        <div class="featured-actions">
+          <button class="btn btn-primary btn-open-demo" data-url="templates/minimalist/index.html" data-title="Minimalist">Ver demonstracao</button>
+          <button class="btn btn-outline btn-select-model" data-id="minimalist" data-name="Minimalist">Escolher este modelo</button>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Catálogo de Modelos (Vitrine Curada) -->
-  <section class="section" id="modelos">
+  <!-- Pricing -->
+  <section class="section" id="precos" aria-label="Planos e precos">
     <div class="container">
-      <div class="section-header">
-        <span class="section-tag">Catálogo Autoral</span>
-        <h2 class="section-title">Encontre a identidade visual do seu casamento</h2>
-        <p class="section-subtitle">Oito estilos únicos desenvolvidos para transmitir elegância, emoção e praticidade aos seus convidados.</p>
-      </div>
-
-      <!-- Filtros de Estilo -->
-      <div class="catalog-filters">
-        <button class="filter-btn active" data-filter="all">Todos os Estilos</button>
-        <button class="filter-btn" data-filter="classico">Clássico & Nobre</button>
-        <button class="filter-btn" data-filter="minimalista">Minimalista & Clean</button>
-        <button class="filter-btn" data-filter="romantico">Romântico & Floral</button>
-        <button class="filter-btn" data-filter="destination">Destination & Ao Ar Livre</button>
-      </div>
-
-      <!-- Grid de Templates -->
-      <div class="templates-grid" id="templatesGrid">
-        <!-- Renderizado dinamicamente via app.js -->
-      </div>
-    </div>
-  </section>
-
-  <!-- Como Funciona (Processo em 3 Passos) -->
-  <section class="section" id="como-funciona" style="background: #F4EFE6;">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-tag">Processo Simples</span>
-        <h2 class="section-title">Como ter o seu convite pronto em 3 passos</h2>
-        <p class="section-subtitle">Sem burocracia e com acompanhamento transparente do início à entrega final.</p>
-      </div>
-
-      <div class="steps-grid">
-        <div class="step-card">
-          <div class="step-num">01</div>
-          <h3 class="step-title">Escolha & Contratação</h3>
-          <p class="step-desc">Selecione o modelo visual e o plano ideal para a sua celebração. O pagamento é realizado de forma segura via PIX ou Cartão.</p>
-        </div>
-
-        <div class="step-card">
-          <div class="step-num">02</div>
-          <h3 class="step-title">Personalização dos Dados</h3>
-          <p class="step-desc">Logo após a confirmação, você preenche os dados dos noivos, fotos, músicas, chave PIX e detalhes da cerimônia no nosso formulário.</p>
-        </div>
-
-        <div class="step-card">
-          <div class="step-num">03</div>
-          <h3 class="step-title">Produção & Entrega</h3>
-          <p class="step-desc">Nossa equipe customiza seu convite e envia o link final seguro (HTTPS) diretamente no seu e-mail em até 48 horas úteis.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Planos & Preços (Checkout Asaas) -->
-  <section class="section" id="planos">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-tag">Investimento Transparente</span>
-        <h2 class="section-title">Planos pensados para cada momento</h2>
-        <p class="section-subtitle">Escolha o pacote perfeito com pagamento único, sem mensalidades e link ativo durante todo o seu evento.</p>
-      </div>
+      <h2 class="section-title">Precos</h2>
+      <p class="section-subtitle">Pagamento unico, sem mensalidades. O link do convite fica ativo durante todo o seu evento.</p>
 
       <div class="pricing-grid" id="pricingGrid">
-        <!-- Renderizado dinamicamente via app.js -->
+        <!-- Rendered by app.js -->
+      </div>
+
+      <button class="pricing-toggle" id="pricingToggle" aria-expanded="false">
+        Ver todos os planos
+      </button>
+    </div>
+  </section>
+
+  <!-- Process strip -->
+  <section class="section process-section" id="processo" aria-label="Como funciona">
+    <div class="container">
+      <h2 class="section-title">Como funciona</h2>
+      <div class="process-strip">
+        <div class="process-step">
+          <span class="process-num">1</span>
+          <div>
+            <h3 class="process-step-title">Escolha e pagamento</h3>
+            <p class="process-step-desc">Selecione o modelo e o plano. Pague via PIX ou cartao.</p>
+          </div>
+        </div>
+        <span class="process-divider" aria-hidden="true"></span>
+        <div class="process-step">
+          <span class="process-num">2</span>
+          <div>
+            <h3 class="process-step-title">Envio dos dados</h3>
+            <p class="process-step-desc">Preencha o formulario com fotos, musica e detalhes da cerimonia.</p>
+          </div>
+        </div>
+        <span class="process-divider" aria-hidden="true"></span>
+        <div class="process-step">
+          <span class="process-num">3</span>
+          <div>
+            <h3 class="process-step-title">Receba seu convite</h3>
+            <p class="process-step-desc">Em ate 48 horas o link personalizado chega no seu e-mail.</p>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- Footer -->
-  <footer class="footer">
+  <!-- Footer (same theme, no dark flip) -->
+  <footer class="footer" role="contentinfo">
     <div class="container">
       <div class="footer-grid">
         <div class="footer-brand">
           <a href="#" class="logo">
-            <span class="logo-icon">✦</span>
             <span class="logo-text">Atelier dos Noivos</span>
           </a>
-          <p class="footer-desc">Convites de casamento digitais e interativos de luxo. Experiências digitais que eternizam grandes momentos.</p>
+          <p class="footer-desc">Convites de casamento digitais e interativos com design autoral.</p>
         </div>
 
         <div class="footer-col">
-          <h4>Navegação</h4>
+          <h4>Navegacao</h4>
           <ul>
-            <li><a href="#modelos">Modelos de Convites</a></li>
-            <li><a href="#planos">Tabela de Planos</a></li>
-            <li><a href="#como-funciona">Como Funciona</a></li>
+            <li><a href="#modelos">Modelos</a></li>
+            <li><a href="#precos">Precos</a></li>
+            <li><a href="#processo">Como Funciona</a></li>
           </ul>
         </div>
 
         <div class="footer-col">
-          <h4>Atendimento</h4>
+          <h4>Contato</h4>
           <ul>
             <li><a href="mailto:contato@tmsempretecnologia.com.br">contato@tmsempretecnologia.com.br</a></li>
-            <li><span>Goiânia - GO • Atendimento Brasil</span></li>
+            <li><span>Goiania, GO</span></li>
           </ul>
         </div>
       </div>
 
       <div class="footer-bottom">
-        <p>© 2026 Atelier dos Noivos • TM Sempre Tecnologia. Todos os direitos reservados.</p>
+        <p>2026 Atelier dos Noivos - TM Sempre Tecnologia</p>
       </div>
     </div>
   </footer>
 
-  <!-- MODAL DE PRÉVIA INTERATIVA (IFRAME) -->
-  <div id="previewModal" class="modal-overlay">
+  <!-- Preview modal -->
+  <div id="previewModal" class="modal-overlay" role="dialog" aria-modal="true" aria-label="Preview do convite">
     <div class="preview-modal-dialog">
       <div class="preview-modal-header">
-        <span id="previewModalTitle" class="preview-modal-title">Demonstração Interativa</span>
-        <button id="modalCloseBtn" class="modal-close-btn" aria-label="Fechar Prévia">✕</button>
+        <span id="previewModalTitle" class="preview-modal-title">Preview</span>
+        <button id="modalCloseBtn" class="modal-close-btn" aria-label="Fechar preview">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M15 5L5 15M5 5l10 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </button>
       </div>
-      <iframe id="previewIframe" class="preview-modal-iframe" src="" title="Prévia do Convite"></iframe>
+      <iframe id="previewIframe" class="preview-modal-iframe" src="" title="Preview do convite"></iframe>
     </div>
   </div>
 
-  <!-- MODAL DE CHECKOUT INTEGRADO (ASAAS) -->
-  <div id="checkoutModal" class="modal-overlay">
+  <!-- Checkout modal -->
+  <div id="checkoutModal" class="modal-overlay" role="dialog" aria-modal="true" aria-label="Finalizar pedido">
     <div class="checkout-modal-dialog">
       <div class="checkout-header">
-        <span class="section-tag">Finalizar Pedido</span>
-        <h3>Contratar Convite Digital</h3>
-        <p>Preencha seus dados para prosseguir com o pagamento seguro.</p>
+        <h3>Finalizar pedido</h3>
+        <p>Preencha seus dados para gerar o pagamento.</p>
       </div>
 
-      <!-- Resumo da Seleção -->
+      <!-- Order summary -->
       <div class="checkout-summary-box">
         <div>
           <strong id="chkPlanoNome">Plano Silver</strong><br>
-          <small id="chkModeloNome" style="color: var(--text-secondary);">Modelo: Royal Gold</small>
+          <small id="chkModeloNome" class="text-muted">Modelo: Minimalist</small>
         </div>
-        <div style="font-family: var(--font-serif); font-size: 1.6rem; font-weight: bold; color: var(--accent-gold);" id="chkPlanoValor">
-          R$ 149,00
-        </div>
+        <div class="checkout-price" id="chkPlanoValor">R$ 149</div>
       </div>
 
-      <!-- Formulário de Checkout -->
+      <!-- Checkout form -->
       <form id="checkoutForm">
         <div class="form-group">
-          <label for="chkNome">Nome Completo do(a) Contratante <span style="color: red;">*</span></label>
-          <input type="text" id="chkNome" class="form-input" required placeholder="Ex: Maria Clara Souza">
+          <label for="chkNome">Nome completo</label>
+          <input type="text" id="chkNome" class="form-input" required placeholder="Maria Clara Souza">
         </div>
 
         <div class="form-group">
-          <label for="chkEmail">Seu E-mail (Onde você receberá o link e o briefing) <span style="color: red;">*</span></label>
+          <label for="chkEmail">E-mail</label>
           <input type="email" id="chkEmail" class="form-input" required placeholder="seuemail@exemplo.com">
         </div>
 
         <div class="form-group">
-          <label for="chkTelefone">Telefone / WhatsApp de Contato <span style="color: red;">*</span></label>
+          <label for="chkTelefone">WhatsApp</label>
           <input type="tel" id="chkTelefone" class="form-input" required placeholder="(62) 99999-9999">
         </div>
 
         <div class="form-group">
-          <label for="chkCpf">CPF (Para emissão do recibo) <span style="color: red;">*</span></label>
+          <label for="chkCpf">CPF</label>
           <input type="text" id="chkCpf" class="form-input" required placeholder="000.000.000-00">
         </div>
 
-        <!-- Forma de Pagamento -->
         <div class="form-group">
-          <label>Forma de Pagamento:</label>
+          <label>Pagamento</label>
           <div class="payment-methods-tabs">
-            <button type="button" class="pay-tab-btn active" data-method="PIX">⚡ PIX Instantâneo</button>
-            <button type="button" class="pay-tab-btn" data-method="CREDIT_CARD">💳 Cartão de Crédito</button>
+            <button type="button" class="pay-tab-btn active" data-method="PIX">PIX</button>
+            <button type="button" class="pay-tab-btn" data-method="CREDIT_CARD">Cartao</button>
           </div>
         </div>
 
-        <!-- Botão de Gerar Pagamento -->
-        <button type="submit" id="btnSubmitCheckout" class="btn btn-lg btn-gold btn-block">
-          Prosseguir para o Pagamento
+        <button type="submit" id="btnSubmitCheckout" class="btn btn-primary btn-lg btn-block">
+          Gerar pagamento
         </button>
 
         <button type="button" id="btnCancelCheckout" class="btn btn-outline btn-block" style="margin-top: 10px;">
@@ -264,34 +259,29 @@
         </button>
       </form>
 
-      <!-- Tela de Exibição do PIX -->
+      <!-- PIX screen -->
       <div id="pixScreen" class="pix-result-box">
-        <h4 style="font-size: 1.3rem; margin-bottom: 8px;">Pague com PIX para liberar o briefing:</h4>
-        <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 16px;">
-          Abra o app do seu banco e escaneie o QR Code abaixo ou use o Copia e Cola:
-        </p>
+        <h4>Pague com PIX</h4>
+        <p class="text-muted">Escaneie o QR Code ou use o codigo Copia e Cola:</p>
 
         <div id="pixQrCodeContainer"></div>
 
         <input type="text" id="pixCopiaColaInput" class="pix-copiacola-input" readonly>
-        <button type="button" id="btnCopyPix" class="btn btn-sm btn-primary" style="margin-bottom: 20px;">
-          📋 Copiar Código PIX
+        <button type="button" id="btnCopyPix" class="btn btn-sm btn-outline" style="margin-bottom: 20px;">
+          Copiar codigo PIX
         </button>
 
-        <div style="background: #FFFDF9; border: 1px solid #E8E2D5; padding: 14px; border-radius: 8px; margin-bottom: 16px;">
-          <p style="font-size: 0.85rem; color: #5F5B53; margin: 0;">
-            ⏳ Assim que o pagamento for identificado, você receberá a confirmação no e-mail e será direcionado ao formulário de briefing!
-          </p>
+        <div class="pix-notice">
+          <p>Quando o pagamento for identificado, voce recebera a confirmacao no e-mail e podera preencher os dados do convite.</p>
         </div>
 
         <a id="btnGoToBriefingDirectly" href="#" class="btn btn-primary btn-block">
-          Preencher Dados do Convite ➔
+          Preencher dados do convite
         </a>
       </div>
     </div>
   </div>
 
-  <!-- Scripts -->
   <script type="module" src="app.js"></script>
 </body>
 </html>

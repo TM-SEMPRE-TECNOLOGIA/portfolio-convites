@@ -1,4 +1,4 @@
-﻿# Arquivos de trabalho / referências pesadas — NÃO vão pro deploy público
+# Arquivos de trabalho / referências pesadas — NÃO vão pro deploy público
 _inspiracao_webgency/
 marketing/
 _adm/
@@ -6,3 +6,4 @@ database/
 scripts/
 HERMES.md
 INVENTARIO-PORTFOLIO-CONVITES.md
+.agents/

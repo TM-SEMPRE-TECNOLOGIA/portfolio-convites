@@ -1,66 +1,132 @@
 // ==============================================================================
-// APP.JS — CONTROLLER DA VITRINE, PREVIEW & CHECKOUT ASAAS (ATELIER DOS NOIVOS)
+// APP.JS - CONTROLLER DA VITRINE, PREVIEW & CHECKOUT (ATELIER DOS NOIVOS)
 // ==============================================================================
 
 import { TEMPLATES_DATA, PLANOS_DATA } from "./src/data/templates.js";
 
 document.addEventListener("DOMContentLoaded", () => {
-  let selectedModeloId = "royal-gold";
+  let selectedModeloId = "minimalist";
   let selectedPlanoId = "silver";
   let currentPaymentMethod = "PIX";
+  let showAllPlans = false;
 
-  // 1. RENDERIZAR GRID DE TEMPLATES
+  // ----------------------------------------------------------------------------
+  // 1. MENU MOBILE
+  // ----------------------------------------------------------------------------
+  const navToggle = document.querySelector(".nav-toggle");
+  const navMobile = document.querySelector(".nav-mobile");
+
+  if (navToggle) {
+    navToggle.addEventListener("click", () => {
+      const isOpen = document.body.classList.toggle("nav-open");
+      navToggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
+      if (navMobile) {
+        navMobile.setAttribute("aria-hidden", isOpen ? "false" : "true");
+      }
+    });
+  }
+
+  // Fechar menu mobile ao clicar em um link
+  if (navMobile) {
+    navMobile.querySelectorAll("a").forEach(link => {
+      link.addEventListener("click", () => {
+        document.body.classList.remove("nav-open");
+        if (navToggle) navToggle.setAttribute("aria-expanded", "false");
+        navMobile.setAttribute("aria-hidden", "true");
+      });
+    });
+  }
+
+  // ----------------------------------------------------------------------------
+  // 2. RENDERIZAR VITRINE DE TEMPLATES (LAYOUT EDITORIAL)
+  // ----------------------------------------------------------------------------
   const templatesGrid = document.getElementById("templatesGrid");
-  
+
   function renderTemplates(filter = "all") {
     if (!templatesGrid) return;
     templatesGrid.innerHTML = "";
 
-    const filtered = filter === "all" 
-      ? TEMPLATES_DATA 
+    const filtered = filter === "all"
+      ? TEMPLATES_DATA
       : TEMPLATES_DATA.filter(t => t.category === filter || (filter === "destination" && (t.category === "destination" || t.category === "ao-ar-livre")));
 
-    filtered.forEach(template => {
-      const card = document.createElement("div");
-      card.className = "template-card";
+    filtered.forEach((template, index) => {
+      const card = document.createElement("article");
+      const isFeatured = filter === "all" && (index === 0 || index === 1);
+      card.className = `template-card ${isFeatured ? "template-card--featured" : ""} reveal`;
+
       card.innerHTML = `
-        <div class="template-media">
-          <span class="template-badge">${template.badge}</span>
-          <video src="${template.video}" autoplay muted loop playsinline></video>
+        <div class="template-media" data-url="${template.demoUrl}" data-title="${template.name}" role="button" tabindex="0" aria-label="Abrir demonstracao de ${template.name}">
+          <video src="${template.video}" muted loop playsinline preload="metadata" loading="lazy" aria-hidden="true"></video>
         </div>
         <div class="template-info">
-          <h3 class="template-title">${template.name}</h3>
-          <p class="template-style">${template.tagline}</p>
+          <span class="template-tagline">${template.tagline}</span>
+          <h3 class="template-name">${template.name}</h3>
           <p class="template-desc">${template.description}</p>
           <div class="template-actions">
-            <button class="btn btn-outline btn-sm btn-open-demo" data-url="${template.demoUrl}" data-title="${template.name}">
-              Ver Demo
+            <button type="button" class="btn btn-outline btn-sm btn-open-demo" data-url="${template.demoUrl}" data-title="${template.name}">
+              Ver demonstracao
             </button>
-            <button class="btn btn-primary btn-sm btn-select-model" data-id="${template.id}" data-name="${template.name}">
-              Quero Este
+            <button type="button" class="btn btn-primary btn-sm btn-select-model" data-id="${template.id}" data-name="${template.name}">
+              Escolher modelo
             </button>
           </div>
         </div>
       `;
+
       templatesGrid.appendChild(card);
     });
 
-    // Eventos dos botões de Demo
-    document.querySelectorAll(".btn-open-demo").forEach(btn => {
+    // Iniciar videos ao passar o mouse / tocar
+    templatesGrid.querySelectorAll(".template-media").forEach(media => {
+      const video = media.querySelector("video");
+      if (video) {
+        media.addEventListener("mouseenter", () => {
+          video.play().catch(() => {});
+        });
+        media.addEventListener("mouseleave", () => {
+          video.pause();
+        });
+      }
+
+      // Clique na midia abre preview
+      media.addEventListener("click", () => {
+        const url = media.getAttribute("data-url");
+        const title = media.getAttribute("data-title");
+        openPreviewModal(url, title);
+      });
+
+      media.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          const url = media.getAttribute("data-url");
+          const title = media.getAttribute("data-title");
+          openPreviewModal(url, title);
+        }
+      });
+    });
+
+    // Botoes de Demo
+    templatesGrid.querySelectorAll(".btn-open-demo").forEach(btn => {
       btn.addEventListener("click", (e) => {
+        e.stopPropagation();
         const url = btn.getAttribute("data-url");
         const title = btn.getAttribute("data-title");
         openPreviewModal(url, title);
       });
     });
 
-    // Eventos dos botões de Selecionar Modelo
-    document.querySelectorAll(".btn-select-model").forEach(btn => {
+    // Botoes de Escolher Modelo
+    templatesGrid.querySelectorAll(".btn-select-model").forEach(btn => {
       btn.addEventListener("click", (e) => {
+        e.stopPropagation();
         selectedModeloId = btn.getAttribute("data-id");
         openCheckoutModal(selectedPlanoId, selectedModeloId);
       });
     });
+
+    // Aplicar observador de scroll nos novos cards
+    observeReveals();
   }
 
   renderTemplates();
@@ -68,48 +134,91 @@ document.addEventListener("DOMContentLoaded", () => {
   // Filtros de Categoria
   document.querySelectorAll(".filter-btn").forEach(btn => {
     btn.addEventListener("click", () => {
-      document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
+      document.querySelectorAll(".filter-btn").forEach(b => {
+        b.classList.remove("active");
+        b.setAttribute("aria-pressed", "false");
+      });
       btn.classList.add("active");
+      btn.setAttribute("aria-pressed", "true");
       renderTemplates(btn.getAttribute("data-filter"));
     });
   });
 
-  // 2. RENDERIZAR GRID DE PLANOS
+  // Botoes da secao de destaque
+  document.querySelectorAll(".featured-actions .btn-open-demo").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const url = btn.getAttribute("data-url");
+      const title = btn.getAttribute("data-title");
+      openPreviewModal(url, title);
+    });
+  });
+
+  document.querySelectorAll(".featured-actions .btn-select-model").forEach(btn => {
+    btn.addEventListener("click", () => {
+      selectedModeloId = btn.getAttribute("data-id") || "minimalist";
+      openCheckoutModal(selectedPlanoId, selectedModeloId);
+    });
+  });
+
+  // ----------------------------------------------------------------------------
+  // 3. RENDERIZAR GRID DE PRECOS (2 PLANOS POR PADRAO + TOGGLE)
+  // ----------------------------------------------------------------------------
   const pricingGrid = document.getElementById("pricingGrid");
-  if (pricingGrid) {
+  const pricingToggle = document.getElementById("pricingToggle");
+
+  function renderPricing() {
+    if (!pricingGrid) return;
     pricingGrid.innerHTML = "";
-    PLANOS_DATA.forEach(plano => {
+
+    const visiblePlans = showAllPlans ? PLANOS_DATA : PLANOS_DATA.filter(p => p.visible);
+
+    visiblePlans.forEach(plano => {
       const card = document.createElement("div");
-      card.className = `pricing-card ${plano.popular ? "popular" : ""}`;
-      
+      card.className = `pricing-card ${plano.popular ? "recommended popular" : ""} reveal`;
+
       const featuresHtml = plano.features.map(f => `<li>${f}</li>`).join("");
 
       card.innerHTML = `
-        ${plano.popular ? '<span class="popular-badge">Mais Escolhido 🤍</span>' : ''}
-        <div class="pricing-header">
-          <h3 class="pricing-name">${plano.name}</h3>
-          <p class="pricing-tagline">${plano.tagline}</p>
-          <div class="pricing-price">${plano.formattedPrice}<small> / único</small></div>
+        <div class="pricing-card-header">
+          <h3 class="plan-name">${plano.name}</h3>
+          <p class="plan-tagline">${plano.tagline}</p>
+          <div class="plan-price">${plano.formattedPrice}</div>
         </div>
-        <ul class="pricing-features">
+        <ul class="plan-features">
           ${featuresHtml}
         </ul>
-        <button class="btn ${plano.popular ? "btn-gold" : "btn-primary"} btn-block btn-select-plano" data-id="${plano.id}">
+        <button type="button" class="btn ${plano.popular ? "btn-primary" : "btn-outline"} btn-block btn-select-plano" data-id="${plano.id}">
           Escolher ${plano.name}
         </button>
       `;
+
       pricingGrid.appendChild(card);
     });
 
-    document.querySelectorAll(".btn-select-plano").forEach(btn => {
+    pricingGrid.querySelectorAll(".btn-select-plano").forEach(btn => {
       btn.addEventListener("click", () => {
         selectedPlanoId = btn.getAttribute("data-id");
         openCheckoutModal(selectedPlanoId, selectedModeloId);
       });
     });
+
+    observeReveals();
   }
 
-  // 3. MODAL DE PRÉVIA INTERATIVA
+  renderPricing();
+
+  if (pricingToggle) {
+    pricingToggle.addEventListener("click", () => {
+      showAllPlans = !showAllPlans;
+      pricingToggle.textContent = showAllPlans ? "Ocultar planos adicionais" : "Ver todos os planos";
+      pricingToggle.setAttribute("aria-expanded", showAllPlans ? "true" : "false");
+      renderPricing();
+    });
+  }
+
+  // ----------------------------------------------------------------------------
+  // 4. MODAL DE PREVIA INTERATIVA
+  // ----------------------------------------------------------------------------
   const previewModal = document.getElementById("previewModal");
   const previewIframe = document.getElementById("previewIframe");
   const previewModalTitle = document.getElementById("previewModalTitle");
@@ -118,7 +227,7 @@ document.addEventListener("DOMContentLoaded", () => {
   function openPreviewModal(url, title) {
     if (!previewModal || !previewIframe) return;
     previewIframe.src = url;
-    if (previewModalTitle) previewModalTitle.textContent = `Prévia: ${title}`;
+    if (previewModalTitle) previewModalTitle.textContent = `Preview: ${title}`;
     previewModal.classList.add("active");
     document.body.style.overflow = "hidden";
   }
@@ -137,7 +246,9 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // 4. MODAL DE CHECKOUT INTEGRADO (ASAAS)
+  // ----------------------------------------------------------------------------
+  // 5. MODAL DE CHECKOUT INTEGRADO (ASAAS)
+  // ----------------------------------------------------------------------------
   const checkoutModal = document.getElementById("checkoutModal");
   const checkoutForm = document.getElementById("checkoutForm");
   const pixScreen = document.getElementById("pixScreen");
@@ -149,12 +260,12 @@ document.addEventListener("DOMContentLoaded", () => {
   function openCheckoutModal(planoId, modeloId) {
     if (!checkoutModal) return;
     selectedPlanoId = planoId || "silver";
-    selectedModeloId = modeloId || "royal-gold";
+    selectedModeloId = modeloId || "minimalist";
 
     const plano = PLANOS_DATA.find(p => p.id === selectedPlanoId) || PLANOS_DATA[1];
     const modelo = TEMPLATES_DATA.find(m => m.id === selectedModeloId) || TEMPLATES_DATA[0];
 
-    if (chkPlanoNome) chkPlanoNome.textContent = plano.name;
+    if (chkPlanoNome) chkPlanoNome.textContent = `Plano ${plano.name}`;
     if (chkModeloNome) chkModeloNome.textContent = `Modelo: ${modelo.name}`;
     if (chkPlanoValor) chkPlanoValor.textContent = plano.formattedPrice;
 
@@ -194,7 +305,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const btnSubmit = document.getElementById("btnSubmitCheckout");
       const originalText = btnSubmit.innerHTML;
-      btnSubmit.innerHTML = "Gerando Pagamento...";
+      btnSubmit.innerHTML = "Gerando pagamento...";
       btnSubmit.disabled = true;
 
       const payload = {
@@ -237,14 +348,14 @@ document.addEventListener("DOMContentLoaded", () => {
             const btnGoBriefing = document.getElementById("btnGoToBriefingDirectly");
             if (btnGoBriefing) btnGoBriefing.href = briefingUrl;
 
-            // Botão copiar PIX
+            // Botao copiar PIX
             const btnCopyPix = document.getElementById("btnCopyPix");
             if (btnCopyPix) {
               btnCopyPix.onclick = () => {
                 if (copiaColaInput) {
                   navigator.clipboard.writeText(copiaColaInput.value);
-                  btnCopyPix.textContent = "✓ Código PIX Copiado!";
-                  setTimeout(() => { btnCopyPix.textContent = "📋 Copiar Código PIX"; }, 2000);
+                  btnCopyPix.textContent = "Codigo PIX copiado";
+                  setTimeout(() => { btnCopyPix.textContent = "Copiar codigo PIX"; }, 2000);
                 }
               };
             }
@@ -253,11 +364,10 @@ document.addEventListener("DOMContentLoaded", () => {
             window.location.href = briefingUrl;
           }
         } else {
-          alert("Aviso: " + (data.error || "Não foi possível gerar a cobrança."));
+          alert("Aviso: " + (data.error || "Nao foi possivel gerar a cobranca."));
         }
       } catch (err) {
-        console.warn("API de checkout offline. Redirecionando para simulação de briefing.", err);
-        // Modo fallback local para teste imediato
+        console.warn("API de checkout offline. Redirecionando para simulacao de briefing.", err);
         const mockToken = "token_demo_" + Date.now();
         window.location.href = `/briefing.html?token=${mockToken}`;
       } finally {
@@ -274,4 +384,42 @@ document.addEventListener("DOMContentLoaded", () => {
       closeCheckoutModal();
     }
   });
+
+  // ----------------------------------------------------------------------------
+  // 6. SCROLL REVEAL (INTERSECTION OBSERVER COM SUPORTE A REDUCED MOTION)
+  // ----------------------------------------------------------------------------
+  function observeReveals() {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      document.querySelectorAll(".reveal").forEach(el => el.classList.add("visible"));
+      return;
+    }
+
+    if (!("IntersectionObserver" in window)) {
+      document.querySelectorAll(".reveal").forEach(el => el.classList.add("visible"));
+      return;
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.1,
+      rootMargin: "0px 0px -40px 0px"
+    });
+
+    document.querySelectorAll(".reveal:not(.visible)").forEach(el => {
+      observer.observe(el);
+    });
+  }
+
+  // Adicionar classe reveal as secoes principais
+  document.querySelectorAll(".section, .proof-strip, .hero-content").forEach(el => {
+    el.classList.add("reveal");
+  });
+
+  observeReveals();
 });
