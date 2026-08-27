@@ -3,7 +3,7 @@
 // ==============================================================================
 
 import crypto from "crypto";
-import { sendCustomerPaidEmail } from "../notify/email.js";
+import { sendCustomerPaidEmail } from "../_lib/email.js";
 
 const SUPABASE_URL = process.env.SUPABASE_URL || "https://zuctjpgrddewaxjfmpli.supabase.co";
 const SUPABASE_SERVICE_ROLE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.SUPABASE_ANON_KEY;
@@ -198,3 +198,4 @@ export default async function handler(req, res) {
     return res.status(500).json({ error: "Falha ao processar checkout", details: error.message });
   }
 }
+
