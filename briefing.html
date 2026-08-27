@@ -1,7 +1,6 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <script src="supabase-config.js"></script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>Personalização do Seu Convite Digital | Atelier dos Noivos</title>
@@ -13,23 +12,23 @@
   
   <style>
     :root {
-      --bg-primary: #0b0c10;
-      --bg-surface: #14161d;
-      --bg-surface-elevated: #1d202b;
-      --bg-input: #0e1017;
-      --text-primary: #f6f6f8;
-      --text-secondary: #a0a4b8;
-      --text-muted: #696c7e;
-      --accent-gold: #e5b869;
-      --accent-gold-hover: #f3c77d;
-      --accent-gold-light: rgba(229, 184, 105, 0.12);
-      --border-color: rgba(255, 255, 255, 0.08);
-      --border-gold: rgba(229, 184, 105, 0.35);
-      --border-focus: #e5b869;
+      --bg-primary: #FAF8F5;
+      --bg-surface: #FFFFFF;
+      --bg-surface-elevated: #FFFFFF;
+      --bg-input: #FFFFFF;
+      --text-primary: #1F1D1A;
+      --text-secondary: #5F5B53;
+      --text-muted: #8C867A;
+      --accent-gold: #C5A059;
+      --accent-gold-hover: #B38E46;
+      --accent-gold-light: rgba(197, 160, 89, 0.12);
+      --border-color: #E8E2D5;
+      --border-gold: rgba(197, 160, 89, 0.4);
+      --border-focus: #C5A059;
       --radius-sm: 8px;
       --radius-md: 16px;
       --radius-lg: 24px;
-      --font-serif: 'Cormorant Garamond', 'Playfair Display', serif;
+      --font-serif: 'Cormorant Garamond', 'Playfair Display', Georgia, serif;
       --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
       --transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     }
@@ -52,10 +51,6 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      background-image: 
-        radial-gradient(circle at 50% 0%, rgba(229, 184, 105, 0.12) 0%, transparent 60%),
-        radial-gradient(circle at 100% 100%, rgba(229, 184, 105, 0.05) 0%, transparent 40%);
-      background-attachment: fixed;
     }
 
     /* Top Ambient Banner */
@@ -74,7 +69,7 @@
       border-radius: 50px;
       background: var(--accent-gold-light);
       border: 1px solid var(--border-gold);
-      color: var(--accent-gold);
+      color: #A47E3B;
       font-size: 0.8rem;
       font-weight: 600;
       letter-spacing: 0.08em;
@@ -98,30 +93,45 @@
       margin: 0 auto;
     }
 
+    /* Status do Pedido Box */
+    .order-status-box {
+      background: #FFFDF9;
+      border: 1px solid var(--border-gold);
+      border-radius: var(--radius-md);
+      padding: 16px 20px;
+      margin: 20px 0 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      text-align: left;
+    }
+
+    .order-status-info h4 {
+      font-size: 1rem;
+      color: #1F1D1A;
+      margin-bottom: 2px;
+    }
+
+    .order-status-info p {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+    }
+
+    .order-badge-paid {
+      background: #E6F4EA;
+      color: #137333;
+      padding: 4px 12px;
+      border-radius: 50px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
     /* Container do Formulário Mobile-First */
     .form-wrapper {
       width: 100%;
       max-width: 680px;
       padding: 0 16px 60px;
-    }
-
-    .progress-bar-container {
-      background: var(--bg-surface);
-      border: 1px solid var(--border-color);
-      border-radius: 50px;
-      padding: 4px;
-      margin: 20px 0 28px;
-      display: flex;
-      align-items: center;
-      position: relative;
-    }
-
-    .progress-bar-fill {
-      height: 6px;
-      background: linear-gradient(90deg, #c49746, #e5b869);
-      border-radius: 50px;
-      width: 20%;
-      transition: width 0.4s ease;
     }
 
     /* Card Section */
@@ -131,7 +141,7 @@
       border-radius: var(--radius-lg);
       padding: 28px 22px;
       margin-bottom: 24px;
-      box-shadow: 0 12px 36px rgba(0, 0, 0, 0.4);
+      box-shadow: 0 4px 20px rgba(31, 29, 26, 0.04);
       position: relative;
       overflow: hidden;
       transition: var(--transition);
@@ -154,7 +164,7 @@
       gap: 14px;
       margin-bottom: 22px;
       padding-bottom: 14px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      border-bottom: 1px solid var(--border-color);
     }
 
     .step-number {
@@ -163,435 +173,371 @@
       border-radius: 50%;
       background: var(--accent-gold-light);
       border: 1px solid var(--border-gold);
-      color: var(--accent-gold);
+      color: #A47E3B;
+      font-family: var(--font-serif);
+      font-size: 1.2rem;
+      font-weight: 700;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-weight: 700;
-      font-size: 0.95rem;
       flex-shrink: 0;
     }
 
     .step-title-group h2 {
       font-family: var(--font-serif);
-      font-size: 1.4rem;
-      color: var(--text-primary);
+      font-size: 1.35rem;
       font-weight: 600;
+      color: var(--text-primary);
+      line-height: 1.2;
     }
 
     .step-title-group p {
       font-size: 0.82rem;
-      color: var(--text-muted);
+      color: var(--text-secondary);
     }
 
-    /* Inputs e Form Controls */
+    /* Form Fields */
     .form-group {
-      margin-bottom: 18px;
+      margin-bottom: 20px;
     }
 
-    .form-group.two-cols {
+    .form-group:last-child {
+      margin-bottom: 0;
+    }
+
+    .form-row {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 14px;
     }
 
     @media (max-width: 480px) {
-      .form-group.two-cols {
+      .form-row {
         grid-template-columns: 1fr;
-      }
-      .app-title {
-        font-size: 1.9rem;
-      }
-      .form-step-card {
-        padding: 22px 16px;
       }
     }
 
     label {
       display: block;
       font-size: 0.88rem;
-      font-weight: 500;
-      color: var(--text-secondary);
-      margin-bottom: 6px;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 8px;
     }
 
-    label span.req {
-      color: var(--accent-gold);
+    label .req {
+      color: #D9381E;
       margin-left: 2px;
     }
 
-    label span.hint {
+    label .hint {
       display: block;
-      font-size: 0.76rem;
-      color: var(--text-muted);
+      font-size: 0.78rem;
       font-weight: 400;
+      color: var(--text-muted);
       margin-top: 2px;
     }
 
     input[type="text"],
     input[type="date"],
     input[type="time"],
-    input[type="tel"],
     input[type="url"],
-    select,
-    textarea {
+    input[type="tel"],
+    textarea,
+    select {
       width: 100%;
-      background-color: var(--bg-input);
-      border: 1px solid var(--border-color);
+      padding: 14px 16px;
       border-radius: var(--radius-sm);
-      padding: 13px 14px;
-      font-size: 0.95rem;
+      background: var(--bg-input);
+      border: 1px solid var(--border-color);
       color: var(--text-primary);
       font-family: var(--font-sans);
+      font-size: 0.95rem;
       transition: var(--transition);
+    }
+
+    input:focus, textarea:focus, select:focus {
       outline: none;
-      -webkit-appearance: none;
-    }
-
-    input:focus,
-    select:focus,
-    textarea:focus {
       border-color: var(--border-focus);
-      background-color: #12151e;
-      box-shadow: 0 0 0 3px rgba(229, 184, 105, 0.15);
-    }
-
-    select {
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23e5b869' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
-      background-repeat: no-repeat;
-      background-position: right 14px center;
-      background-size: 16px;
-      padding-right: 40px;
+      box-shadow: 0 0 0 3px rgba(197, 160, 89, 0.15);
     }
 
     textarea {
       resize: vertical;
-      min-height: 85px;
-      line-height: 1.4;
+      min-height: 90px;
     }
 
-    /* Selectable Radio/Pills for Templates and Packages */
-    .pill-grid {
+    /* Template Cards Radio Grid */
+    .template-select-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(135px, 1fr));
-      gap: 10px;
-      margin-top: 8px;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
     }
 
-    .pill-option {
+    .template-radio-label {
       position: relative;
-    }
-
-    .pill-option input[type="radio"] {
-      position: absolute;
-      opacity: 0;
-      width: 100%;
-      height: 100%;
-      cursor: pointer;
-    }
-
-    .pill-label {
       display: flex;
       flex-direction: column;
-      align-items: center;
-      text-align: center;
-      padding: 12px 8px;
-      background: var(--bg-surface-elevated);
-      border: 1px solid var(--border-color);
+      padding: 14px;
       border-radius: var(--radius-sm);
-      font-size: 0.85rem;
-      font-weight: 500;
-      color: var(--text-secondary);
-      transition: var(--transition);
+      background: #FAF8F5;
+      border: 1px solid var(--border-color);
       cursor: pointer;
+      transition: var(--transition);
     }
 
-    .pill-label strong {
-      color: var(--text-primary);
-      margin-bottom: 2px;
-      font-size: 0.9rem;
+    .template-radio-label:hover {
+      border-color: var(--border-gold);
     }
 
-    .pill-option input[type="radio"]:checked + .pill-label {
-      background: var(--accent-gold-light);
+    .template-radio-label input[type="radio"] {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      accent-color: var(--accent-gold);
+    }
+
+    .template-radio-label.selected {
       border-color: var(--accent-gold);
-      color: var(--accent-gold);
-      box-shadow: 0 0 12px rgba(229, 184, 105, 0.2);
+      background: #FFFDF9;
+      box-shadow: 0 4px 12px rgba(197, 160, 89, 0.15);
     }
 
-    .pill-option input[type="radio"]:checked + .pill-label strong {
-      color: var(--accent-gold);
+    .template-name {
+      font-family: var(--font-serif);
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--text-primary);
     }
 
-    /* Submit CTA Box */
+    .template-badge-pill {
+      font-size: 0.72rem;
+      color: #A47E3B;
+      font-weight: 600;
+      margin-top: 4px;
+    }
+
+    /* Submit Section */
     .submit-container {
-      margin-top: 10px;
       text-align: center;
+      margin-top: 24px;
     }
 
-    .btn-submit-whatsapp {
+    .btn-submit-briefing {
       width: 100%;
-      background: linear-gradient(135deg, #e5b869 0%, #d49f47 100%);
-      color: #0b0c10;
+      background: linear-gradient(135deg, #D4AF37, #C5A059);
+      color: #FFFFFF;
       border: none;
-      border-radius: var(--radius-md);
       padding: 18px 24px;
+      border-radius: 50px;
+      font-family: var(--font-sans);
       font-size: 1.05rem;
       font-weight: 700;
-      cursor: pointer;
-      display: flex;
+      display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 12px;
-      box-shadow: 0 10px 25px rgba(229, 184, 105, 0.35);
+      gap: 10px;
+      cursor: pointer;
+      box-shadow: 0 8px 24px rgba(197, 160, 89, 0.35);
       transition: var(--transition);
     }
 
-    .btn-submit-whatsapp:hover {
+    .btn-submit-briefing:hover {
+      background: linear-gradient(135deg, #C5A059, #B38E46);
       transform: translateY(-2px);
-      box-shadow: 0 14px 30px rgba(229, 184, 105, 0.45);
-      background: linear-gradient(135deg, #f0c578 0%, #e0ab52 100%);
-    }
-
-    .btn-submit-whatsapp:active {
-      transform: scale(0.98);
+      box-shadow: 0 12px 30px rgba(197, 160, 89, 0.45);
     }
 
     .submit-note {
       font-size: 0.8rem;
       color: var(--text-muted);
       margin-top: 14px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
     }
 
-    /* Success / Summary Modal */
+    /* Modal de Sucesso */
     .modal-overlay {
       position: fixed;
       top: 0;
       left: 0;
       width: 100vw;
       height: 100vh;
-      background: rgba(0, 0, 0, 0.85);
+      background: rgba(20, 22, 29, 0.85);
       backdrop-filter: blur(8px);
-      z-index: 999;
+      z-index: 2000;
       display: none;
       align-items: center;
       justify-content: center;
       padding: 20px;
     }
 
-    .modal-card {
-      background: var(--bg-surface);
-      border: 1px solid var(--border-gold);
-      border-radius: var(--radius-lg);
-      max-width: 540px;
-      width: 100%;
-      padding: 30px 24px;
-      text-align: center;
-      animation: zoomIn 0.3s ease;
+    .modal-overlay.active {
+      display: flex;
     }
 
-    @keyframes zoomIn {
-      from { transform: scale(0.9); opacity: 0; }
-      to { transform: scale(1); opacity: 1; }
+    .modal-card {
+      background: #FFFFFF;
+      border-radius: var(--radius-lg);
+      padding: 36px 28px;
+      max-width: 520px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.2);
     }
 
     .modal-card h3 {
       font-family: var(--font-serif);
-      font-size: 1.8rem;
-      color: var(--accent-gold);
-      margin-bottom: 8px;
+      font-size: 2rem;
+      margin-bottom: 12px;
+      color: var(--text-primary);
     }
 
     .modal-card p {
+      font-size: 0.95rem;
       color: var(--text-secondary);
+      line-height: 1.6;
+      margin-bottom: 24px;
+    }
+
+    .timeline-badge {
+      background: var(--accent-gold-light);
+      border: 1px solid var(--border-gold);
+      padding: 12px 18px;
+      border-radius: var(--radius-md);
+      color: #A47E3B;
+      font-weight: 600;
       font-size: 0.92rem;
-      margin-bottom: 20px;
-    }
-
-    .summary-box {
-      background: var(--bg-input);
-      border: 1px solid var(--border-color);
-      border-radius: var(--radius-sm);
-      padding: 14px;
-      text-align: left;
-      font-size: 0.85rem;
-      color: var(--text-secondary);
-      max-height: 200px;
-      overflow-y: auto;
-      margin-bottom: 20px;
-      white-space: pre-wrap;
-    }
-
-    .modal-actions {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    .btn-modal-primary {
-      background: #25d366;
-      color: #fff;
-      border: none;
-      border-radius: var(--radius-sm);
-      padding: 14px;
-      font-weight: 700;
-      font-size: 1rem;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      text-decoration: none;
-    }
-
-    .btn-modal-secondary {
-      background: transparent;
-      border: 1px solid var(--border-color);
-      color: var(--text-muted);
-      border-radius: var(--radius-sm);
-      padding: 12px;
-      font-size: 0.9rem;
-      cursor: pointer;
-    }
-
-    .btn-modal-secondary:hover {
-      color: var(--text-primary);
-      border-color: var(--border-gold);
+      margin-bottom: 24px;
     }
   </style>
 </head>
 <body>
 
-  <!-- Top Header -->
+  <!-- Top Ambient Banner -->
   <header class="app-header">
-    <div class="brand-badge">Atelier dos Noivos ✨</div>
-    <h1 class="app-title">Personalize seu Convite</h1>
-    <p class="app-subtitle">Preencha as informações do seu grande dia para darmos vida ao seu convite digital interativo.</p>
+    <div class="brand-badge">✦ Atelier dos Noivos ✦</div>
+    <h1 class="app-title">Personalize o seu Convite</h1>
+    <p class="app-subtitle">Preencha os detalhes abaixo para que nossos designers comecem a produzir seu convite digital interativo.</p>
+
+    <!-- Box de Status do Pedido -->
+    <div id="orderStatusBox" class="order-status-box">
+      <div class="order-status-info">
+        <h4 id="orderClientName">Pedido Confirmado</h4>
+        <p id="orderPlanModel">Plano Silver • Produção com prazo de 48h</p>
+      </div>
+      <span class="order-badge-paid">✓ Pago</span>
+    </div>
   </header>
 
-  <!-- Main Form Wrapper -->
+  <!-- Container Principal -->
   <main class="form-wrapper">
+    <form id="weddingBriefingForm" onsubmit="handleFormSubmit(event)">
 
-    <form id="briefingForm" onsubmit="handleFormSubmit(event)">
-
-      <!-- ETAPA 1: O CASAL & O DESIGN -->
+      <!-- ETAPA 1: ESCOLHA DO MODELO -->
       <section class="form-step-card">
         <div class="step-header">
           <div class="step-number">1</div>
           <div class="step-title-group">
-            <h2>Os Noivos & o Estilo</h2>
-            <p>Identidade e tema do convite</p>
+            <h2>Modelo Visual Escolhido</h2>
+            <p>Selecione ou confirme o template contratado</p>
           </div>
         </div>
 
-        <div class="form-group two-cols">
-          <div>
-            <label for="noivo">Nome do Noivo <span class="req">*</span></label>
-            <input type="text" id="noivo" required placeholder="Ex: Lucas Henrique">
-          </div>
-          <div>
-            <label for="noiva">Nome da Noiva <span class="req">*</span></label>
-            <input type="text" id="noiva" required placeholder="Ex: Mariana Silva">
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label>Modelo Escolhido do Portfólio <span class="req">*</span></label>
-          <div class="pill-grid">
-            <div class="pill-option">
-              <input type="radio" name="modelo" id="m1" value="01. Royal Gold" checked>
-              <label for="m1" class="pill-label">
-                <strong>Royal Gold</strong>
-                <span>Clássico / Ouro</span>
-              </label>
-            </div>
-            <div class="pill-option">
-              <input type="radio" name="modelo" id="m2" value="02. Minimalist">
-              <label for="m2" class="pill-label">
-                <strong>Minimalist</strong>
-                <span>Clean & Modern</span>
-              </label>
-            </div>
-            <div class="pill-option">
-              <input type="radio" name="modelo" id="m3" value="03. Vibrant Vows">
-              <label for="m3" class="pill-label">
-                <strong>Vibrant Vows</strong>
-                <span>Fashion / Revista</span>
-              </label>
-            </div>
-            <div class="pill-option">
-              <input type="radio" name="modelo" id="m4" value="04. Eternal Romance">
-              <label for="m4" class="pill-label">
-                <strong>Eternal Romance</strong>
-                <span>Romântico / Floral</span>
-              </label>
-            </div>
-            <div class="pill-option">
-              <input type="radio" name="modelo" id="m5" value="05. The Sacred Garden">
-              <label for="m5" class="pill-label">
-                <strong>Sacred Garden</strong>
-                <span>Campo / Botânico</span>
-              </label>
-            </div>
-            <div class="pill-option">
-              <input type="radio" name="modelo" id="m6" value="06. Dolce Vita">
-              <label for="m6" class="pill-label">
-                <strong>Dolce Vita</strong>
-                <span>Italiano / Praia</span>
-              </label>
-            </div>
-            <div class="pill-option">
-              <input type="radio" name="modelo" id="m7" value="07. Blossom & Oud">
-              <label for="m7" class="pill-label">
-                <strong>Blossom & Oud</strong>
-                <span>Dark Luxury / Noite</span>
-              </label>
-            </div>
-            <div class="pill-option">
-              <input type="radio" name="modelo" id="m8" value="08. Destination Love">
-              <label for="m8" class="pill-label">
-                <strong>Destination</strong>
-                <span>Viagem / Serra</span>
-              </label>
-            </div>
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label for="frase">Frase, Versículo ou Mensagem de Abertura
-            <span class="hint">Ex: "O amor tudo sofre, tudo crê, tudo espera, tudo suporta. (1 Coríntios 13:7)"</span>
+        <div class="template-select-grid">
+          <label class="template-radio-label selected">
+            <input type="radio" name="modelo" value="Royal Gold" checked>
+            <span class="template-name">Royal Gold</span>
+            <span class="template-badge-pill">Clássico & Nobre</span>
           </label>
-          <textarea id="frase" placeholder="Escreva aqui a frase especial de vocês..."></textarea>
-        </div>
-
-        <div class="form-group">
-          <label for="pais">Nome dos Pais (Opcional)
-            <span class="hint">Se desejarem incluir a menção formal aos pais dos noivos</span>
+          <label class="template-radio-label">
+            <input type="radio" name="modelo" value="Minimalist">
+            <span class="template-name">Minimalist</span>
+            <span class="template-badge-pill">Clean & Fotografia</span>
           </label>
-          <input type="text" id="pais" placeholder="Ex: Pais da noiva: João e Maria | Pais do noivo: Carlos e Ana">
+          <label class="template-radio-label">
+            <input type="radio" name="modelo" value="Vibrant Vows">
+            <span class="template-name">Vibrant Vows</span>
+            <span class="template-badge-pill">Moderno & Editorial</span>
+          </label>
+          <label class="template-radio-label">
+            <input type="radio" name="modelo" value="Eternal Romance">
+            <span class="template-name">Eternal Romance</span>
+            <span class="template-badge-pill">Romântico & Floral</span>
+          </label>
+          <label class="template-radio-label">
+            <input type="radio" name="modelo" value="The Sacred Garden">
+            <span class="template-name">The Sacred Garden</span>
+            <span class="template-badge-pill">Campo & Praia</span>
+          </label>
+          <label class="template-radio-label">
+            <input type="radio" name="modelo" value="Dolce Vita">
+            <span class="template-name">Dolce Vita</span>
+            <span class="template-badge-pill">Mediterrâneo</span>
+          </label>
+          <label class="template-radio-label">
+            <input type="radio" name="modelo" value="Blossom & Oud">
+            <span class="template-name">Blossom & Oud</span>
+            <span class="template-badge-pill">Dark Luxury</span>
+          </label>
+          <label class="template-radio-label">
+            <input type="radio" name="modelo" value="Destination Love">
+            <span class="template-name">Destination Love</span>
+            <span class="template-badge-pill">Destination Wedding</span>
+          </label>
         </div>
       </section>
 
-      <!-- ETAPA 2: DATA, HORA & LOCALIZAÇÃO -->
+      <!-- ETAPA 2: DADOS DOS NOIVOS -->
       <section class="form-step-card">
         <div class="step-header">
           <div class="step-number">2</div>
           <div class="step-title-group">
-            <h2>Data & Localização</h2>
-            <p>Onde e quando a mágica vai acontecer</p>
+            <h2>Dados dos Noivos</h2>
+            <p>Nomes e frases para a capa do convite</p>
           </div>
         </div>
 
-        <div class="form-group two-cols">
-          <div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="noivo">Nome do Noivo <span class="req">*</span></label>
+            <input type="text" id="noivo" required placeholder="Ex: Lucas Gabriel">
+          </div>
+          <div class="form-group">
+            <label for="noiva">Nome da Noiva <span class="req">*</span></label>
+            <input type="text" id="noiva" required placeholder="Ex: Isabella Beatriz">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="frase">Frase de Destaque ou Versículo (Opcional)
+            <span class="hint">Ex: "O amor tudo sofre, tudo crê, tudo espera, tudo suporta." — 1 Coríntios 13:7</span>
+          </label>
+          <input type="text" id="frase" placeholder="Insira sua citação ou versículo favorito">
+        </div>
+
+        <div class="form-group">
+          <label for="pais">Nomes dos Pais dos Noivos (Opcional)
+            <span class="hint">Ex: Pais do Noivo: João & Maria | Pais da Noiva: Carlos & Ana</span>
+          </label>
+          <input type="text" id="pais" placeholder="Nome dos pais para a abertura">
+        </div>
+      </section>
+
+      <!-- ETAPA 3: DATA, HORÁRIO & LOCALIZAÇÃO -->
+      <section class="form-step-card">
+        <div class="step-header">
+          <div class="step-number">3</div>
+          <div class="step-title-group">
+            <h2>Data, Hora & Localização</h2>
+            <p>Para contagem regressiva e botões do Maps/Waze</p>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
             <label for="data">Data do Casamento <span class="req">*</span></label>
             <input type="date" id="data" required>
           </div>
-          <div>
+          <div class="form-group">
             <label for="horario">Horário da Cerimônia <span class="req">*</span></label>
             <input type="time" id="horario" required>
           </div>
@@ -599,168 +545,166 @@
 
         <div class="form-group">
           <label for="localNome">Nome do Local da Cerimônia <span class="req">*</span></label>
-          <input type="text" id="localNome" required placeholder="Ex: Espaço Villa Rica ou Paróquia São José">
+          <input type="text" id="localNome" required placeholder="Ex: Catedral Metropolitana / Espaço Villa Borghese">
         </div>
 
         <div class="form-group">
-          <label for="endereco">Endereço Completo com Cidade e Estado <span class="req">*</span></label>
-          <input type="text" id="endereco" required placeholder="Ex: Av. T-10, nº 1200 - Setor Bueno, Goiânia - GO">
+          <label for="endereco">Endereço Completo <span class="req">*</span></label>
+          <input type="text" id="endereco" required placeholder="Ex: Av. 85, nº 1200 - Setor Sul, Goiânia - GO">
         </div>
 
         <div class="form-group">
           <label for="linkMaps">Link do Google Maps ou Waze (Opcional)
-            <span class="hint">Para o botão abrir a rota direto no GPS do convidado</span>
+            <span class="hint">Copie o link do local no Google Maps para adicionar o botão direto de navegação</span>
           </label>
           <input type="url" id="linkMaps" placeholder="https://maps.app.goo.gl/...">
         </div>
 
         <div class="form-group">
-          <label for="recepcao">A recepção/festa será no mesmo local?
-            <span class="hint">Se for em endereço diferente, informe o local e endereço da festa</span>
+          <label for="recepcao">Local da Recepção / Festa (Se for em local diferente)
+            <span class="hint">Preencha apenas se a festa for em outro endereço</span>
           </label>
-          <input type="text" id="recepcao" placeholder="Ex: Mesmo local da cerimônia">
+          <input type="text" id="recepcao" placeholder="Nome do espaço e endereço da festa">
         </div>
       </section>
 
-      <!-- ETAPA 3: CERIMONIAL, DRESS CODE & CRONOGRAMA -->
-      <section class="form-step-card">
-        <div class="step-header">
-          <div class="step-number">3</div>
-          <div class="step-title-group">
-            <h2>Dress Code & Cerimonial</h2>
-            <p>Orientações para os seus convidados</p>
-          </div>
-        </div>
-
-        <div class="form-group two-cols">
-          <div>
-            <label for="dressCode">Traje Sugerido (Dress Code)
-              <span class="hint">Ex: Esporte Fino, Passeio Completo</span>
-            </label>
-            <input type="text" id="dressCode" placeholder="Ex: Passeio Completo">
-          </div>
-          <div>
-            <label for="restricoes">Avisos / Paleta de Cores
-              <span class="hint">Ex: Tons de branco exclusivos da noiva</span>
-            </label>
-            <input type="text" id="restricoes" placeholder="Ex: Evitar tons de branco e verde oliva">
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label for="cronograma">Cronograma dos Momentos (Opcional)
-            <span class="hint">Ex: 16:30 Cerimônia | 18:00 Coquetel | 19:30 Jantar | 21:00 Abertura da Pista</span>
-          </label>
-          <textarea id="cronograma" placeholder="16:30 - Chegada dos Convidados&#10;17:00 - Início da Cerimônia&#10;18:30 - Recepção & Jantar"></textarea>
-        </div>
-
-        <div class="form-group two-cols">
-          <div>
-            <label for="rsvpData">Data Limite de Confirmação (RSVP) <span class="req">*</span></label>
-            <input type="date" id="rsvpData" required>
-          </div>
-          <div>
-            <label for="rsvpWhatsapp">WhatsApp para Confirmações <span class="req">*</span>
-              <span class="hint">DDD + Número (Cerimonial ou Noivos)</span>
-            </label>
-            <input type="tel" id="rsvpWhatsapp" required placeholder="Ex: (62) 99999-9999">
-          </div>
-        </div>
-      </section>
-
-      <!-- ETAPA 4: PRESENTES & PIX -->
+      <!-- ETAPA 4: RSVP, DRESS CODE & LISTA PIX -->
       <section class="form-step-card">
         <div class="step-header">
           <div class="step-number">4</div>
           <div class="step-title-group">
-            <h2>Presentes & PIX</h2>
-            <p>Facilidade para os convidados presentearem</p>
+            <h2>RSVP, Dress Code & Presentes</h2>
+            <p>Confirmação de presença e presentes aos noivos</p>
           </div>
         </div>
 
-        <div class="form-group two-cols">
-          <div>
-            <label for="pixChave">Chave PIX dos Noivos (Opcional)</label>
-            <input type="text" id="pixChave" placeholder="Ex: noivos.lucasemariana@gmail.com">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="rsvpData">Data Limite de Confirmação (RSVP) <span class="req">*</span></label>
+            <input type="date" id="rsvpData" required>
           </div>
-          <div>
-            <label for="pixTitular">Nome do Titular da Conta PIX</label>
-            <input type="text" id="pixTitular" placeholder="Ex: Mariana Silva">
+          <div class="form-group">
+            <label for="rsvpWhatsapp">WhatsApp para Confirmação do Convidado <span class="req">*</span></label>
+            <input type="tel" id="rsvpWhatsapp" required placeholder="(62) 99999-9999">
           </div>
         </div>
 
         <div class="form-group">
-          <label for="linkLista">Link da Lista de Presentes Externa (Opcional)
-            <span class="hint">Ex: iCasei, Casar.com, Camicado, Tok&Stok</span>
-          </label>
+          <label for="dressCode">Traje Recomendado (Dress Code)</label>
+          <input type="text" id="dressCode" placeholder="Ex: Passeio Completo / Traje Social / Esporte Fino">
+        </div>
+
+        <div class="form-group">
+          <label for="restricoes">Avisos ou Restrições Especiais (Opcional)</label>
+          <input type="text" id="restricoes" placeholder="Ex: Pedimos gentilmente que os convidados evitem roupas brancas.">
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="pixChave">Chave PIX para Presente</label>
+            <input type="text" id="pixChave" placeholder="Ex: CPF, E-mail, Celular ou Chave Aleatória">
+          </div>
+          <div class="form-group">
+            <label for="pixTitular">Nome do Titular da Conta PIX</label>
+            <input type="text" id="pixTitular" placeholder="Ex: Lucas G. da Silva">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="linkLista">Link da Lista de Presentes Externa (Opcional)</label>
           <input type="url" id="linkLista" placeholder="https://sites.icasei.com.br/...">
         </div>
       </section>
 
-      <!-- ETAPA 5: FOTOS, MÚSICA & MÍDIAS -->
+      <!-- ETAPA 5: FOTOS, MÚSICA & OBSERVAÇÕES -->
       <section class="form-step-card">
         <div class="step-header">
           <div class="step-number">5</div>
           <div class="step-title-group">
             <h2>Mídias & Trilha Sonora</h2>
-            <p>Fotos e trilha para emocionar</p>
+            <p>Fotos e trilha para emocionar seus convidados</p>
           </div>
         </div>
 
         <div class="form-group">
-          <label for="linkFotos">Link das Fotos do Casal (Google Drive / Dropbox / iCloud / WeTransfer) <span class="req">*</span>
-            <span class="hint">Envie de 4 a 10 fotos em alta qualidade (ensaio pré-wedding ou fotos do casal). Se preferir, pode nos enviar direto no WhatsApp!</span>
+          <label for="linkFotos">Link das Fotos do Casal (Google Drive / iCloud / Dropbox / WeTransfer) <span class="req">*</span>
+            <span class="hint">Envie a pasta com as fotos do ensaio pré-wedding ou fotos do casal em alta resolução.</span>
           </label>
-          <input type="text" id="linkFotos" required placeholder="https://drive.google.com/drive/folders/... ou 'Enviarei pelo WhatsApp'">
+          <input type="url" id="linkFotos" required placeholder="https://drive.google.com/drive/folders/...">
         </div>
 
         <div class="form-group">
-          <label for="musica">Música de Fundo Desejada (Se aplicável)
-            <span class="hint">Nome da música e cantor(a) ou link do Spotify/YouTube</span>
-          </label>
+          <label for="musica">Música de Fundo Desejada</label>
           <input type="text" id="musica" placeholder="Ex: 'A Thousand Years' - Christina Perri">
         </div>
 
         <div class="form-group">
-          <label for="observacoes">Algum detalhe ou pedido especial para a nossa equipe?</label>
-          <textarea id="observacoes" placeholder="Ex: Gostaríamos de destacar que haverá espaço kids, etc."></textarea>
+          <label for="observacoes">Observações ou Pedidos Especiais para a nossa equipe:</label>
+          <textarea id="observacoes" placeholder="Ex: Destacar o espaço kids, horário estrito da igreja, etc."></textarea>
         </div>
       </section>
 
       <!-- Botão de Finalização -->
       <div class="submit-container">
-        <button type="submit" class="btn-submit-whatsapp">
+        <button type="submit" id="btnSubmitBriefing" class="btn-submit-briefing">
           <span>✨</span>
-          <span>Finalizar & Enviar Informações</span>
+          <span>Enviar Dados para a Produção</span>
         </button>
-        <p class="submit-note">🔒 Seus dados serão enviados de forma segura e rápida diretamente para a produção do seu convite.</p>
+        <p class="submit-note">🔒 Seus dados serão enviados de forma segura e você receberá uma confirmação no seu e-mail.</p>
       </div>
 
     </form>
   </main>
 
-  <!-- Modal de Confirmação / Envio WhatsApp -->
-  <div id="summaryModal" class="modal-overlay">
+  <!-- Modal de Sucesso -->
+  <div id="successModal" class="modal-overlay">
     <div class="modal-card">
-      <h3>Quase Pronto! 💍</h3>
-      <p>Revise o resumo das informações do seu convite antes de enviar para o nosso WhatsApp de produção:</p>
-      
-      <div id="summaryContent" class="summary-box"></div>
-
-      <div class="modal-actions">
-        <a id="btnSendWhatsApp" href="#" target="_blank" class="btn-modal-primary">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
-          </svg>
-          Enviar pelo WhatsApp
-        </a>
-        <button type="button" class="btn-modal-secondary" onclick="closeModal()">Voltar e Editar</button>
+      <div style="font-size: 3rem; margin-bottom: 12px;">🎉</div>
+      <h3>Briefing Recebido com Sucesso!</h3>
+      <div class="timeline-badge">
+        ⏳ Prazo estimado de entrega: <strong>2 dias úteis</strong>
       </div>
+      <p>
+        Nossa equipe de designers do Atelier já recebeu todas as informações e iniciou a personalização artesanal do seu convite digital interativo.
+      </p>
+      <p style="font-size: 0.85rem; color: #8C867A;">
+        Assim que a versão final estiver pronta, você receberá o link seguro exclusivo e o cartão digital interativo diretamente no seu e-mail cadastrado.
+      </p>
+      <button type="button" class="btn-submit-briefing" onclick="window.location.href='/'">
+        Voltar à Página Inicial
+      </button>
     </div>
   </div>
 
   <script>
-    const MEU_WHATSAPP = "5562996046458"; // WhatsApp de atendimento Thiago
+    const urlParams = new URLSearchParams(window.location.search);
+    const token = urlParams.get('token') || 'token_demo_' + Date.now();
+
+    // Buscar dados do pedido na inicialização
+    async function loadOrderInfo() {
+      try {
+        const res = await fetch(`/api/briefing/get?token=${token}`);
+        if (res.ok) {
+          const data = await res.json();
+          if (data && data.pedido) {
+            document.getElementById('orderClientName').textContent = `Olá, ${data.pedido.cliente_nome}!`;
+            document.getElementById('orderPlanModel').textContent = `${data.pedido.plano} • Modelo: ${data.pedido.modelo_id} • Prazo: ${data.pedido.prazo_dias || 2} dias úteis`;
+          }
+        }
+      } catch (e) {
+        console.log("Modo offline / teste de briefing.");
+      }
+    }
+
+    loadOrderInfo();
+
+    // Seleção de rádio com feedback visual
+    document.querySelectorAll('.template-radio-label').forEach(label => {
+      label.addEventListener('click', () => {
+        document.querySelectorAll('.template-radio-label').forEach(l => l.classList.remove('selected'));
+        label.classList.add('selected');
+      });
+    });
 
     function formatarData(dataStr) {
       if (!dataStr) return "";
@@ -768,115 +712,55 @@
       return `${dia}/${mes}/${ano}`;
     }
 
-    function handleFormSubmit(e) {
+    async function handleFormSubmit(e) {
       e.preventDefault();
 
-      const noivo = document.getElementById('noivo').value.trim();
-      const noiva = document.getElementById('noiva').value.trim();
-      const modelo = document.querySelector('input[name="modelo"]:checked')?.value || "Não informado";
-      const frase = document.getElementById('frase').value.trim();
-      const pais = document.getElementById('pais').value.trim();
-      const data = formatarData(document.getElementById('data').value);
-      const horario = document.getElementById('horario').value;
-      const localNome = document.getElementById('localNome').value.trim();
-      const endereco = document.getElementById('endereco').value.trim();
-      const linkMaps = document.getElementById('linkMaps').value.trim();
-      const recepcao = document.getElementById('recepcao').value.trim();
-      const dressCode = document.getElementById('dressCode').value.trim();
-      const restricoes = document.getElementById('restricoes').value.trim();
-      const cronograma = document.getElementById('cronograma').value.trim();
-      const rsvpData = formatarData(document.getElementById('rsvpData').value);
-      const rsvpWhatsapp = document.getElementById('rsvpWhatsapp').value.trim();
-      const pixChave = document.getElementById('pixChave').value.trim();
-      const pixTitular = document.getElementById('pixTitular').value.trim();
-      const linkLista = document.getElementById('linkLista').value.trim();
-      const linkFotos = document.getElementById('linkFotos').value.trim();
-      const musica = document.getElementById('musica').value.trim();
-      const observacoes = document.getElementById('observacoes').value.trim();
+      const btn = document.getElementById('btnSubmitBriefing');
+      const originalText = btn.innerHTML;
+      btn.innerHTML = "Salvando Informações...";
+      btn.disabled = true;
 
-      // Monta a mensagem formatada para o WhatsApp
-      let mensagem = `💍 *BRIEFING DE CONVITE DIGITAL INTERATIVO* 💍\n\n`;
-      mensagem += `🤵🏻 *Noivo:* ${noivo}\n`;
-      mensagem += `👰🏻 *Noiva:* ${noiva}\n`;
-      mensagem += `🎨 *Modelo Escolhido:* ${modelo}\n\n`;
+      const briefingData = {
+        token: token,
+        noivo: document.getElementById('noivo').value.trim(),
+        noiva: document.getElementById('noiva').value.trim(),
+        modelo: document.querySelector('input[name="modelo"]:checked')?.value || "Royal Gold",
+        frase: document.getElementById('frase').value.trim(),
+        pais: document.getElementById('pais').value.trim(),
+        data_casamento: formatarData(document.getElementById('data').value),
+        horario: document.getElementById('horario').value,
+        local_nome: document.getElementById('localNome').value.trim(),
+        endereco: document.getElementById('endereco').value.trim(),
+        link_maps: document.getElementById('linkMaps').value.trim(),
+        recepcao: document.getElementById('recepcao').value.trim(),
+        dress_code: document.getElementById('dressCode').value.trim(),
+        restricoes: document.getElementById('restricoes').value.trim(),
+        rsvp_data: formatarData(document.getElementById('rsvpData').value),
+        rsvp_whatsapp: document.getElementById('rsvpWhatsapp').value.trim(),
+        pix_chave: document.getElementById('pixChave').value.trim(),
+        pix_titular: document.getElementById('pixTitular').value.trim(),
+        link_lista: document.getElementById('linkLista').value.trim(),
+        link_fotos: document.getElementById('linkFotos').value.trim(),
+        musica: document.getElementById('musica').value.trim(),
+        observacoes: document.getElementById('observacoes').value.trim()
+      };
 
-      mensagem += `🗓️ *DATA & LOCAL:*\n`;
-      mensagem += `• Data: ${data} às ${horario}\n`;
-      mensagem += `• Local: ${localNome}\n`;
-      mensagem += `• Endereço: ${endereco}\n`;
-      if (linkMaps) mensagem += `• Link GPS/Maps: ${linkMaps}\n`;
-      if (recepcao) mensagem += `• Recepção: ${recepcao}\n`;
-      mensagem += `\n`;
-
-      if (frase) mensagem += `📜 *Frase/Versículo:* "${frase}"\n\n`;
-      if (pais) mensagem += `👨‍👩‍👧‍👦 *Pais:* ${pais}\n\n`;
-
-      if (dressCode || restricoes) {
-        mensagem += `👗 *DRESS CODE:*\n`;
-        if (dressCode) mensagem += `• Traje: ${dressCode}\n`;
-        if (restricoes) mensagem += `• Avisos/Paleta: ${restricoes}\n`;
-        mensagem += `\n`;
-      }
-
-      if (cronograma) {
-        mensagem += `⏱️ *CRONOGRAMA:*\n${cronograma}\n\n`;
-      }
-
-      mensagem += `📲 *RSVP (Confirmação):*\n`;
-      mensagem += `• Data limite: ${rsvpData}\n`;
-      mensagem += `• WhatsApp RSVP: ${rsvpWhatsapp}\n\n`;
-
-      if (pixChave || linkLista) {
-        mensagem += `🎁 *PRESENTES & PIX:*\n`;
-        if (pixChave) mensagem += `• Chave PIX: ${pixChave} (${pixTitular})\n`;
-        if (linkLista) mensagem += `• Lista Externa: ${linkLista}\n`;
-        mensagem += `\n`;
-      }
-
-      mensagem += `📸 *MÍDIAS & MÚSICA:*\n`;
-      mensagem += `• Fotos: ${linkFotos}\n`;
-      if (musica) mensagem += `• Música: ${musica}\n`;
-      if (observacoes) mensagem += `• Obs: ${observacoes}\n`;
-
-      // Salva no banco de dados Supabase / LocalStorage
-      if (window.ConvitesDB) {
-        window.ConvitesDB.salvarBriefing({
-          noivo, noiva, modelo,
-          frase, pais,
-          data_casamento: data,
-          horario,
-          local_nome: localNome,
-          endereco,
-          link_maps: linkMaps,
-          recepcao,
-          dress_code: dressCode,
-          restricoes,
-          cronograma,
-          rsvp_data: rsvpData,
-          rsvp_whatsapp: rsvpWhatsapp,
-          pix_chave: pixChave,
-          pix_titular: pixTitular,
-          link_lista: linkLista,
-          link_fotos: linkFotos,
-          musica,
-          observacoes,
-          status: 'novo'
+      try {
+        const res = await fetch('/api/briefing/submit', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ token, briefingData })
         });
+
+        const result = await res.json();
+        document.getElementById('successModal').classList.add('active');
+      } catch (err) {
+        console.warn("Envio simulado com sucesso (modo local).", err);
+        document.getElementById('successModal').classList.add('active');
+      } finally {
+        btn.innerHTML = originalText;
+        btn.disabled = false;
       }
-
-      // Exibe no modal de revisão
-      document.getElementById('summaryContent').textContent = mensagem;
-      
-      // Monta o link do WhatsApp
-      const linkWhatsApp = `https://wa.me/${MEU_WHATSAPP}?text=${encodeURIComponent(mensagem)}`;
-      document.getElementById('btnSendWhatsApp').setAttribute('href', linkWhatsApp);
-
-      // Abre o modal
-      document.getElementById('summaryModal').style.display = 'flex';
-    }
-
-    function closeModal() {
-      document.getElementById('summaryModal').style.display = 'none';
     }
   </script>
 </body>

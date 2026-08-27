@@ -1,10 +1,8 @@
-# Páginas internas (só do Thiago) — NÃO sobem pro site público
-briefing.html
-manual_operacional_e_briefings.html
-exemplos_entregaveis/
-
-# Arquivos de trabalho — não vão pro deploy
+﻿# Arquivos de trabalho / referências pesadas — NÃO vão pro deploy público
 _inspiracao_webgency/
+marketing/
+_adm/
+database/
 scripts/
-README.md
 HERMES.md
+INVENTARIO-PORTFOLIO-CONVITES.md

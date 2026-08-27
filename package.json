@@ -1,0 +1,12 @@
+﻿{
+  "name": "portfolio-convites",
+  "version": "2.0.0",
+  "private": true,
+  "description": "Plataforma e Vitrine de Convites Digitais Interativos — Atelier dos Noivos",
+  "scripts": {
+    "dev": "npx serve .",
+    "start": "npx serve ."
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}

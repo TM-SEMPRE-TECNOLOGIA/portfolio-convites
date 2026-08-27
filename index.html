@@ -1,472 +1,157 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-
-  <!-- DNS Preconnect & Prefetch for Performance -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="dns-prefetch" href="https://static.tildacdn.net">
-  <link rel="dns-prefetch" href="https://fonts.googleapis.com">
-  <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
-
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Convites de Casamento Digitais & Interativos | Portfólio Exclusivo</title>
-  <meta name="description" content="Coleção exclusiva de convites de casamento digitais e interativos de alto padrão. RSVP integrado, contagem regressiva, mapas e músicas para encantar seus convidados.">
+  <title>Atelier dos Noivos — Convites de Casamento Digitais & Interativos</title>
+  <meta name="description" content="Coleção exclusiva de convites de casamento digitais de alto padrão. RSVP integrado, contagem regressiva, mapas, músicas e entrega ágil para encantar seus convidados.">
   
-  <!-- Google Fonts -->
+  <!-- Preconnect Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   
   <!-- CSS -->
   <link rel="stylesheet" href="styles.css">
-  
-  <!-- GSAP & ScrollTrigger -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-  
-  <!-- Supabase Live DB Config -->
-  <script src="supabase-config.js"></script>
 </head>
 <body>
 
-  <div class="ambient-glow"></div>
-
-  <!-- Header -->
+  <!-- Header / Navbar -->
   <header class="header">
     <div class="container nav">
       <a href="#" class="logo">
         <span class="logo-icon">✦</span>
-        <span class="logo-text">Celebration Studio</span>
+        <span class="logo-text">Atelier dos Noivos</span>
       </a>
       
       <ul class="nav-links">
-        <li><a href="#modelos" class="nav-link">Modelos</a></li>
+        <li><a href="#modelos" class="nav-link">Modelos Autorais</a></li>
         <li><a href="#planos" class="nav-link">Planos & Preços</a></li>
-        <li><a href="#beneficios" class="nav-link">Benefícios</a></li>
         <li><a href="#como-funciona" class="nav-link">Como Funciona</a></li>
-        <li><a href="#contato" class="btn btn-sm btn-primary">Fazer Meu Pedido</a></li>
+        <li><a href="#planos" class="btn btn-sm btn-primary">Montar Meu Convite</a></li>
       </ul>
     </div>
   </header>
 
   <!-- Hero Section -->
   <section class="hero">
-    <div class="container">
-      <div class="hero-badge">
-        <span>✨ Nova Coleção 2026</span>
-      </div>
-      
-      <h1 class="hero-title">
-        Convites de casamento digitais que <span>encantam</span> no primeiro toque
-      </h1>
-      
-      <p class="hero-description">
-        Experiências interativas com design editorial de luxo, confirmação de presença em tempo real, cronograma animado e mapa para o grande dia.
-      </p>
-      
-      <div class="hero-actions">
-        <a href="#modelos" class="btn btn-lg btn-primary">Explorar Modelos</a>
-        <a href="https://wa.me/5562996046458?text=Ol%C3%A1!%20Gostaria%20de%20saber%20mais%20sobre%20os%20convites%20digitais." target="_blank" class="btn btn-lg btn-outline">Falar com Consultor</a>
-      </div>
-
-      <div class="hero-metrics">
-        <div class="metric-item">
-          <div class="metric-number">100%</div>
-          <div class="metric-label">Mobile First & Interativo</div>
+    <div class="container hero-grid">
+      <!-- Coluna Esquerda: Texto & CTA -->
+      <div class="hero-content">
+        <div class="hero-badge">
+          <span>✨ Coleção Exclusiva 2026</span>
         </div>
-        <div class="metric-item">
-          <div class="metric-number">RSVP</div>
-          <div class="metric-label">Confirmação em Tempo Real</div>
-        </div>
-        <div class="metric-item">
-          <div class="metric-number">8</div>
-          <div class="metric-label">Estilos Exclusivos</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Models Showcase -->
-  <section class="showcase" id="modelos">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-tag">Coleção de Modelos</span>
-        <h2 class="section-title">Escolha a identidade visual perfeita para o seu casamento</h2>
-        <p class="section-subtitle">Cada modelo foi desenhado para transmitir emoção, sofisticação e máxima praticidade para os noivos e convidados.</p>
-      </div>
-
-      <div class="templates-grid">
-
-        <!-- 01 - Royal Gold -->
-        <div class="template-card" data-template="01">
-          <div class="card-badge-container">
-            <span class="card-badge">Dourado Imperial</span>
-          </div>
-          <div class="phone-mockup">
-            <div class="phone-screen">
-              <video src="assets/videos/template_01.webm" autoplay muted loop playsinline></video>
-            </div>
-          </div>
-          <div class="card-content">
-            <h3 class="template-title">Royal Gold</h3>
-            <p class="template-style">Clássico • Elegante • Dourado</p>
-            <p class="template-desc">Tipografia nobre, contagem regressiva sofisticada e acabamento com paleta de ouro e marfim.</p>
-            <div class="card-actions">
-              <button class="btn btn-outline btn-preview" data-src="01-template-2/index.html" data-title="Royal Gold">Ver Demo</button>
-              <a href="https://wa.me/5562996046458?text=Ol%C3%A1!%20Gostei%20do%20modelo%20Royal%20Gold" target="_blank" class="btn btn-primary">Pedir Este</a>
-            </div>
-          </div>
-        </div>
-
-        <!-- 02 - Minimalist -->
-        <div class="template-card" data-template="02">
-          <div class="card-badge-container">
-            <span class="card-badge">Favorito dos Noivos 🤍</span>
-          </div>
-          <div class="phone-mockup">
-            <div class="phone-screen">
-              <video src="assets/videos/template_02.webm" autoplay muted loop playsinline></video>
-            </div>
-          </div>
-          <div class="card-content">
-            <h3 class="template-title">Minimalist</h3>
-            <p class="template-style">Minimalista • Atemporal • Clean</p>
-            <p class="template-desc">Design limpo e moderno com ênfase na fotografia do casal e navegação ultrarrápida.</p>
-            <div class="card-actions">
-              <button class="btn btn-outline btn-preview" data-src="02-light-design/index.html" data-title="Minimalist">Ver Demo</button>
-              <a href="https://wa.me/5562996046458?text=Ol%C3%A1!%20Gostei%20do%20modelo%20Minimalist" target="_blank" class="btn btn-primary">Pedir Este</a>
-            </div>
-          </div>
-        </div>
-
-        <!-- 03 - Vibrant Vows -->
-        <div class="template-card" data-template="03">
-          <div class="card-badge-container">
-            <span class="card-badge">Moderno ✨</span>
-          </div>
-          <div class="phone-mockup">
-            <div class="phone-screen">
-              <video src="assets/videos/template_03.webm" autoplay muted loop playsinline></video>
-            </div>
-          </div>
-          <div class="card-content">
-            <h3 class="template-title">Vibrant Vows</h3>
-            <p class="template-style">Editorial • Contemporâneo • Vibrante</p>
-            <p class="template-desc">Cores expressivas, layout estilo revista de alta costura e blocos de cronograma visual.</p>
-            <div class="card-actions">
-              <button class="btn btn-outline btn-preview" data-src="03-viktor-paula/template5.html" data-title="Vibrant Vows">Ver Demo</button>
-              <a href="https://wa.me/5562996046458?text=Ol%C3%A1!%20Gostei%20do%20modelo%20Vibrant%20Vows" target="_blank" class="btn btn-primary">Pedir Este</a>
-            </div>
-          </div>
-        </div>
-
-        <!-- 04 - Eternal Romance -->
-        <div class="template-card" data-template="04">
-          <div class="card-badge-container">
-            <span class="card-badge">Mais Popular 🔥</span>
-          </div>
-          <div class="phone-mockup">
-            <div class="phone-screen">
-              <video src="assets/videos/template_04.webm" autoplay muted loop playsinline></video>
-            </div>
-          </div>
-          <div class="card-content">
-            <h3 class="template-title">Eternal Romance</h3>
-            <p class="template-style">Romântico • Ilustrado • Florais</p>
-            <p class="template-desc">Atmosfera romântica encantadora com detalhes florais suaves, música ambiente e RSVP completo.</p>
-            <div class="card-actions">
-              <button class="btn btn-outline btn-preview" data-src="04-thanu-jathu/jathuandthanu.html" data-title="Eternal Romance">Ver Demo</button>
-              <a href="https://wa.me/5562996046458?text=Ol%C3%A1!%20Gostei%20do%20modelo%20Eternal%20Romance" target="_blank" class="btn btn-primary">Pedir Este</a>
-            </div>
-          </div>
-        </div>
-
-        <!-- 05 - The Sacred Garden -->
-        <div class="template-card" data-template="05">
-          <div class="card-badge-container">
-            <span class="card-badge">Botânico 🌿</span>
-          </div>
-          <div class="phone-mockup">
-            <div class="phone-screen">
-              <video src="assets/videos/template_05.webm" autoplay muted loop playsinline></video>
-            </div>
-          </div>
-          <div class="card-content">
-            <h3 class="template-title">The Sacred Garden</h3>
-            <p class="template-style">Botânico • Jardim • Poético</p>
-            <p class="template-desc">Ideal para casamentos ao ar livre, no campo ou na praia, com paleta verde oliva e toques orgânicos.</p>
-            <div class="card-actions">
-              <button class="btn btn-outline btn-preview" data-src="05-the-sacred-garden/thesacredgarden.html" data-title="The Sacred Garden">Ver Demo</button>
-              <a href="https://wa.me/5562996046458?text=Ol%C3%A1!%20Gostei%20do%20modelo%20The%20Sacred%20Garden" target="_blank" class="btn btn-primary">Pedir Este</a>
-            </div>
-          </div>
-        </div>
-
-        <!-- 06 - Dolce Vita -->
-        <div class="template-card" data-template="06">
-          <div class="card-badge-container">
-            <span class="card-badge">Mediterrâneo 🍋</span>
-          </div>
-          <div class="phone-mockup">
-            <div class="phone-screen">
-              <video src="assets/videos/template_06.webm" autoplay muted loop playsinline></video>
-            </div>
-          </div>
-          <div class="card-content">
-            <h3 class="template-title">Dolce Vita</h3>
-            <p class="template-style">Italian Riviera • Festivo • Rústico Chic</p>
-            <p class="template-desc">Inspirado no estilo de vida italiano, ensolarado, elegante e repleto de charme para celebrações marcantes.</p>
-            <div class="card-actions">
-              <button class="btn btn-outline btn-preview" data-src="06-dolce-vita/dolcevita.html" data-title="Dolce Vita">Ver Demo</button>
-              <a href="https://wa.me/5562996046458?text=Ol%C3%A1!%20Gostei%20do%20modelo%20Dolce%20Vita" target="_blank" class="btn btn-primary">Pedir Este</a>
-            </div>
-          </div>
-        </div>
-
-        <!-- 07 - Blossom & Oud -->
-        <div class="template-card" data-template="07">
-          <div class="card-badge-container">
-            <span class="card-badge">Oriental & Luxo 🌸</span>
-          </div>
-          <div class="phone-mockup">
-            <div class="phone-screen">
-              <video src="assets/videos/template_07.webm" autoplay muted loop playsinline></video>
-            </div>
-          </div>
-          <div class="card-content">
-            <h3 class="template-title">Blossom & Oud</h3>
-            <p class="template-style">Oriental Chic • Flores • Riqueza Visual</p>
-            <p class="template-desc">Combinação refinada de tons florais e estética opulenta, com seções ricas em detalhes.</p>
-            <div class="card-actions">
-              <button class="btn btn-outline btn-preview" data-src="07-blossom-oud/blossomoud.html" data-title="Blossom & Oud">Ver Demo</button>
-              <a href="https://wa.me/5562996046458?text=Ol%C3%A1!%20Gostei%20do%20modelo%20Blossom%20and%20Oud" target="_blank" class="btn btn-primary">Pedir Este</a>
-            </div>
-          </div>
-        </div>
-
-        <!-- 08 - Destination Love -->
-        <div class="template-card" data-template="08">
-          <div class="card-badge-container">
-            <span class="card-badge">Destination Wedding ✈️</span>
-          </div>
-          <div class="phone-mockup">
-            <div class="phone-screen">
-              <video src="assets/videos/template_08.webm" autoplay muted loop playsinline></video>
-            </div>
-          </div>
-          <div class="card-content">
-            <h3 class="template-title">Destination Love</h3>
-            <p class="template-style">Viagem • Aventura • Descontraído</p>
-            <p class="template-desc">Perfeito para casamentos fora da cidade natal, com seções dedicadas a hospedagem, transfers e dicas de viagem.</p>
-            <div class="card-actions">
-              <button class="btn btn-outline btn-preview" data-src="08-destination-love/destinationlove.html" data-title="Destination Love">Ver Demo</button>
-              <a href="https://wa.me/5562996046458?text=Ol%C3%A1!%20Gostei%20do%20modelo%20Destination%20Love" target="_blank" class="btn btn-primary">Pedir Este</a>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- Pricing Section (Planos & Valores) -->
-  <section class="pricing-section" id="planos">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-tag">Investimento & Pacotes</span>
-        <h2 class="section-title">Escolha o plano ideal para o seu convite</h2>
-        <p class="section-subtitle">Valores acessíveis para qualquer estilo de celebração, com entrega rápida e personalização completa.</p>
-      </div>
-
-      <div class="pricing-grid">
         
-        <!-- Plano Light -->
-        <div class="pricing-card">
-          <div class="pricing-header">
-            <h3 class="serif-text">Plano Light</h3>
-            <p>Entrada econômica com tudo o que é essencial</p>
-          </div>
-          <div class="pricing-price" id="card-price-light">R$ 99 <span>/pagamento único</span></div>
-          <ul class="pricing-features">
-            <li>Design editorial responsivo</li>
-            <li>1 Foto de Capa do casal</li>
-            <li>Contagem regressiva dinâmica</li>
-            <li>Endereço com botão Waze & Maps</li>
-            <li>Confirmação RSVP direta no WhatsApp</li>
-          </ul>
-          <a id="card-btn-light" href="https://wa.me/5562996046458?text=Ol%C3%A1!%20Gostaria%20de%20fazer%20o%20meu%20convite%20no%20*Plano%20Light*." target="_blank" class="btn btn-outline" style="width: 100%; text-align: center;">Escolher Plano Light</a>
+        <h1 class="hero-title">
+          O primeiro detalhe <span>inesquecível</span> do seu grande dia.
+        </h1>
+        
+        <p class="hero-description">
+          Convites de casamento digitais e interativos com design editorial de luxo, confirmação de presença (RSVP) em tempo real, músicas e localização integrada.
+        </p>
+        
+        <div class="hero-actions">
+          <a href="#modelos" class="btn btn-lg btn-primary">Explorar Coleção</a>
+          <a href="#planos" class="btn btn-lg btn-outline">Ver Planos & Valores</a>
         </div>
 
-        <!-- Plano Silver -->
-        <div class="pricing-card">
-          <div class="pricing-header">
-            <h3 class="serif-text">Plano Silver</h3>
-            <p>Trilha sonora emocionante e galeria de fotos</p>
+        <div class="hero-proof">
+          <div class="proof-item">
+            <span class="proof-icon">✦</span>
+            <span class="proof-text">8 Estilos Autorais</span>
           </div>
-          <div class="pricing-price" id="card-price-silver">R$ 149 <span>/pagamento único</span></div>
-          <ul class="pricing-features">
-            <li>Tudo o que está no Plano Light</li>
-            <li><strong>Player de Música Ambiente (.mp3)</strong></li>
-            <li>Galeria de fotos do casal</li>
-            <li>Cronograma visual da cerimônia e festa</li>
-            <li>Dress Code e paleta de convidados</li>
-            <li>Botão PIX com cópia em 1 clique</li>
-          </ul>
-          <a id="card-btn-silver" href="https://wa.me/5562996046458?text=Ol%C3%A1!%20Gostaria%20de%20fazer%20o%20meu%20convite%20no%20*Plano%20Silver*." target="_blank" class="btn btn-outline" style="width: 100%; text-align: center;">Escolher Plano Silver</a>
-        </div>
-
-        <!-- Plano Gold -->
-        <div class="pricing-card">
-          <div class="pricing-header">
-            <h3 class="serif-text">Plano Gold</h3>
-            <p>Impacto visual com vídeo de abertura no topo</p>
+          <div class="proof-item">
+            <span class="proof-icon">✦</span>
+            <span class="proof-text">RSVP em Tempo Real</span>
           </div>
-          <div class="pricing-price" id="card-price-gold">R$ 199 <span>/pagamento único</span></div>
-          <ul class="pricing-features">
-            <li>Tudo o que está no Plano Silver</li>
-            <li><strong>Vídeo do Casal no Banner Principal</strong></li>
-            <li>Seção "Nossa História" (Storytelling)</li>
-            <li>Guia de Hotéis e Salões de Beleza parceiros</li>
-            <li>Micro-animações avançadas de scroll</li>
-          </ul>
-          <a id="card-btn-gold" href="https://wa.me/5562996046458?text=Ol%C3%A1!%20Gostaria%20de%20fazer%20o%20meu%20convite%20no%20*Plano%20Gold*." target="_blank" class="btn btn-outline" style="width: 100%; text-align: center;">Escolher Plano Gold</a>
-        </div>
-
-        <!-- Plano Premium -->
-        <div class="pricing-card featured">
-          <div class="pricing-badge">Mais Completo ✨</div>
-          <div class="pricing-header">
-            <h3 class="serif-text" style="color: var(--accent-gold);">Plano Premium</h3>
-            <p>A experiência cinematográfica definitiva</p>
+          <div class="proof-item">
+            <span class="proof-icon">✦</span>
+            <span class="proof-text">Entrega em até 48h</span>
           </div>
-          <div class="pricing-price" id="card-price-premium">R$ 250 <span>/pagamento único</span></div>
-          <ul class="pricing-features">
-            <li><strong>Vídeo Vertical HD + Trilha Sonora Contínua</strong></li>
-            <li>Linha do tempo interativa do casal</li>
-            <li>Múltiplos locais (Cerimônia + Recepção) com GPS</li>
-            <li>RSVP Inteligente com seleção de acompanhantes</li>
-            <li>Presentes via PIX com QR Code dinâmico</li>
-            <li><strong>Cartão Digital PDF interativo de brinde</strong></li>
-          </ul>
-          <a id="card-btn-premium" href="https://wa.me/5562996046458?text=Ol%C3%A1!%20Gostaria%20de%20fazer%20o%20meu%20convite%20no%20*Plano%20Premium*." target="_blank" class="btn btn-primary" style="width: 100%; text-align: center;">Escolher Plano Premium</a>
         </div>
-
-      </div>
-    </div>
-  </section>
-
-  <script>
-    async function sincronizarPrecosVitrine() {
-      if (!window.ConvitesDB) return;
-      try {
-        const planos = await ConvitesDB.carregarPlanos();
-        if (planos.light) {
-          const el = document.getElementById('card-price-light');
-          if (el) el.innerHTML = `R$ ${planos.light.preco} <span>/pagamento único</span>`;
-          const btn = document.getElementById('card-btn-light');
-          if (btn) btn.href = `https://wa.me/5562996046458?text=Ol%C3%A1!%20Gostaria%20de%20fazer%20o%20meu%20convite%20no%20*Plano%20Light%20(R$%20${planos.light.preco})*.`;
-        }
-        if (planos.silver) {
-          const el = document.getElementById('card-price-silver');
-          if (el) el.innerHTML = `R$ ${planos.silver.preco} <span>/pagamento único</span>`;
-          const btn = document.getElementById('card-btn-silver');
-          if (btn) btn.href = `https://wa.me/5562996046458?text=Ol%C3%A1!%20Gostaria%20de%20fazer%20o%20meu%20convite%20no%20*Plano%20Silver%20(R$%20${planos.silver.preco})*.`;
-        }
-        if (planos.gold) {
-          const el = document.getElementById('card-price-gold');
-          if (el) el.innerHTML = `R$ ${planos.gold.preco} <span>/pagamento único</span>`;
-          const btn = document.getElementById('card-btn-gold');
-          if (btn) btn.href = `https://wa.me/5562996046458?text=Ol%C3%A1!%20Gostaria%20de%20fazer%20o%20meu%20convite%20no%20*Plano%20Gold%20(R$%20${planos.gold.preco})*.`;
-        }
-        if (planos.premium) {
-          const el = document.getElementById('card-price-premium');
-          if (el) el.innerHTML = `R$ ${planos.premium.preco} <span>/pagamento único</span>`;
-          const btn = document.getElementById('card-btn-premium');
-          if (btn) btn.href = `https://wa.me/5562996046458?text=Ol%C3%A1!%20Gostaria%20de%20fazer%20o%20meu%20convite%20no%20*Plano%20Premium%20(R$%20${planos.premium.preco})*.`;
-        }
-      } catch (e) {
-        console.warn("Erro ao sincronizar preços dinâmicos na vitrine:", e);
-      }
-    }
-    window.addEventListener('DOMContentLoaded', sincronizarPrecosVitrine);
-  </script>
-
-  <!-- Benefits Section -->
-  <section class="benefits" id="beneficios">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-tag">Por Que Escolher Digital?</span>
-        <h2 class="section-title">A tecnologia a serviço do seu casamento</h2>
-        <p class="section-subtitle">Economize tempo, evite perdas e proporcione uma experiência inesquecível para seus convidados.</p>
       </div>
 
-      <div class="benefits-grid">
-        <div class="benefit-card">
-          <span class="benefit-icon">📱</span>
-          <h3 class="benefit-title">Confirmação RSVP em Tempo Real</h3>
-          <p class="benefit-desc">Receba as respostas de confirmação, acompanhantes e restrições alimentares diretamente em uma planilha organizada.</p>
-        </div>
-
-        <div class="benefit-card">
-          <span class="benefit-icon">📍</span>
-          <h3 class="benefit-title">Localização & GPS Integrados</h3>
-          <p class="benefit-desc">Botão direto para Waze e Google Maps, garantindo que nenhum convidado se perca a caminho da cerimônia.</p>
-        </div>
-
-        <div class="benefit-card">
-          <span class="benefit-icon">⏳</span>
-          <h3 class="benefit-title">Contagem Regressiva Viva</h3>
-          <p class="benefit-desc">Contador dinâmico de dias, horas e minutos que cria expectativa e conexão emocional até o grande dia.</p>
-        </div>
-
-        <div class="benefit-card">
-          <span class="benefit-icon">🌿</span>
-          <h3 class="benefit-title">Sustentável & Econômico</h3>
-          <p class="benefit-desc">Envio ilimitado pelo WhatsApp sem custos de impressão gráfica cara ou problemas de atraso na entrega dos Correios.</p>
+      <!-- Coluna Direita: Mockup Hero -->
+      <div class="hero-mockup-wrapper">
+        <div class="mockup-frame">
+          <div class="mockup-inner">
+            <video class="mockup-video" src="assets/videos/template_01.webm" autoplay muted loop playsinline></video>
+            <div class="mockup-badge-floating">
+              <span>✦ Royal Gold • Toque para ver</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- How it Works -->
-  <section class="how-it-works" id="como-funciona">
+  <!-- Catálogo de Modelos (Vitrine Curada) -->
+  <section class="section" id="modelos">
     <div class="container">
       <div class="section-header">
-        <span class="section-tag">Passo a Passo</span>
-        <h2 class="section-title">Como criamos o seu convite</h2>
+        <span class="section-tag">Catálogo Autoral</span>
+        <h2 class="section-title">Encontre a identidade visual do seu casamento</h2>
+        <p class="section-subtitle">Oito estilos únicos desenvolvidos para transmitir elegância, emoção e praticidade aos seus convidados.</p>
+      </div>
+
+      <!-- Filtros de Estilo -->
+      <div class="catalog-filters">
+        <button class="filter-btn active" data-filter="all">Todos os Estilos</button>
+        <button class="filter-btn" data-filter="classico">Clássico & Nobre</button>
+        <button class="filter-btn" data-filter="minimalista">Minimalista & Clean</button>
+        <button class="filter-btn" data-filter="romantico">Romântico & Floral</button>
+        <button class="filter-btn" data-filter="destination">Destination & Ao Ar Livre</button>
+      </div>
+
+      <!-- Grid de Templates -->
+      <div class="templates-grid" id="templatesGrid">
+        <!-- Renderizado dinamicamente via app.js -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Como Funciona (Processo em 3 Passos) -->
+  <section class="section" id="como-funciona" style="background: #F4EFE6;">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Processo Simples</span>
+        <h2 class="section-title">Como ter o seu convite pronto em 3 passos</h2>
+        <p class="section-subtitle">Sem burocracia e com acompanhamento transparente do início à entrega final.</p>
       </div>
 
       <div class="steps-grid">
         <div class="step-card">
           <div class="step-num">01</div>
-          <h3 class="step-title">Escolha o seu Modelo</h3>
-          <p class="step-desc">Selecione o design que mais combina com a estética e o estilo do seu casamento.</p>
+          <h3 class="step-title">Escolha & Contratação</h3>
+          <p class="step-desc">Selecione o modelo visual e o plano ideal para a sua celebração. O pagamento é realizado de forma segura via PIX ou Cartão.</p>
         </div>
 
         <div class="step-card">
           <div class="step-num">02</div>
-          <h3 class="step-title">Envie as Informações</h3>
-          <p class="step-desc">Nos envie fotos, data, horários, local, lista de presentes/Pix e preferências do casal.</p>
+          <h3 class="step-title">Personalização dos Dados</h3>
+          <p class="step-desc">Logo após a confirmação, você preenche os dados dos noivos, fotos, músicas, chave PIX e detalhes da cerimônia no nosso formulário.</p>
         </div>
 
         <div class="step-card">
           <div class="step-num">03</div>
-          <h3 class="step-title">Pronto para Enviar!</h3>
-          <p class="step-desc">Em poucos dias seu convite online estará publicado em um link exclusivo e pronto para compartilhar.</p>
+          <h3 class="step-title">Produção & Entrega</h3>
+          <p class="step-desc">Nossa equipe customiza seu convite e envia o link final seguro (HTTPS) diretamente no seu e-mail em até 48 horas úteis.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- CTA Section -->
-  <section class="cta-section" id="contato">
+  <!-- Planos & Preços (Checkout Asaas) -->
+  <section class="section" id="planos">
     <div class="container">
-      <div class="cta-box">
-        <h2 class="cta-title serif-text">Pronto para encantar os seus convidados?</h2>
-        <p class="cta-desc">Fale conosco no WhatsApp e receba uma demonstração personalizada com as suas fotos e informações.</p>
-        <a href="https://wa.me/5562996046458?text=Ol%C3%A1!%20Quero%20fazer%20meu%20convite%20de%20casamento%20digital." target="_blank" class="btn btn-lg btn-primary">Fazer Meu Pedido Agora</a>
+      <div class="section-header">
+        <span class="section-tag">Investimento Transparente</span>
+        <h2 class="section-title">Planos pensados para cada momento</h2>
+        <p class="section-subtitle">Escolha o pacote perfeito com pagamento único, sem mensalidades e link ativo durante todo o seu evento.</p>
+      </div>
+
+      <div class="pricing-grid" id="pricingGrid">
+        <!-- Renderizado dinamicamente via app.js -->
       </div>
     </div>
   </section>
@@ -474,34 +159,139 @@
   <!-- Footer -->
   <footer class="footer">
     <div class="container">
-      <div class="footer-content">
-        <a href="#" class="logo">
-          <span class="logo-icon">✦</span>
-          <span class="logo-text">Celebration Studio</span>
-        </a>
-        <div class="footer-links">
-          <a href="#modelos" class="nav-link">Modelos</a>
-          <a href="#beneficios" class="nav-link">Vantagens</a>
-          <a href="#contato" class="nav-link">Contato</a>
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="#" class="logo">
+            <span class="logo-icon">✦</span>
+            <span class="logo-text">Atelier dos Noivos</span>
+          </a>
+          <p class="footer-desc">Convites de casamento digitais e interativos de luxo. Experiências digitais que eternizam grandes momentos.</p>
+        </div>
+
+        <div class="footer-col">
+          <h4>Navegação</h4>
+          <ul>
+            <li><a href="#modelos">Modelos de Convites</a></li>
+            <li><a href="#planos">Tabela de Planos</a></li>
+            <li><a href="#como-funciona">Como Funciona</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Atendimento</h4>
+          <ul>
+            <li><a href="mailto:contato@tmsempretecnologia.com.br">contato@tmsempretecnologia.com.br</a></li>
+            <li><span>Goiânia - GO • Atendimento Brasil</span></li>
+          </ul>
         </div>
       </div>
-      <div class="footer-copy">
-        © 2026 Celebration Studio. Todos os direitos reservados. Design e desenvolvimento de alto padrão para casamentos.
+
+      <div class="footer-bottom">
+        <p>© 2026 Atelier dos Noivos • TM Sempre Tecnologia. Todos os direitos reservados.</p>
       </div>
     </div>
   </footer>
 
-  <!-- Modal Interactive Simulator -->
-  <div class="modal-backdrop" id="previewModal">
-    <div class="modal-container">
-      <button class="modal-close" id="modalClose">&times;</button>
-      <div class="modal-phone">
-        <iframe id="modalIframe" src="" title="Prévia do Convite"></iframe>
+  <!-- MODAL DE PRÉVIA INTERATIVA (IFRAME) -->
+  <div id="previewModal" class="modal-overlay">
+    <div class="preview-modal-dialog">
+      <div class="preview-modal-header">
+        <span id="previewModalTitle" class="preview-modal-title">Demonstração Interativa</span>
+        <button id="modalCloseBtn" class="modal-close-btn" aria-label="Fechar Prévia">✕</button>
+      </div>
+      <iframe id="previewIframe" class="preview-modal-iframe" src="" title="Prévia do Convite"></iframe>
+    </div>
+  </div>
+
+  <!-- MODAL DE CHECKOUT INTEGRADO (ASAAS) -->
+  <div id="checkoutModal" class="modal-overlay">
+    <div class="checkout-modal-dialog">
+      <div class="checkout-header">
+        <span class="section-tag">Finalizar Pedido</span>
+        <h3>Contratar Convite Digital</h3>
+        <p>Preencha seus dados para prosseguir com o pagamento seguro.</p>
+      </div>
+
+      <!-- Resumo da Seleção -->
+      <div class="checkout-summary-box">
+        <div>
+          <strong id="chkPlanoNome">Plano Silver</strong><br>
+          <small id="chkModeloNome" style="color: var(--text-secondary);">Modelo: Royal Gold</small>
+        </div>
+        <div style="font-family: var(--font-serif); font-size: 1.6rem; font-weight: bold; color: var(--accent-gold);" id="chkPlanoValor">
+          R$ 149,00
+        </div>
+      </div>
+
+      <!-- Formulário de Checkout -->
+      <form id="checkoutForm">
+        <div class="form-group">
+          <label for="chkNome">Nome Completo do(a) Contratante <span style="color: red;">*</span></label>
+          <input type="text" id="chkNome" class="form-input" required placeholder="Ex: Maria Clara Souza">
+        </div>
+
+        <div class="form-group">
+          <label for="chkEmail">Seu E-mail (Onde você receberá o link e o briefing) <span style="color: red;">*</span></label>
+          <input type="email" id="chkEmail" class="form-input" required placeholder="seuemail@exemplo.com">
+        </div>
+
+        <div class="form-group">
+          <label for="chkTelefone">Telefone / WhatsApp de Contato <span style="color: red;">*</span></label>
+          <input type="tel" id="chkTelefone" class="form-input" required placeholder="(62) 99999-9999">
+        </div>
+
+        <div class="form-group">
+          <label for="chkCpf">CPF (Para emissão do recibo) <span style="color: red;">*</span></label>
+          <input type="text" id="chkCpf" class="form-input" required placeholder="000.000.000-00">
+        </div>
+
+        <!-- Forma de Pagamento -->
+        <div class="form-group">
+          <label>Forma de Pagamento:</label>
+          <div class="payment-methods-tabs">
+            <button type="button" class="pay-tab-btn active" data-method="PIX">⚡ PIX Instantâneo</button>
+            <button type="button" class="pay-tab-btn" data-method="CREDIT_CARD">💳 Cartão de Crédito</button>
+          </div>
+        </div>
+
+        <!-- Botão de Gerar Pagamento -->
+        <button type="submit" id="btnSubmitCheckout" class="btn btn-lg btn-gold btn-block">
+          Prosseguir para o Pagamento
+        </button>
+
+        <button type="button" id="btnCancelCheckout" class="btn btn-outline btn-block" style="margin-top: 10px;">
+          Cancelar
+        </button>
+      </form>
+
+      <!-- Tela de Exibição do PIX -->
+      <div id="pixScreen" class="pix-result-box">
+        <h4 style="font-size: 1.3rem; margin-bottom: 8px;">Pague com PIX para liberar o briefing:</h4>
+        <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 16px;">
+          Abra o app do seu banco e escaneie o QR Code abaixo ou use o Copia e Cola:
+        </p>
+
+        <div id="pixQrCodeContainer"></div>
+
+        <input type="text" id="pixCopiaColaInput" class="pix-copiacola-input" readonly>
+        <button type="button" id="btnCopyPix" class="btn btn-sm btn-primary" style="margin-bottom: 20px;">
+          📋 Copiar Código PIX
+        </button>
+
+        <div style="background: #FFFDF9; border: 1px solid #E8E2D5; padding: 14px; border-radius: 8px; margin-bottom: 16px;">
+          <p style="font-size: 0.85rem; color: #5F5B53; margin: 0;">
+            ⏳ Assim que o pagamento for identificado, você receberá a confirmação no e-mail e será direcionado ao formulário de briefing!
+          </p>
+        </div>
+
+        <a id="btnGoToBriefingDirectly" href="#" class="btn btn-primary btn-block">
+          Preencher Dados do Convite ➔
+        </a>
       </div>
     </div>
   </div>
 
-  <!-- App JS -->
-  <script src="app.js"></script>
+  <!-- Scripts -->
+  <script type="module" src="app.js"></script>
 </body>
 </html>
