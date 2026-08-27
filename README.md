@@ -1,49 +1,99 @@
-# Portfolio Convites Digitais & Interativos — Atelier dos Noivos
-
-Documentação técnica e operacional do ecossistema de convites de casamento digitais de alto padrão.
-
+# 💍 Atelier dos Noivos — Plataforma & Portfólio de Convites Digitais Interativos
+> **Projeto Comercial Privado — TM Sempre Tecnologia**  
+> *Ambiente de produção:* [portfolioconvites.vercel.app](https://portfolioconvites.vercel.app/)  
+> *Status:* Ativo / Comercial
 ---
-
-## 📱 Estrutura do Ecossistema (Tudo em 1 Hospedagem)
-
-| Página | Arquivo | Finalidade |
-| :--- | :--- | :--- |
-| **Vitrine de Vendas** | [`index.html`](file:///C:/Users/thiag/Desktop/_projetos/_portfolio_convites/index.html) | Landing page de alta conversão (*Dark Luxury Gold*), com vídeos mobile dos convites em mockups de iPhone, animações GSAP 3 e simulador interativo em modal. |
-| **Briefing do Cliente** | [`briefing.html`](file:///C:/Users/thiag/Desktop/_projetos/_portfolio_convites/briefing.html) | Formulário interativo *mobile-first* enviado aos noivos após o fechamento, com seleção dos 8 templates, coleta de dados e disparo automático formatado para o WhatsApp do Thiago (`62 9 9604-6458`). |
-| **Manual Operacional & Preços** | [`manual_operacional_e_briefings.html`](file:///C:/Users/thiag/Desktop/_projetos/_portfolio_convites/manual_operacional_e_briefings.html) | Painel interno com tabela de precificação, pacote de valores (R$ 99 a R$ 250), checklists por pacote e roteiro de produção/deploy. |
-| **Central de Entregáveis (Demos)** | [`exemplos_entregaveis/index.html`](file:///C:/Users/thiag/Desktop/_projetos/_portfolio_convites/exemplos_entregaveis/index.html) | Hub de demonstração dos 4 planos de entrega (Light R$ 99, Silver R$ 149, Gold R$ 199 e Premium R$ 250) baseados no modelo Royal Gold. |
-| **Estilos & Scripts** | `styles.css`, `app.js` | Design system com tokens de luxo, paleta dourada e controle de animações/modais. |
-
+## 🎯 Visão Geral do Produto
+Plataforma de alta conversão voltada para a comercialização, captação de briefings e entrega de **convites de casamento digitais interativos de luxo**.
+O ecossistema reúne em uma única estrutura:
+1. **Vitrine de Vendas (*Landing Page Dark Luxury*):** Apresentação dos modelos em mockups interativos com vídeos e simulador de planos.
+2. **Formulário de Onboarding & Briefing:** Coleta de dados dos noivos após o fechamento com disparo formatado para WhatsApp e persistência no Supabase.
+3. **Hub de Entregáveis & Demos:** Exemplos reais dos pacotes de entrega para demonstração ao cliente.
+4. **Motor de Templates:** 8 bases de convites com layouts responsivos, mapas, lista de presentes/PIX, RSVP e áudio player.
 ---
-
-## 🎨 Mapeamento dos 8 Templates de Convite
-
-| # | Pasta | Arquivo Principal | Nome Comercial | Estilo / Identidade |
-|---|---|---|---|---|
-| **01** | `01-template-2/` | `index.html` | **Royal Gold** | Clássico nobre, marfim & ouro, contagem regressiva formal. |
-| **02** | `02-light-design/` | `index.html` | **Minimalist** | Design limpo editorial, foco em fotografia e tipografia refinada. |
-| **03** | `03-viktor-paula/` | `template5.html` | **Vibrant Vows** | Estilo revista de alta costura, colorido e vibrante. |
-| **04** | `04-thanu-jathu/` | `jathuandthanu.html` | **Eternal Romance** | Romântico, floral delicado, música ambiente e RSVP completo. |
-| **05** | `05-the-sacred-garden/` | `thesacredgarden.html` | **The Sacred Garden** | Casamentos ao ar livre, campo, praia e elementos botânicos. |
-| **06** | `06-dolce-vita/` | `dolcevita.html` | **Dolce Vita** | Inspiração italiana, ensolarado e clima mediterrâneo. |
-| **07** | `07-blossom-oud/` | `blossomoud.html` | **Blossom & Oud** | Dark luxury, estética opulenta noturna e riqueza de detalhes. |
-| **08** | `08-destination-love/` | `destinationlove.html` | **Destination Love** | Destination wedding, guia de viagens, hospedagem e múltiplos mapas. |
-
+## 💎 Estrutura de Pacotes & Precificação
+| Plano | Valor Sugerido | Entregáveis & Funcionalidades |
+| :--- | :---: | :--- |
+| **Light** | R$ 99 | Foto principal, dados da cerimônia/festa, integração Google Maps/Waze e RSVP direto via WhatsApp. |
+| **Silver** | R$ 149 | Tudo do Light + Player de música (.mp3), galeria de fotos, cronograma do evento, dress code e chave PIX copia e cola. |
+| **Gold** | R$ 199 | Tudo do Silver + Vídeo vertical do casal em loop no banner, história do casal (*Storytelling*) e dicas/hospedagem para convidados. |
+| **Premium** | R$ 250 | **Experiência Completa:** Vídeo vertical HD + Trilha sonora + Linha do tempo animada + Múltiplos locais + RSVP Inteligente com acompanhantes + QR Code PIX + Cartão Digital em PDF de brinde. |
 ---
-
-## 💎 Entregáveis dos 4 Planos (Base: Royal Gold)
-
-1. **Plano Light (R$ 99):** [`exemplos_entregaveis/01_plano_light/index.html`](file:///C:/Users/thiag/Desktop/_projetos/_portfolio_convites/exemplos_entregaveis/01_plano_light/index.html) — 1 Foto, dados essenciais, GPS e RSVP WhatsApp.
-2. **Plano Silver (R$ 149):** [`exemplos_entregaveis/02_plano_silver/index.html`](file:///C:/Users/thiag/Desktop/_projetos/_portfolio_convites/exemplos_entregaveis/02_plano_silver/index.html) — Player de música (.mp3), galeria de fotos, cronograma visual, dress code e botão PIX copia e cola.
-3. **Plano Gold (R$ 199):** [`exemplos_entregaveis/03_plano_gold/index.html`](file:///C:/Users/thiag/Desktop/_projetos/_portfolio_convites/exemplos_entregaveis/03_plano_gold/index.html) — Vídeo vertical do casal em loop no banner principal, storytelling ("Nossa História") e dicas para convidados.
-4. **Plano Premium (R$ 250 - Teto):** [`exemplos_entregaveis/04_plano_premium/index.html`](file:///C:/Users/thiag/Desktop/_projetos/_portfolio_convites/exemplos_entregaveis/04_plano_premium/index.html) — Vídeo vertical HD + Trilha Sonora + Linha do tempo animada + Múltiplos locais (Catedral + Recepção com Waze e Maps) + RSVP Inteligente com acompanhantes + QR Code PIX + Cartão Digital PDF de brinde.
-
+## 🎨 Catálogo dos 8 Templates
+| # | Pasta | Arquivo Principal | Estilo / Identidade |
+|---|---|---|---|
+| **01** | `01-template-2/` | `index.html` | **Royal Gold** — Clássico nobre, marfim & dourado, contagem regressiva formal. |
+| **02** | `02-light-design/` | `index.html` | **Minimalist** | Design editorial limpo, foco em fotos e tipografia elegante. |
+| **03** | `03-viktor-paula/` | `template5.html` | **Vibrant Vows** — Estilo revista moderna, dinâmico e colorido. |
+| **04** | `04-thanu-jathu/` | `jathuandthanu.html` | **Eternal Romance** — Romântico floral, música de fundo e RSVP integrado. |
+| **05** | `05-the-sacred-garden/` | `thesacredgarden.html` | **The Sacred Garden** — Casamentos ao ar livre, praia, campo e estilo botânico. |
+| **06** | `06-dolce-vita/` | `dolcevita.html` | **Dolce Vita** — Inspiração mediterrânea e clássica italiana. |
+| **07** | `07-blossom-oud/` | `blossomoud.html` | **Blossom & Oud** — Dark luxury, atmosfera noturna sofisticada e detalhes refinados. |
+| **08** | `08-destination-love/` | `destinationlove.html` | **Destination Love** — Guia de viagem completo, hotéis, rotas e múltiplos mapas. |
 ---
+## ⚡ Fluxo Operacional (Da Venda à Entrega)
+```mermaid
+graph TD
+    A[Cliente acessa a Vitrine] --> B[Simula ou escolhe o Modelo / Plano]
+    B --> C[Contato / Fechamento via WhatsApp]
+    C --> D[Envio do link /briefing.html]
+    D --> E[Noivos preenchem fotos, textos, músicas e PIX]
+    E --> F[Recebimento dos dados no WhatsApp / Supabase]
+    F --> G[Customização da pasta do template escolhido]
+    G --> H[Deploy do link final na Vercel / Domínio]
+    H --> I[Entrega do link final + QR Code / PDF para os noivos]
+Atendimento & Escolha: O cliente navega por 
+index.html
+ ou pelas demos em 
+exemplos_entregaveis/
+.
+Briefing: O cliente preenche 
+briefing.html
+. Os dados chegam estruturados no WhatsApp operacional e salvos no banco.
+Montagem do Convite:
+Duplicar a pasta do template escolhido.
+Inserir as fotos otimizadas (WebP/JPG leve), dados da cerimônia, chave PIX e link do RSVP.
+Deploy & Publicação:
+Publicar no Vercel (tempo médio de montagem: 20 a 35 minutos).
+Entrega: Envio do link final seguro (HTTPS) + Cartão digital interativo com QR Code.
+📂 Estrutura de Diretórios
+text
 
-## 🚀 Fluxo Operacional de Produção
 
-1. **Venda & Onboarding:** Cliente escolhe o modelo na vitrine e recebe o link `seusite.com/briefing.html`.
-2. **Recebimento de Dados:** Os dados preenchidos chegam formatados no WhatsApp `62 9 9604-6458`.
-3. **Customização do Template:** Duplica-se a pasta do template escolhido para `clientes/nome-dos-noivos/` e personalizam-se textos, fotos, música e links.
-4. **Hospedagem Gratuita & Deploy:** Upload da pasta na Vercel / Netlify gerando link imediato sem custo de servidor.
-5. **Tempo Médio de Produção:** ~20 a 35 minutos por convite.
+├── index.html                           # Landing page principal (Vitrine de Vendas)
+├── briefing.html                        # Formulário de onboarding dos noivos
+├── manual_operacional_e_briefings.html  # Painel interno de precificação e processos
+├── styles.css                           # Design System (Cores de luxo, tipografia, responsividade)
+├── supabase-config.js                   # Configuração e cliente Supabase
+├── supabase_schema.sql                  # Estrutura do banco de dados (Leads & Briefings)
+├── vercel.json                          # Configuração de rotas e headers na Vercel
+├── marketing/                           # Criativos, copies e materiais de divulgação
+├── scripts/                             # Scripts auxiliares e automações
+├── exemplos_entregaveis/                # Hub de demonstração dos 4 planos
+│   ├── 01_plano_light/
+│   ├── 02_plano_silver/
+│   ├── 03_plano_gold/
+│   └── 04_plano_premium/
+└── 01-template-2/ a 08-destination-love/# Templates base de convites
+🛠️ Stack Tecnológica & Serviços
+Frontend: HTML5 Semântico, CSS3 Moderno (CSS Variables, Flexbox/Grid), JavaScript Vanilla (ES6+), animações GSAP.
+Backend / Persistência: Supabase (Database Postgres + Auth/Storage para briefings).
+Hospedagem & CDN: Vercel (Edge Network, HTTPS automático).
+Comunicação: Integração direta com API do WhatsApp (disparos de atendimento).
+💻 Execução Local
+Para testar e editar localmente:
+
+bash
+
+
+# 1. Utilizando qualquer servidor estático local (ex: Live Server do VS Code ou npx serve):
+npx serve .
+# Ou com Python:
+python -m http.server 3000
+Acesse http://localhost:3000 no seu navegador.
+
+🔒 Confidencialidade e Direitos de Uso
+Este repositório contém código, modelos comerciais e processos operacionais de propriedade exclusiva da TM Sempre Tecnologia.
+
+Uso Estritamente Privado e Comercial.
+É proibida a redistribuição, cópia não autorizada ou revenda do código fonte e dos templates sem autorização expressa.
