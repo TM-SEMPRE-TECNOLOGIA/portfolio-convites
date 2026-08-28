@@ -5,10 +5,9 @@
 import { TEMPLATES_DATA, PLANOS_DATA } from "./src/data/templates.js";
 
 document.addEventListener("DOMContentLoaded", () => {
-  let selectedModeloId = "minimalist";
+  let selectedModeloId = "royal-gold";
   let selectedPlanoId = "silver";
   let currentPaymentMethod = "PIX";
-  let showAllPlans = false;
 
   // ----------------------------------------------------------------------------
   // 1. MENU MOBILE
@@ -26,7 +25,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Fechar menu mobile ao clicar em um link
   if (navMobile) {
     navMobile.querySelectorAll("a").forEach(link => {
       link.addEventListener("click", () => {
@@ -38,7 +36,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // ----------------------------------------------------------------------------
-  // 2. RENDERIZAR VITRINE DE TEMPLATES (LAYOUT EDITORIAL)
+  // 2. RENDERIZAR VITRINE DE MODELOS (MOCKUPS VERTICAIS COM VIDEO ATIVO)
   // ----------------------------------------------------------------------------
   const templatesGrid = document.getElementById("templatesGrid");
 
@@ -50,14 +48,19 @@ document.addEventListener("DOMContentLoaded", () => {
       ? TEMPLATES_DATA
       : TEMPLATES_DATA.filter(t => t.category === filter || (filter === "destination" && (t.category === "destination" || t.category === "ao-ar-livre")));
 
-    filtered.forEach((template, index) => {
+    filtered.forEach(template => {
       const card = document.createElement("article");
-      const isFeatured = filter === "all" && (index === 0 || index === 1);
-      card.className = `template-card ${isFeatured ? "template-card--featured" : ""} reveal`;
+      card.className = "template-card reveal";
+
+      const dotsHtml = (template.palette || [])
+        .map(color => `<span class="palette-dot" style="background-color: ${color};" title="${color}"></span>`)
+        .join("");
 
       card.innerHTML = `
-        <div class="template-media" data-url="${template.demoUrl}" data-title="${template.name}" role="button" tabindex="0" aria-label="Abrir demonstracao de ${template.name}">
-          <video src="${template.video}" muted loop playsinline preload="metadata" loading="lazy" aria-hidden="true"></video>
+        <div class="template-mockup-frame btn-open-demo" data-url="${template.demoUrl}" data-title="${template.name}" role="button" tabindex="0" aria-label="Abrir demonstracao interativa de ${template.name}">
+          <span class="template-badge">${template.badge || "Exclusivo"}</span>
+          <div class="template-palette-dots">${dotsHtml}</div>
+          <video class="lazy-video" src="${template.video}" autoplay muted loop playsinline preload="auto" aria-hidden="true"></video>
         </div>
         <div class="template-info">
           <span class="template-tagline">${template.tagline}</span>
@@ -65,10 +68,10 @@ document.addEventListener("DOMContentLoaded", () => {
           <p class="template-desc">${template.description}</p>
           <div class="template-actions">
             <button type="button" class="btn btn-outline btn-sm btn-open-demo" data-url="${template.demoUrl}" data-title="${template.name}">
-              Ver demonstracao
+              Testar Modelo
             </button>
             <button type="button" class="btn btn-primary btn-sm btn-select-model" data-id="${template.id}" data-name="${template.name}">
-              Escolher modelo
+              Escolher Este
             </button>
           </div>
         </div>
@@ -77,47 +80,18 @@ document.addEventListener("DOMContentLoaded", () => {
       templatesGrid.appendChild(card);
     });
 
-    // Iniciar videos ao passar o mouse / tocar
-    templatesGrid.querySelectorAll(".template-media").forEach(media => {
-      const video = media.querySelector("video");
-      if (video) {
-        media.addEventListener("mouseenter", () => {
-          video.play().catch(() => {});
-        });
-        media.addEventListener("mouseleave", () => {
-          video.pause();
-        });
-      }
-
-      // Clique na midia abre preview
-      media.addEventListener("click", () => {
-        const url = media.getAttribute("data-url");
-        const title = media.getAttribute("data-title");
-        openPreviewModal(url, title);
-      });
-
-      media.addEventListener("keydown", (e) => {
-        if (e.key === "Enter" || e.key === " ") {
-          e.preventDefault();
-          const url = media.getAttribute("data-url");
-          const title = media.getAttribute("data-title");
-          openPreviewModal(url, title);
-        }
-      });
-    });
-
-    // Botoes de Demo
-    templatesGrid.querySelectorAll(".btn-open-demo").forEach(btn => {
+    // Eventos de clique para Preview
+    document.querySelectorAll(".btn-open-demo").forEach(btn => {
       btn.addEventListener("click", (e) => {
         e.stopPropagation();
         const url = btn.getAttribute("data-url");
         const title = btn.getAttribute("data-title");
-        openPreviewModal(url, title);
+        if (url) openPreviewModal(url, title);
       });
     });
 
-    // Botoes de Escolher Modelo
-    templatesGrid.querySelectorAll(".btn-select-model").forEach(btn => {
+    // Eventos de clique para Escolher Modelo
+    document.querySelectorAll(".btn-select-model").forEach(btn => {
       btn.addEventListener("click", (e) => {
         e.stopPropagation();
         selectedModeloId = btn.getAttribute("data-id");
@@ -125,8 +99,8 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     });
 
-    // Aplicar observador de scroll nos novos cards
-    observeReveals();
+    // Observador de videos e scroll reveal
+    observeMediaAndReveals();
   }
 
   renderTemplates();
@@ -144,50 +118,32 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // Botoes da secao de destaque
-  document.querySelectorAll(".featured-actions .btn-open-demo").forEach(btn => {
-    btn.addEventListener("click", () => {
-      const url = btn.getAttribute("data-url");
-      const title = btn.getAttribute("data-title");
-      openPreviewModal(url, title);
-    });
-  });
-
-  document.querySelectorAll(".featured-actions .btn-select-model").forEach(btn => {
-    btn.addEventListener("click", () => {
-      selectedModeloId = btn.getAttribute("data-id") || "minimalist";
-      openCheckoutModal(selectedPlanoId, selectedModeloId);
-    });
-  });
-
   // ----------------------------------------------------------------------------
-  // 3. RENDERIZAR GRID DE PRECOS (2 PLANOS POR PADRAO + TOGGLE)
+  // 3. RENDERIZAR TABELA DE PRECOS (4 PLANOS COM DESTAQUE NO SILVER)
   // ----------------------------------------------------------------------------
   const pricingGrid = document.getElementById("pricingGrid");
-  const pricingToggle = document.getElementById("pricingToggle");
 
   function renderPricing() {
     if (!pricingGrid) return;
     pricingGrid.innerHTML = "";
 
-    const visiblePlans = showAllPlans ? PLANOS_DATA : PLANOS_DATA.filter(p => p.visible);
-
-    visiblePlans.forEach(plano => {
+    PLANOS_DATA.forEach(plano => {
       const card = document.createElement("div");
-      card.className = `pricing-card ${plano.popular ? "recommended popular" : ""} reveal`;
+      card.className = `pricing-card ${plano.popular ? "popular" : ""} reveal`;
 
       const featuresHtml = plano.features.map(f => `<li>${f}</li>`).join("");
 
       card.innerHTML = `
+        ${plano.popular ? '<span class="pricing-badge-popular">Mais Escolhido pelos Noivos</span>' : ''}
         <div class="pricing-card-header">
           <h3 class="plan-name">${plano.name}</h3>
           <p class="plan-tagline">${plano.tagline}</p>
-          <div class="plan-price">${plano.formattedPrice}</div>
+          <div class="plan-price">${plano.formattedPrice} <small>/ unico</small></div>
         </div>
         <ul class="plan-features">
           ${featuresHtml}
         </ul>
-        <button type="button" class="btn ${plano.popular ? "btn-primary" : "btn-outline"} btn-block btn-select-plano" data-id="${plano.id}">
+        <button type="button" class="btn ${plano.popular ? "btn-gold" : "btn-primary"} btn-block btn-select-plano" data-id="${plano.id}">
           Escolher ${plano.name}
         </button>
       `;
@@ -202,22 +158,13 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     });
 
-    observeReveals();
+    observeMediaAndReveals();
   }
 
   renderPricing();
 
-  if (pricingToggle) {
-    pricingToggle.addEventListener("click", () => {
-      showAllPlans = !showAllPlans;
-      pricingToggle.textContent = showAllPlans ? "Ocultar planos adicionais" : "Ver todos os planos";
-      pricingToggle.setAttribute("aria-expanded", showAllPlans ? "true" : "false");
-      renderPricing();
-    });
-  }
-
   // ----------------------------------------------------------------------------
-  // 4. MODAL DE PREVIA INTERATIVA
+  // 4. MODAL DE PREVIA INTERATIVA (IFRAME FULLSCREEN RESPONSIVO)
   // ----------------------------------------------------------------------------
   const previewModal = document.getElementById("previewModal");
   const previewIframe = document.getElementById("previewIframe");
@@ -227,7 +174,7 @@ document.addEventListener("DOMContentLoaded", () => {
   function openPreviewModal(url, title) {
     if (!previewModal || !previewIframe) return;
     previewIframe.src = url;
-    if (previewModalTitle) previewModalTitle.textContent = `Preview: ${title}`;
+    if (previewModalTitle) previewModalTitle.textContent = `Demonstracao: ${title}`;
     previewModal.classList.add("active");
     document.body.style.overflow = "hidden";
   }
@@ -260,12 +207,12 @@ document.addEventListener("DOMContentLoaded", () => {
   function openCheckoutModal(planoId, modeloId) {
     if (!checkoutModal) return;
     selectedPlanoId = planoId || "silver";
-    selectedModeloId = modeloId || "minimalist";
+    selectedModeloId = modeloId || "royal-gold";
 
     const plano = PLANOS_DATA.find(p => p.id === selectedPlanoId) || PLANOS_DATA[1];
     const modelo = TEMPLATES_DATA.find(m => m.id === selectedModeloId) || TEMPLATES_DATA[0];
 
-    if (chkPlanoNome) chkPlanoNome.textContent = `Plano ${plano.name}`;
+    if (chkPlanoNome) chkPlanoNome.textContent = plano.name;
     if (chkModeloNome) chkModeloNome.textContent = `Modelo: ${modelo.name}`;
     if (chkPlanoValor) chkPlanoValor.textContent = plano.formattedPrice;
 
@@ -298,14 +245,14 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // Envio do Checkout
+  // Envio do Formulario de Checkout
   if (checkoutForm) {
     checkoutForm.addEventListener("submit", async (e) => {
       e.preventDefault();
 
       const btnSubmit = document.getElementById("btnSubmitCheckout");
       const originalText = btnSubmit.innerHTML;
-      btnSubmit.innerHTML = "Gerando pagamento...";
+      btnSubmit.innerHTML = "Gerando Pagamento Seguro...";
       btnSubmit.disabled = true;
 
       const payload = {
@@ -331,7 +278,7 @@ document.addEventListener("DOMContentLoaded", () => {
           const briefingUrl = `/briefing.html?token=${data.token}`;
 
           if (currentPaymentMethod === "PIX" && data.pix) {
-            // Exibir tela de PIX
+            // Exibir tela do PIX
             checkoutForm.style.display = "none";
             pixScreen.style.display = "block";
 
@@ -348,19 +295,17 @@ document.addEventListener("DOMContentLoaded", () => {
             const btnGoBriefing = document.getElementById("btnGoToBriefingDirectly");
             if (btnGoBriefing) btnGoBriefing.href = briefingUrl;
 
-            // Botao copiar PIX
             const btnCopyPix = document.getElementById("btnCopyPix");
             if (btnCopyPix) {
               btnCopyPix.onclick = () => {
                 if (copiaColaInput) {
                   navigator.clipboard.writeText(copiaColaInput.value);
-                  btnCopyPix.textContent = "Codigo PIX copiado";
-                  setTimeout(() => { btnCopyPix.textContent = "Copiar codigo PIX"; }, 2000);
+                  btnCopyPix.textContent = "Codigo PIX Copiado!";
+                  setTimeout(() => { btnCopyPix.textContent = "Copiar Codigo PIX"; }, 2000);
                 }
               };
             }
           } else {
-            // Redirecionamento direto para o briefing
             window.location.href = briefingUrl;
           }
         } else {
@@ -386,40 +331,56 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // ----------------------------------------------------------------------------
-  // 6. SCROLL REVEAL (INTERSECTION OBSERVER COM SUPORTE A REDUCED MOTION)
+  // 6. OTIMIZACAO DE PERFORMANCE & CARREGAMENTO INTELIGENTE DE VIDEOS
   // ----------------------------------------------------------------------------
-  function observeReveals() {
+  function observeMediaAndReveals() {
+    // 6.1 Scroll Reveal
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       document.querySelectorAll(".reveal").forEach(el => el.classList.add("visible"));
-      return;
-    }
+    } else if ("IntersectionObserver" in window) {
+      const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.08, rootMargin: "0px 0px -30px 0px" });
 
-    if (!("IntersectionObserver" in window)) {
-      document.querySelectorAll(".reveal").forEach(el => el.classList.add("visible"));
-      return;
-    }
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("visible");
-          observer.unobserve(entry.target);
-        }
+      document.querySelectorAll(".reveal:not(.visible)").forEach(el => {
+        revealObserver.observe(el);
       });
-    }, {
-      threshold: 0.1,
-      rootMargin: "0px 0px -40px 0px"
-    });
+    } else {
+      document.querySelectorAll(".reveal").forEach(el => el.classList.add("visible"));
+    }
 
-    document.querySelectorAll(".reveal:not(.visible)").forEach(el => {
-      observer.observe(el);
-    });
+    // 6.2 Otimizacao de Video (Play quando visivel, Pause quando invisivel para economizar GPU/CPU)
+    if ("IntersectionObserver" in window) {
+      const videoObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          const video = entry.target;
+          if (entry.isIntersecting) {
+            video.play().catch(() => {});
+          } else {
+            video.pause();
+          }
+        });
+      }, { threshold: 0.1 });
+
+      document.querySelectorAll("video").forEach(v => {
+        videoObserver.observe(v);
+      });
+    } else {
+      document.querySelectorAll("video").forEach(v => {
+        v.play().catch(() => {});
+      });
+    }
   }
 
   // Adicionar classe reveal as secoes principais
-  document.querySelectorAll(".section, .proof-strip, .hero-content").forEach(el => {
+  document.querySelectorAll(".section, .proof-strip, .hero-content, .hero-mockup-area").forEach(el => {
     el.classList.add("reveal");
   });
 
-  observeReveals();
+  observeMediaAndReveals();
 });

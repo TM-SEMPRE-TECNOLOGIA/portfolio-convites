@@ -122,7 +122,7 @@ export async function sendAdminBriefingNotification({ briefing, pedido }) {
         <p><strong>Data do Casamento:</strong> ${briefing.data_casamento} às ${briefing.horario}</p>
         <p><strong>Local:</strong> ${briefing.local_nome} — ${briefing.endereco}</p>
         ${briefing.link_maps ? `<p><strong>Link Google Maps / Waze:</strong> <a href="${briefing.link_maps}">${briefing.link_maps}</a></p>` : ''}
-        <p><strong>WhatsApp RSVP:</strong> ${briefing.rsvp_whatsapp} (Data limite: ${briefing.rsvp_data})</p>
+        <p><strong>WhatsApp para Confirmacao de Presenca:</strong> ${briefing.rsvp_whatsapp} (Data limite: ${briefing.rsvp_data})</p>
         
         <hr style="border: 0; border-top: 1px solid #eee; margin: 16px 0;" />
         
