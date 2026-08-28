@@ -34,3 +34,6 @@ env/
 Thumbs.db
 desktop.ini
 .DS_Store
+
+cloudflared.exe
+
