@@ -13,46 +13,38 @@ document.addEventListener("DOMContentLoaded", () => {
   // 0. PRELOADER SPLASH SCREEN (ALIANCAS ENTRELACADAS)
   // ----------------------------------------------------------------------------
   const preloader = document.getElementById("sitePreloader");
-  const progressFill = document.getElementById("preloaderProgress");
 
-  if (preloader && progressFill) {
-    let progress = 10;
-    progressFill.style.width = `${progress}%`;
-
-    const startTime = Date.now();
-    const interval = setInterval(() => {
-      const elapsed = Date.now() - startTime;
-      if (elapsed < 1200) {
-        progress = Math.min(65, progress + 6);
-      } else if (elapsed < 2200) {
-        progress = Math.min(90, progress + 3);
-      }
-      progressFill.style.width = `${progress}%`;
-    }, 100);
-
-    const finishPreloader = async () => {
-      // Aguarda fontes renderizarem para evitar FOUT / textos pulando
+  if (preloader) {
+    const checkAllLoaded = async () => {
+      // 1. Aguarda todas as fontes web (Outfit, etc.)
       if (document.fonts) {
-        await document.fonts.ready;
+        try {
+          await document.fonts.ready;
+        } catch (e) {}
       }
-      
-      const elapsed = Date.now() - startTime;
-      const minDuration = 2200; // Garante que todos os elementos e videos da pagina estejam prontos
-      const remaining = Math.max(0, minDuration - elapsed);
 
-      setTimeout(() => {
-        clearInterval(interval);
-        progressFill.style.width = "100%";
-        setTimeout(() => {
-          preloader.classList.add("loaded");
-        }, 350);
-      }, remaining);
+      // 2. Aguarda carregamento de todas as imagens da pagina
+      const images = Array.from(document.images);
+      const imgPromises = images.map(img => {
+        if (img.complete) return Promise.resolve();
+        return new Promise(resolve => {
+          img.addEventListener("load", resolve, { once: true });
+          img.addEventListener("error", resolve, { once: true });
+        });
+      });
+      await Promise.all(imgPromises);
+
+      // 3. Aguarda dupla frame de renderizacao para evitar qualquer piscada
+      await new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)));
+
+      // 4. Libera a pagina suavemente
+      preloader.classList.add("loaded");
     };
 
     if (document.readyState === "complete") {
-      finishPreloader();
+      checkAllLoaded();
     } else {
-      window.addEventListener("load", finishPreloader);
+      window.addEventListener("load", checkAllLoaded);
     }
   }
 
