@@ -46,13 +46,53 @@
       </div>
     </div>
   </div>
+  <!-- Background Atmosphere Layers & Botanical Vector Watermarks -->
+  <div class="ambient-glow-1" aria-hidden="true"></div>
+  <div class="ambient-glow-2" aria-hidden="true"></div>
+  <div class="ambient-glow-3" aria-hidden="true"></div>
+
+  <!-- Elemento Botanico Superior Direito -->
+  <svg class="botanical-watermark" style="top: 80px; right: -40px; width: 340px; height: 340px;" viewBox="0 0 200 200" fill="none" aria-hidden="true">
+    <path d="M180,20 C140,40 100,90 80,140 C60,190 30,200 10,200" stroke="#C5A059" stroke-width="2" stroke-dasharray="4 4" />
+    <path d="M160,35 C175,25 185,45 170,55 C155,65 145,45 160,35 Z" fill="#C5A059" />
+    <path d="M125,65 C140,55 150,75 135,85 C120,95 110,75 125,65 Z" fill="#C5A059" />
+    <path d="M95,105 C110,95 120,115 105,125 C90,135 80,115 95,105 Z" fill="#C5A059" />
+    <path d="M65,145 C80,135 90,155 75,165 C60,175 50,155 65,145 Z" fill="#C5A059" />
+  </svg>
+
+  <!-- Elemento Botanico Meio Esquerda -->
+  <svg class="botanical-watermark" style="top: 42%; left: -40px; width: 300px; height: 300px;" viewBox="0 0 200 200" fill="none" aria-hidden="true">
+    <path d="M20,20 C60,40 100,90 120,140 C140,190 170,200 190,200" stroke="#4A5D4A" stroke-width="2" />
+    <path d="M40,35 C25,25 15,45 30,55 C45,65 55,45 40,35 Z" fill="#4A5D4A" />
+    <path d="M75,65 C60,55 50,75 65,85 C80,95 90,75 75,65 Z" fill="#4A5D4A" />
+    <path d="M105,105 C90,95 80,115 95,125 C110,135 120,115 105,105 Z" fill="#4A5D4A" />
+  </svg>
 
   <!-- Header / Nav Glassmorphic -->
   <header class="header" role="banner">
     <div class="container nav">
       <a href="#" class="logo" aria-label="Atelier dos Noivos - Inicio">
-        <span class="logo-mark">AD</span>
-        <span class="logo-text">Atelier dos Noivos</span>
+        <div class="brand-emblem-svg">
+          <svg width="38" height="38" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="1" y="1" width="38" height="38" rx="8" fill="#1C1917" stroke="url(#logoGoldGrad)" stroke-width="1.5" />
+            <!-- Aliancas Simbolicas -->
+            <circle cx="17" cy="20" r="7.5" stroke="#D8B96C" stroke-width="1.6" />
+            <circle cx="23" cy="20" r="7.5" stroke="#FCE6B1" stroke-width="1.6" />
+            <!-- Monograma Central -->
+            <text x="20" y="23" fill="#FFFFFF" font-family="'Outfit', sans-serif" font-size="7.5" font-weight="700" text-anchor="middle" letter-spacing="1">AD</text>
+            <defs>
+              <linearGradient id="logoGoldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#FCE6B1" />
+                <stop offset="50%" stop-color="#D4AF37" />
+                <stop offset="100%" stop-color="#997216" />
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+        <div class="brand-text-lockup">
+          <span class="logo-text">Atelier dos Noivos</span>
+          <span class="logo-subtext">Convites Digitais • Alta Costura</span>
+        </div>
       </a>
       
       <button class="nav-toggle" aria-label="Abrir menu de navegacao" aria-expanded="false">
@@ -419,21 +459,115 @@
     </div>
   </section>
 
+  <!-- Faixa Branca de Seguranca, Garantia & Confianca (Niche UI Craftsman) -->
+  <section class="security-trust-strip" aria-label="Seguranca e garantias">
+    <div class="container">
+      <div class="trust-strip-grid">
+        
+        <!-- Item 1: SSL 256-bit -->
+        <div class="trust-strip-card">
+          <div class="trust-shield-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 2L4 5V11.09C4 16.14 7.41 20.85 12 22C16.59 20.85 20 16.14 20 11.09V5L12 2Z" fill="url(#shieldGold)" stroke="#C5A059" stroke-width="1.5"/>
+              <path d="M9 11.5L11 13.5L15 9.5" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              <defs>
+                <linearGradient id="shieldGold" x1="4" y1="2" x2="20" y2="22" gradientUnits="userSpaceOnUse">
+                  <stop stop-color="#E5C158"/>
+                  <stop offset="1" stop-color="#9A7B38"/>
+                </linearGradient>
+              </defs>
+            </svg>
+          </div>
+          <div>
+            <h4 class="trust-card-title">Ambiente Seguro SSL</h4>
+            <p class="trust-card-desc">Criptografia de ponta a ponta em todos os acessos e confirmacoes.</p>
+          </div>
+        </div>
+
+        <!-- Item 2: Pagamento Asaas -->
+        <div class="trust-strip-card">
+          <div class="trust-shield-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="2" y="5" width="20" height="14" rx="3" fill="url(#cardGold)" stroke="#C5A059" stroke-width="1.5"/>
+              <path d="M2 10H22" stroke="#FFFFFF" stroke-width="1.5"/>
+              <circle cx="6" cy="15" r="1.5" fill="#FFFFFF"/>
+              <defs>
+                <linearGradient id="cardGold" x1="2" y1="5" x2="22" y2="19" gradientUnits="userSpaceOnUse">
+                  <stop stop-color="#E5C158"/>
+                  <stop offset="1" stop-color="#9A7B38"/>
+                </linearGradient>
+              </defs>
+            </svg>
+          </div>
+          <div>
+            <h4 class="trust-card-title">Pagamento Seguro Asaas</h4>
+            <p class="trust-card-desc">Transacoes certificadas pelo Banco Central via PIX e Cartao.</p>
+          </div>
+        </div>
+
+        <!-- Item 3: Entrega 48h -->
+        <div class="trust-strip-card">
+          <div class="trust-shield-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="12" cy="12" r="10" fill="url(#clockGold)" stroke="#C5A059" stroke-width="1.5"/>
+              <path d="M12 7V12L15 15" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round"/>
+              <defs>
+                <linearGradient id="clockGold" x1="2" y1="2" x2="22" y2="22" gradientUnits="userSpaceOnUse">
+                  <stop stop-color="#E5C158"/>
+                  <stop offset="1" stop-color="#9A7B38"/>
+                </linearGradient>
+              </defs>
+            </svg>
+          </div>
+          <div>
+            <h4 class="trust-card-title">Entrega Expressa em 48h</h4>
+            <p class="trust-card-desc">Seu link oficial personalizado entregue no prazo sem atrasos.</p>
+          </div>
+        </div>
+
+        <!-- Item 4: Suporte VIP -->
+        <div class="trust-strip-card">
+          <div class="trust-shield-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 21.35L10.55 20.03C5.4 15.36 2 12.27 2 8.5C2 5.41 4.42 3 7.5 3C9.24 3 10.91 3.81 12 5.08C13.09 3.81 14.76 3 16.5 3C19.58 3 22 5.41 22 8.5C22 12.27 18.6 15.36 13.45 20.03L12 21.35Z" fill="url(#heartGold)" stroke="#C5A059" stroke-width="1.5"/>
+              <defs>
+                <linearGradient id="heartGold" x1="2" y1="3" x2="22" y2="21" gradientUnits="userSpaceOnUse">
+                  <stop stop-color="#E5C158"/>
+                  <stop offset="1" stop-color="#9A7B38"/>
+                </linearGradient>
+              </defs>
+            </svg>
+          </div>
+          <div>
+            <h4 class="trust-card-title">Garantia & Suporte VIP</h4>
+            <p class="trust-card-desc">Atendimento dedicado para ajustes e acompanhamento do casal.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
   <!-- Rodape de Alta Autoridade e Conversao (Niche UI Craftsman) -->
   <footer class="footer" role="contentinfo">
     <div class="container">
       <div class="footer-grid">
         <div class="footer-brand">
           <a href="#" class="logo">
-            <span class="logo-mark">AD</span>
-            <span class="logo-text">Atelier dos Noivos</span>
+            <div class="brand-emblem-svg">
+              <svg width="38" height="38" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="1" y="1" width="38" height="38" rx="8" fill="#1C1917" stroke="#D8B96C" stroke-width="1.5" />
+                <circle cx="17" cy="20" r="7.5" stroke="#D8B96C" stroke-width="1.6" />
+                <circle cx="23" cy="20" r="7.5" stroke="#FCE6B1" stroke-width="1.6" />
+                <text x="20" y="23" fill="#FFFFFF" font-family="'Outfit', sans-serif" font-size="7.5" font-weight="700" text-anchor="middle" letter-spacing="1">AD</text>
+              </svg>
+            </div>
+            <div class="brand-text-lockup">
+              <span class="logo-text" style="color: #FFFFFF;">Atelier dos Noivos</span>
+              <span class="logo-subtext" style="color: #9E9AA7;">Convites Digitais • Alta Costura</span>
+            </div>
           </a>
           <p class="footer-desc">Convites de casamento digitais e interativos de alto padrao. Tecnologia, design editorial e encanto para o seu grande dia.</p>
-          
-          <div class="footer-trust-seals">
-            <span class="trust-seal-item">🔒 SSL 256-bit Seguro</span>
-            <span class="trust-seal-item">💳 Pagamento Seguro Asaas</span>
-          </div>
         </div>
 
         <div class="footer-col">
