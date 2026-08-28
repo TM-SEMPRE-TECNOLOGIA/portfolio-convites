@@ -10,6 +10,48 @@
 </head>
 <body>
 
+  <!-- Preloader Splash Screen: Aliancas Entrelacadas & Carregamento dos Templates -->
+  <div id="sitePreloader" class="site-preloader" role="status" aria-label="Carregando Atelier dos Noivos">
+    <div class="preloader-backdrop"></div>
+    <div class="preloader-content">
+      <div class="rings-animation-wrapper">
+        <svg class="rings-svg" viewBox="0 0 160 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Alianca 1 -->
+          <circle class="ring ring-1" cx="60" cy="50" r="30" stroke="url(#goldGrad1)" stroke-width="4.5" />
+          <circle class="ring-sparkle ring-sparkle-1" cx="60" cy="50" r="30" stroke="#FFFFFF" stroke-width="2" stroke-dasharray="12 180" />
+          <polygon class="ring-gem" points="60,15 64,19 60,23 56,19" fill="#FFF" />
+          
+          <!-- Alianca 2 (Entrelacada) -->
+          <circle class="ring ring-2" cx="100" cy="50" r="30" stroke="url(#goldGrad2)" stroke-width="4.5" />
+          <circle class="ring-sparkle ring-sparkle-2" cx="100" cy="50" r="30" stroke="#FFFFFF" stroke-width="2" stroke-dasharray="12 180" />
+
+          <!-- Gradientes Dourados Ouro & Champanhe -->
+          <defs>
+            <linearGradient id="goldGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#FCE6B1" />
+              <stop offset="50%" stop-color="#D4AF37" />
+              <stop offset="100%" stop-color="#997216" />
+            </linearGradient>
+            <linearGradient id="goldGrad2" x1="100%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stop-color="#FFFDF7" />
+              <stop offset="40%" stop-color="#E5C158" />
+              <stop offset="100%" stop-color="#9C731C" />
+            </linearGradient>
+          </defs>
+        </svg>
+      </div>
+
+      <div class="preloader-text-group">
+        <span class="preloader-brand">Atelier dos Noivos</span>
+        <span class="preloader-tagline">Carregando colecao autoral de convites...</span>
+      </div>
+
+      <div class="preloader-progress-bar">
+        <div class="preloader-progress-fill" id="preloaderProgress"></div>
+      </div>
+    </div>
+  </div>
+
   <!-- Header / Nav -->
   <header class="header" role="banner">
     <div class="container nav">

@@ -10,6 +10,35 @@ document.addEventListener("DOMContentLoaded", () => {
   let currentPaymentMethod = "PIX";
 
   // ----------------------------------------------------------------------------
+  // 0. PRELOADER SPLASH SCREEN (ALIANCAS ENTRELACADAS)
+  // ----------------------------------------------------------------------------
+  const preloader = document.getElementById("sitePreloader");
+  const progressFill = document.getElementById("preloaderProgress");
+
+  if (preloader && progressFill) {
+    let progress = 25;
+    progressFill.style.width = `${progress}%`;
+
+    const interval = setInterval(() => {
+      progress += Math.floor(Math.random() * 20) + 10;
+      if (progress > 90) progress = 90;
+      progressFill.style.width = `${progress}%`;
+    }, 180);
+
+    const finishPreloader = () => {
+      clearInterval(interval);
+      progressFill.style.width = "100%";
+      setTimeout(() => {
+        preloader.classList.add("loaded");
+      }, 400);
+    };
+
+    window.addEventListener("load", finishPreloader);
+    // Fallback de seguranca max 1.8s
+    setTimeout(finishPreloader, 1800);
+  }
+
+  // ----------------------------------------------------------------------------
   // 1. MENU MOBILE
   // ----------------------------------------------------------------------------
   const navToggle = document.querySelector(".nav-toggle");
