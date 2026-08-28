@@ -1,5 +1,5 @@
 // ==========================================================================
-// TEMPLATES & PLANS DATA - ATELIER DOS NOIVOS
+// TEMPLATES & PLANS DATA - ATELIER DOS NOIVOS (VERSAO OFERTA UNICA R$ 87,90)
 // ==========================================================================
 
 export const TEMPLATES_DATA = [
@@ -10,8 +10,9 @@ export const TEMPLATES_DATA = [
     category: "classico",
     description: "Tipografia nobre, contagem regressiva sofisticada e acabamento com paleta de ouro e marfim.",
     featured: true,
-    badge: "Mais Procurado",
+    badge: "Mais Escolhido",
     video: "assets/videos/template_01.webm",
+    poster: "assets/imagens_convites/story_1_luxo_dourado.png",
     demoUrl: "templates/royal-gold/index.html",
     palette: ["#D4AF37", "#FAF8F5", "#1C1917"]
   },
@@ -22,8 +23,9 @@ export const TEMPLATES_DATA = [
     category: "minimalista",
     description: "Design moderno com foco na fotografia do casal, tipografia leve e navegacao ultrarrapida.",
     featured: true,
-    badge: "Destaque da Colecao",
+    badge: "Destaque Editorial",
     video: "assets/videos/template_02.webm",
+    poster: "assets/imagens_convites/story_3_moderno_minimalista.png",
     demoUrl: "templates/minimalist/index.html",
     palette: ["#4A5D4A", "#FFFFFF", "#2B2B2B"]
   },
@@ -36,6 +38,7 @@ export const TEMPLATES_DATA = [
     featured: false,
     badge: "Moderno",
     video: "assets/videos/template_03.webm",
+    poster: "assets/imagens_convites/story_1_luxo_dourado.png",
     demoUrl: "templates/vibrant-vows/index.html",
     palette: ["#E07A5F", "#F4F1DE", "#3D405B"]
   },
@@ -48,6 +51,7 @@ export const TEMPLATES_DATA = [
     featured: false,
     badge: "Floral Suave",
     video: "assets/videos/template_04.webm",
+    poster: "assets/imagens_convites/story_2_romantico_floral.png",
     demoUrl: "templates/eternal-romance/index.html",
     palette: ["#DDA15E", "#FEFAE0", "#606C38"]
   },
@@ -56,10 +60,11 @@ export const TEMPLATES_DATA = [
     name: "The Sacred Garden",
     tagline: "Ao Ar Livre | Campo & Praia",
     category: "ao-ar-livre",
-    description: "Elementos botanicos organicos, paleta terrosa e estrutura para cerimonias em sitios e praia.",
+    description: "Elementos botanicos organicos, capela ilustrada e estrutura para cerimonias em sitios e praia.",
     featured: false,
     badge: "Botanico",
     video: "assets/videos/template_05.webm",
+    poster: "assets/images/chapel-garden.jpg",
     demoUrl: "templates/sacred-garden/index.html",
     palette: ["#84A98C", "#CAD2C5", "#2F3E46"]
   },
@@ -72,6 +77,7 @@ export const TEMPLATES_DATA = [
     featured: false,
     badge: "Mediterraneo",
     video: "assets/videos/template_06.webm",
+    poster: "assets/imagens_convites/story_3_moderno_minimalista.png",
     demoUrl: "templates/dolce-vita/index.html",
     palette: ["#F4A261", "#E76F51", "#264653"]
   },
@@ -84,6 +90,7 @@ export const TEMPLATES_DATA = [
     featured: false,
     badge: "Dark Luxury",
     video: "assets/videos/template_07.webm",
+    poster: "assets/imagens_convites/story_1_luxo_dourado.png",
     demoUrl: "templates/blossom-oud/index.html",
     palette: ["#D4AF37", "#121212", "#1F1F1F"]
   },
@@ -96,6 +103,7 @@ export const TEMPLATES_DATA = [
     featured: false,
     badge: "Destination",
     video: "assets/videos/template_08.webm",
+    poster: "assets/imagens_convites/story_2_romantico_floral.png",
     demoUrl: "templates/destination-love/index.html",
     palette: ["#C5A880", "#F9F8F6", "#4A4036"]
   }
@@ -103,74 +111,26 @@ export const TEMPLATES_DATA = [
 
 export const PLANOS_DATA = [
   {
-    id: "light",
-    name: "Plano Light",
-    price: 99,
-    formattedPrice: "R$ 99",
-    tagline: "Essencial & Agil",
-    description: "Convite digital direto com confirmacao de presenca e localizacao integrada.",
-    popular: false,
-    badge: "",
-    features: [
-      "Foto principal do casal em alta resolucao",
-      "Contagem regressiva interativa para o grande dia",
-      "Localizacao exata com rota direta para Waze e Google Maps",
-      "Confirmacao de presenca direta em tempo real",
-      "Hospedagem inclusa com link seguro (HTTPS)"
-    ]
-  },
-  {
-    id: "silver",
-    name: "Plano Silver",
-    price: 149,
-    formattedPrice: "R$ 149",
-    tagline: "O Mais Escolhido pelos Noivos",
-    description: "A combinacao perfeita com musica ambiente, galeria de fotos e presentes via PIX.",
+    id: "completo",
+    name: "Convite Digital Completo",
+    price: 87.90,
+    formattedPrice: "R$ 87,90",
+    tagline: "Tudo Incluido • Oferta Unica",
+    description: "Seu convite de casamento digital, bonito de verdade, pronto para compartilhar em ate 48 horas.",
     popular: true,
-    badge: "Mais Escolhido",
+    badge: "Oferta Exclusiva",
     features: [
-      "Tudo incluido no Plano Light",
-      "Player de musica com a cancao especial do casal",
-      "Galeria de fotos interativa com momentos do casal",
-      "Cronograma visual completo da cerimonia e festa",
+      "Qualquer modelo autoral da colecao a sua escolha",
+      "Foto e historia dos noivos em alta definicao",
+      "Confirmacao de presenca em tempo real (WhatsApp)",
+      "Rotas com clique direto para Google Maps e Waze",
+      "Trilha sonora do casal (player com musica de fundo)",
+      "Galeria de fotos e momentos especiais",
+      "Cronograma visual da cerimonia e festa",
       "Guia de trajes recomendados (Dress Code)",
-      "Botao de Presente via PIX com chave Copia e Cola"
-    ]
-  },
-  {
-    id: "gold",
-    name: "Plano Gold",
-    price: 199,
-    formattedPrice: "R$ 199",
-    tagline: "Experiencia com Video & Historia",
-    description: "Video vertical dos noivos, pagina da historia do casal e mural de recados.",
-    popular: false,
-    badge: "Alta Experiencia",
-    features: [
-      "Tudo incluido no Plano Silver",
-      "Video vertical dos noivos em loop no topo",
-      "Secao especial Nossa Historia com fotos e linha do tempo",
-      "Guia util de saloes de beleza e hospedagens parceiras",
-      "Mural interativo de mensagens dos convidados"
-    ]
-  },
-  {
-    id: "premium",
-    name: "Plano Premium",
-    price: 250,
-    formattedPrice: "R$ 250",
-    tagline: "Experiencia VIP Completa",
-    description: "Multiplos locais, gestao inteligente de acompanhantes e cartao digital em alta definicao.",
-    popular: false,
-    badge: "Exclusivo",
-    features: [
-      "Tudo incluido no Plano Gold",
-      "Video vertical em Ultra HD com trilha sonora masterizada",
-      "Linha do tempo animada com os marcos do relacionamento",
-      "Multiplos locais com rotas separadas (Igreja + Recepcao)",
-      "Confirmacao de presenca com selecao de acompanhantes",
-      "QR Code PIX exclusivo para lista de presentes",
-      "Brinde: Cartao Digital Interativo em PDF de alta qualidade"
+      "Botao de Presente via PIX com Copia e Cola",
+      "Link exclusivo e seguro (HTTPS) ativo ate o casamento",
+      "Entrega expressa em ate 48h uteis apos o briefing"
     ]
   }
 ];

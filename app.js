@@ -6,7 +6,7 @@ import { TEMPLATES_DATA, PLANOS_DATA } from "./src/data/templates.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   let selectedModeloId = "royal-gold";
-  let selectedPlanoId = "silver";
+  let selectedPlanoId = "completo";
   let currentPaymentMethod = "PIX";
 
   // ----------------------------------------------------------------------------
@@ -62,10 +62,8 @@ document.addEventListener("DOMContentLoaded", () => {
         navMobile.setAttribute("aria-hidden", isOpen ? "false" : "true");
       }
     });
-  }
 
-  if (navMobile) {
-    navMobile.querySelectorAll("a").forEach(link => {
+    document.querySelectorAll(".nav-mobile a").forEach(link => {
       link.addEventListener("click", () => {
         document.body.classList.remove("nav-open");
         if (navToggle) navToggle.setAttribute("aria-expanded", "false");
@@ -75,7 +73,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // ----------------------------------------------------------------------------
-  // 2. RENDERIZAR VITRINE DE MODELOS (MOCKUPS VERTICAIS COM VIDEO ATIVO)
+  // 2. RENDERIZAR VITRINE DE MODELOS (MOCKUPS VERTICAIS COM PREVIEW)
   // ----------------------------------------------------------------------------
   const templatesGrid = document.getElementById("templatesGrid");
 
@@ -99,7 +97,7 @@ document.addEventListener("DOMContentLoaded", () => {
         <div class="template-mockup-frame btn-open-demo" data-url="${template.demoUrl}" data-title="${template.name}" role="button" tabindex="0" aria-label="Abrir demonstracao interativa de ${template.name}">
           <span class="template-badge">${template.badge || "Exclusivo"}</span>
           <div class="template-palette-dots">${dotsHtml}</div>
-          <video class="lazy-video" src="${template.video}" autoplay muted loop playsinline preload="auto" aria-hidden="true"></video>
+          <video class="lazy-video" src="${template.video}" poster="${template.poster || ''}" preload="metadata" muted loop playsinline aria-hidden="true"></video>
         </div>
         <div class="template-info">
           <span class="template-tagline">${template.tagline}</span>
@@ -107,10 +105,10 @@ document.addEventListener("DOMContentLoaded", () => {
           <p class="template-desc">${template.description}</p>
           <div class="template-actions">
             <button type="button" class="btn btn-outline btn-sm btn-open-demo" data-url="${template.demoUrl}" data-title="${template.name}">
-              Testar Modelo
+              Ver Demo
             </button>
-            <button type="button" class="btn btn-primary btn-sm btn-select-model" data-id="${template.id}" data-name="${template.name}">
-              Escolher Este
+            <button type="button" class="btn btn-gold btn-sm btn-select-model" data-id="${template.id}" data-name="${template.name}">
+              Escolher por R$ 87,90
             </button>
           </div>
         </div>
@@ -158,7 +156,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // ----------------------------------------------------------------------------
-  // 3. RENDERIZAR TABELA DE PRECOS (4 PLANOS COM DESTAQUE NO SILVER)
+  // 3. RENDERIZAR OFERTA UNICA (R$ 87,90 - TUDO INCLUIDO)
   // ----------------------------------------------------------------------------
   const pricingGrid = document.getElementById("pricingGrid");
 
@@ -166,29 +164,64 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!pricingGrid) return;
     pricingGrid.innerHTML = "";
 
-    PLANOS_DATA.forEach(plano => {
-      const card = document.createElement("div");
-      card.className = `pricing-card ${plano.popular ? "popular" : ""} reveal`;
+    const plano = PLANOS_DATA[0] || {
+      id: "completo",
+      name: "Convite Digital Completo",
+      price: 87.90,
+      formattedPrice: "R$ 87,90",
+      tagline: "Tudo Incluido • Oferta Especial",
+      features: [
+        "Qualquer modelo autoral da colecao a sua escolha",
+        "Foto e historia dos noivos em alta definicao",
+        "Confirmacao de presenca em tempo real (WhatsApp)",
+        "Rotas com clique direto para Google Maps e Waze",
+        "Trilha sonora do casal (player com musica de fundo)",
+        "Galeria de fotos e momentos especiais",
+        "Cronograma visual da cerimonia e festa",
+        "Guia de trajes recomendados (Dress Code)",
+        "Botao de Presente via PIX com Copia e Cola",
+        "Link exclusivo e seguro (HTTPS) ativo ate o casamento",
+        "Entrega expressa em ate 48h uteis apos o briefing"
+      ]
+    };
 
-      const featuresHtml = plano.features.map(f => `<li>${f}</li>`).join("");
+    const card = document.createElement("div");
+    card.className = "single-pricing-card reveal";
 
-      card.innerHTML = `
-        ${plano.popular ? '<span class="pricing-badge-popular">Mais Escolhido pelos Noivos</span>' : ''}
-        <div class="pricing-card-header">
-          <h3 class="plan-name">${plano.name}</h3>
-          <p class="plan-tagline">${plano.tagline}</p>
-          <div class="plan-price">${plano.formattedPrice} <small>/ unico</small></div>
+    const featuresHtml = plano.features.map(f => `
+      <li class="single-feature-item">
+        <span class="single-feature-icon">✓</span>
+        <span>${f}</span>
+      </li>
+    `).join("");
+
+    card.innerHTML = `
+      <div class="single-pricing-badge">★ Oferta Exclusiva • Pagamento Unico</div>
+      <div class="single-pricing-header">
+        <h3 class="single-plan-title">${plano.name}</h3>
+        <p class="single-plan-tagline">Design editorial, entrega em ate 48h uteis e tudo que seu casamento precisa.</p>
+        <div class="single-plan-price-box">
+          <span class="single-plan-price">${plano.formattedPrice}</span>
+          <span class="single-plan-period">/ pagamento unico</span>
         </div>
-        <ul class="plan-features">
+      </div>
+      
+      <div class="single-pricing-body">
+        <h4 class="single-features-title">Tudo o que esta incluido no seu convite:</h4>
+        <ul class="single-features-list">
           ${featuresHtml}
         </ul>
-        <button type="button" class="btn ${plano.popular ? "btn-gold" : "btn-primary"} btn-block btn-select-plano" data-id="${plano.id}">
-          Escolher ${plano.name}
-        </button>
-      `;
+      </div>
 
-      pricingGrid.appendChild(card);
-    });
+      <div class="single-pricing-footer">
+        <button type="button" class="btn btn-gold btn-lg btn-block btn-select-plano" data-id="${plano.id}">
+          Quero Meu Convite por R$ 87,90
+        </button>
+        <p class="single-pricing-guarantee">🔒 Pagamento 100% seguro via PIX ou Cartao • Sem mensalidades</p>
+      </div>
+    `;
+
+    pricingGrid.appendChild(card);
 
     pricingGrid.querySelectorAll(".btn-select-plano").forEach(btn => {
       btn.addEventListener("click", () => {
@@ -439,8 +472,22 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
+  // ----------------------------------------------------------------------------
+  // 8. MOBILE STICKY CTA SCROLL REVEAL (MANUS AI RECOMMENDATION)
+  // ----------------------------------------------------------------------------
+  const mobileStickyCta = document.getElementById("mobileStickyCta");
+  if (mobileStickyCta) {
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 380) {
+        mobileStickyCta.classList.add("visible");
+      } else {
+        mobileStickyCta.classList.remove("visible");
+      }
+    }, { passive: true });
+  }
+
   // Adicionar classe reveal as secoes principais
-  document.querySelectorAll(".section, .proof-strip, .hero-content, .hero-mockup-area, .comparison-card, .testimonial-card, .faq-item").forEach(el => {
+  document.querySelectorAll(".section, .proof-strip, .hero-content, .hero-mockup-area, .comparison-card, .testimonial-card, .faq-item, .guest-flow-card").forEach(el => {
     el.classList.add("reveal");
   });
 
