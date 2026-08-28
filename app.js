@@ -16,26 +16,44 @@ document.addEventListener("DOMContentLoaded", () => {
   const progressFill = document.getElementById("preloaderProgress");
 
   if (preloader && progressFill) {
-    let progress = 25;
+    let progress = 10;
     progressFill.style.width = `${progress}%`;
 
+    const startTime = Date.now();
     const interval = setInterval(() => {
-      progress += Math.floor(Math.random() * 20) + 10;
-      if (progress > 90) progress = 90;
+      const elapsed = Date.now() - startTime;
+      if (elapsed < 1200) {
+        progress = Math.min(65, progress + 6);
+      } else if (elapsed < 2200) {
+        progress = Math.min(90, progress + 3);
+      }
       progressFill.style.width = `${progress}%`;
-    }, 180);
+    }, 100);
 
-    const finishPreloader = () => {
-      clearInterval(interval);
-      progressFill.style.width = "100%";
+    const finishPreloader = async () => {
+      // Aguarda fontes renderizarem para evitar FOUT / textos pulando
+      if (document.fonts) {
+        await document.fonts.ready;
+      }
+      
+      const elapsed = Date.now() - startTime;
+      const minDuration = 2200; // Garante que todos os elementos e videos da pagina estejam prontos
+      const remaining = Math.max(0, minDuration - elapsed);
+
       setTimeout(() => {
-        preloader.classList.add("loaded");
-      }, 400);
+        clearInterval(interval);
+        progressFill.style.width = "100%";
+        setTimeout(() => {
+          preloader.classList.add("loaded");
+        }, 350);
+      }, remaining);
     };
 
-    window.addEventListener("load", finishPreloader);
-    // Fallback de seguranca max 1.8s
-    setTimeout(finishPreloader, 1800);
+    if (document.readyState === "complete") {
+      finishPreloader();
+    } else {
+      window.addEventListener("load", finishPreloader);
+    }
   }
 
   // ----------------------------------------------------------------------------
