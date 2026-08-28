@@ -416,10 +416,34 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
+  // ----------------------------------------------------------------------------
+  // 7. FAQ ACCORDION INTERATIVO
+  // ----------------------------------------------------------------------------
+  document.querySelectorAll(".faq-question").forEach(button => {
+    button.addEventListener("click", () => {
+      const item = button.closest(".faq-item");
+      const isExpanded = item.classList.contains("active");
+
+      // Fecha outros itens para comportamento de acordeao limpo
+      document.querySelectorAll(".faq-item").forEach(other => {
+        if (other !== item) {
+          other.classList.remove("active");
+          const otherBtn = other.querySelector(".faq-question");
+          if (otherBtn) otherBtn.setAttribute("aria-expanded", "false");
+        }
+      });
+
+      // Alterna item clicado
+      item.classList.toggle("active");
+      button.setAttribute("aria-expanded", !isExpanded ? "true" : "false");
+    });
+  });
+
   // Adicionar classe reveal as secoes principais
-  document.querySelectorAll(".section, .proof-strip, .hero-content, .hero-mockup-area").forEach(el => {
+  document.querySelectorAll(".section, .proof-strip, .hero-content, .hero-mockup-area, .comparison-card, .testimonial-card, .faq-item").forEach(el => {
     el.classList.add("reveal");
   });
 
   observeMediaAndReveals();
 });
+

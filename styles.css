@@ -1502,27 +1502,320 @@ button, input, select {
   margin-bottom: 6px;
 }
 
-.preloader-tagline {
-  font-size: 0.84rem;
-  color: #A09BAA;
-  letter-spacing: 0.04em;
+/* ==========================================================================
+   HERO RATING BADGE
+   ========================================================================== */
+.hero-rating-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 16px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-pill);
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-bottom: 20px;
+  box-shadow: var(--shadow-sm);
 }
 
-.preloader-progress-bar {
-  width: 180px;
-  height: 3px;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 4px;
+.hero-stars {
+  color: #E5B869;
+  letter-spacing: 2px;
+  font-size: 0.9rem;
+}
+
+/* ==========================================================================
+   LOOKBOOK MARQUEE RIBBON (Niche UI Craftsman)
+   ========================================================================== */
+.lookbook-ribbon {
+  width: 100%;
+  background: #14161D;
+  color: #FAF9F6;
+  padding: 16px 0;
   overflow: hidden;
-  position: relative;
+  white-space: nowrap;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.preloader-progress-fill {
-  width: 0%;
-  height: 100%;
-  background: linear-gradient(90deg, #D4AF37, #FFFFFF, #C5A059);
-  border-radius: 4px;
-  transition: width 0.4s ease;
-  box-shadow: 0 0 8px rgba(212, 175, 55, 0.8);
+.marquee-track {
+  display: inline-flex;
+  gap: 48px;
+  animation: marqueeScroll 28s linear infinite;
 }
+
+.marquee-item {
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  color: #D8B96C;
+}
+
+@keyframes marqueeScroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* ==========================================================================
+   COMPARISON SECTION: DIGITAL VS TRADICIONAL
+   ========================================================================== */
+.comparison-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 0.9fr;
+  gap: 32px;
+  align-items: stretch;
+}
+
+.comparison-card {
+  border-radius: var(--radius-lg);
+  padding: 40px 32px;
+  position: relative;
+  transition: var(--transition);
+}
+
+.comparison-card--digital {
+  background: #FFFFFF;
+  border: 2px solid #D4AF37;
+  box-shadow: 0 16px 40px rgba(197, 160, 89, 0.15);
+}
+
+.comparison-card--traditional {
+  background: var(--bg-surface-alt);
+  border: 1px solid var(--border);
+  opacity: 0.9;
+}
+
+.comparison-badge {
+  display: inline-block;
+  background: linear-gradient(135deg, #D4AF37, #C5A059);
+  color: #FFFFFF;
+  padding: 5px 16px;
+  border-radius: var(--radius-pill);
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+.comparison-badge--subtle {
+  background: var(--border);
+  color: var(--text-secondary);
+}
+
+.comparison-title {
+  font-size: 1.5rem;
+  margin-bottom: 24px;
+}
+
+.comparison-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.comparison-list li {
+  font-size: 0.92rem;
+  line-height: 1.5;
+  color: var(--text-secondary);
+  position: relative;
+  padding-left: 24px;
+}
+
+.comparison-card--digital .comparison-list li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--accent-gold);
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.comparison-card--traditional .comparison-list li::before {
+  content: '✕';
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--text-muted);
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+@media (max-width: 860px) {
+  .comparison-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ==========================================================================
+   DEPOIMENTOS & PROVA SOCIAL
+   ========================================================================== */
+.section--testimonials {
+  background-color: var(--bg-surface);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 28px;
+}
+
+.testimonial-card {
+  background: var(--bg-page);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 32px 28px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition);
+}
+
+.testimonial-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+.testimonial-card--highlight {
+  border-color: var(--accent-gold-border);
+  background: #FFFDF9;
+  box-shadow: 0 12px 30px rgba(197, 160, 89, 0.12);
+}
+
+.testimonial-rating {
+  color: #E5B869;
+  font-size: 1rem;
+  letter-spacing: 2px;
+  margin-bottom: 14px;
+}
+
+.testimonial-quote {
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: var(--text-secondary);
+  font-style: italic;
+  margin-bottom: 24px;
+}
+
+.testimonial-author {
+  display: flex;
+  flex-direction: column;
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+}
+
+.testimonial-name {
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--text-primary);
+}
+
+.testimonial-venue {
+  font-size: 0.8rem;
+  color: var(--accent-gold);
+  margin-top: 2px;
+}
+
+/* ==========================================================================
+   FAQ INTERATIVO (Acordeão)
+   ========================================================================== */
+.section--faq {
+  background: radial-gradient(ellipse at 50% 10%, rgba(197, 160, 89, 0.06) 0%, rgba(250, 249, 246, 0) 70%);
+}
+
+.faq-accordion {
+  max-width: 800px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.faq-item {
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition);
+}
+
+.faq-item.active {
+  border-color: var(--accent-gold-border);
+  box-shadow: var(--shadow-md);
+}
+
+.faq-question {
+  width: 100%;
+  padding: 20px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: none;
+  border: none;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  text-align: left;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.faq-question:hover {
+  color: var(--accent-gold);
+}
+
+.faq-icon {
+  font-size: 1.3rem;
+  font-weight: 400;
+  color: var(--accent-gold);
+  transition: transform 0.3s ease;
+}
+
+.faq-item.active .faq-icon {
+  transform: rotate(45deg);
+}
+
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.35s cubic-bezier(0.16, 1, 0.3, 1), padding 0.35s ease;
+}
+
+.faq-item.active .faq-answer {
+  max-height: 250px;
+  padding: 0 24px 22px;
+}
+
+.faq-answer p {
+  font-size: 0.92rem;
+  color: var(--text-secondary);
+  line-height: 1.65;
+}
+
+/* ==========================================================================
+   FOOTER TRUST SEALS
+   ========================================================================== */
+.footer-trust-seals {
+  display: flex;
+  gap: 12px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+
+.trust-seal-item {
+  font-size: 0.78rem;
+  color: #B8B3C4;
+  background: rgba(255, 255, 255, 0.06);
+  padding: 6px 14px;
+  border-radius: var(--radius-pill);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
 
